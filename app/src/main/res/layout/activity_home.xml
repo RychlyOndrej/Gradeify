@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="26dp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="66dp"
+                    android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/textView3"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="20dp"
+                            android:text="Používaná škála"
+                            android:textColor="#000000"
+                            android:textSize="20dp" />
+
+                        <TextView
+                            android:id="@+id/textView4"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="140dp"
+                            android:layout_marginTop="8dp"
+                            android:textColor="#000000"
+                            android:textSize="18sp" />
+                </LinearLayout>
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="24dp" />
+
+
+                <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/recyclerView"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent" />
+
+                </LinearLayout>
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="18dp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="170dp"
+                    android:orientation="horizontal">
+
+                        <View
+                            android:layout_width="0dp"
+                            android:layout_height="138dp"
+                            android:layout_weight="1"
+                            android:background="#B2FF59" />
+
+                        <View
+                            android:layout_width="0dp"
+                            android:layout_height="138dp"
+                            android:layout_weight="1"
+                            android:background="#EEFF41" />
+
+                        <View
+                            android:layout_width="0dp"
+                            android:layout_height="138dp"
+                            android:layout_weight="1"
+                            android:background="#FFFF00" />
+
+                        <View
+                            android:layout_width="0dp"
+                            android:layout_height="138dp"
+                            android:layout_weight="1"
+                            android:background="#FFAB40" />
+
+                        <View
+                            android:layout_width="0dp"
+                            android:layout_height="138dp"
+                            android:layout_weight="1"
+                            android:background="#FF6E40" />
+
+                </LinearLayout>
+
+                <TableLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="82dp"
+                    android:layout_margin="10dp"
+                    android:padding="5dp">
+
+                        <TableRow android:layout_height="100dp">
+
+                                <TextView
+                                    android:id="@+id/textView12"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:gravity="center"
+                                    android:text="Avarage"
+                                    android:textColor="@color/black"
+                                    android:textSize="24sp" />
+
+                                <TextView
+                                    android:id="@+id/textView13"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:gravity="center"
+                                    android:text="Std. dev."
+                                    android:textColor="@color/black"
+                                    android:textSize="24sp" />
+
+                                <TextView
+                                    android:id="@+id/textView14"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:gravity="center"
+                                    android:text="Median"
+                                    android:textColor="@color/black"
+                                    android:textSize="24sp" />
+                        </TableRow>
+
+                        <TableRow>
+
+                                <TextView
+                                    android:id="@+id/textView15"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:gravity="center"
+                                    android:text="1"
+                                    android:textColor="@color/black"
+                                    android:textSize="24sp" />
+
+                                <TextView
+                                    android:id="@+id/textView16"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:gravity="center"
+                                    android:text="1"
+                                    android:textColor="@color/black"
+                                    android:textSize="24sp" />
+
+                                <TextView
+                                    android:id="@+id/textView17"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:gravity="center"
+                                    android:text="1"
+                                    android:textColor="@color/black"
+                                    android:textSize="24sp" />
+                        </TableRow>
+                </TableLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="55dp"
+                    android:orientation="horizontal">
+
+                        <Button
+                            android:id="@+id/button6"
+                            android:layout_width="225dp"
+                            android:layout_height="55dp"
+                            android:layout_margin="10dp"
+                            android:layout_marginBottom="25dp"
+                            android:layout_weight="1"
+                            android:text="Reset statistic" />
+                </LinearLayout>
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="10dp" />
+
+        </LinearLayout>
+</ScrollView>
