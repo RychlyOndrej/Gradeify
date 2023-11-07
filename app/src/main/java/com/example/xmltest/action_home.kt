@@ -45,6 +45,7 @@ class Window1Fragment : Fragment() {
         recyclerView.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
         recyclerView.adapter = adapter
 
+
         return rootView
     }
 
