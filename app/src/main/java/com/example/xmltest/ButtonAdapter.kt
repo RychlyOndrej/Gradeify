@@ -15,7 +15,7 @@ class ButtonAdapter(
 ) : RecyclerView.Adapter<ButtonAdapter.ViewHolder>() {
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val button: Button = itemView.findViewById(R.id.button)
+        val button: Button = itemView.findViewById(R.id.markBtn)
         val countText1: TextView = itemView.findViewById(R.id.countText1)
         val countText2: TextView = itemView.findViewById(R.id.countText2)
     }

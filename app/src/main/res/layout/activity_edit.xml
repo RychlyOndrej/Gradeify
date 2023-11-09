@@ -24,7 +24,11 @@
                 android:layout_marginStart="60dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="60dp"
-                android:hint="MAX Bodů" />
+                android:hint="MAX Bodů"
+                android:inputType="numberDecimal"
+                android:digits="0123456789"
+                />
+
         </com.google.android.material.textfield.TextInputLayout>
     </LinearLayout>
 
@@ -200,58 +204,9 @@
                 android:textSize="18sp" />
         </LinearLayout>
 
-        <LinearLayout
-            android:id="@+id/button4"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_margin="5dp"
-            android:layout_weight="1"
-            android:background="#FFAB40"
-            android:clickable="false"
-            android:focusable="true"
-            android:orientation="vertical">
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="sans-serif-black"
-                android:gravity="center"
-                android:text="4"
-                android:textColor="@color/black"
-                android:textSize="24sp" />
 
-            <Space
-                android:layout_width="match_parent"
-                android:layout_height="14dp" />
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="xy %"
-                    android:gravity="center"
-                    android:paddingTop="16dp"
-                    android:paddingBottom="16dp" />
-
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <Space
-                android:layout_width="match_parent"
-                android:layout_height="16dp" />
-
-            <TextView
-                android:id="@+id/textView10"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="21 %"
-                android:textColor="@color/black"
-                android:textSize="18sp" />
-        </LinearLayout>
-
+ <!--
         <LinearLayout
             android:id="@+id/button5"
             android:layout_width="0dp"
@@ -303,7 +258,7 @@
                 android:textColor="@color/black"
                 android:textSize="18sp" />
         </LinearLayout>
-
+-->
     </LinearLayout>
 
     <Space
@@ -323,7 +278,7 @@
             android:layout_height="match_parent">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="70dp"
+                android:layout_width="match_parent"
                 android:layout_height="70dp"
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="10dp"
@@ -334,7 +289,7 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <Button
-            android:id="@+id/button"
+            android:id="@+id/saveScaleBtn"
             android:layout_width="70dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"

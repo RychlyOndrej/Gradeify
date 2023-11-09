@@ -1,15 +1,15 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/action_window1"
-        android:icon="@android:drawable/ic_lock_silent_mode_off"
-        android:title="Okno 1" />
+        android:icon="@android:drawable/sym_action_email"
+        android:title="Home" />
     <item
         android:id="@+id/action_window2"
-        android:icon="@android:drawable/ic_menu_preferences"
-        android:title="Okno 2" />
+        android:icon="@android:drawable/ic_menu_edit"
+        android:title="Edit" />
 
     <item
         android:id="@+id/action_window3"
-        android:icon="@android:drawable/stat_notify_sdcard_prepare"
-        android:title="Okno 3" />
+        android:icon="@android:drawable/ic_menu_preferences"
+        android:title="Settings" />
 </menu>

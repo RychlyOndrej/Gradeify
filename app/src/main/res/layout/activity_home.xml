@@ -14,7 +14,7 @@
 
                 <Space
                     android:layout_width="match_parent"
-                    android:layout_height="26dp" />
+                    android:layout_height="13dp" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -43,20 +43,22 @@
 
                 <Space
                     android:layout_width="match_parent"
-                    android:layout_height="24dp" />
+                    android:layout_height="18dp" />
 
 
-                <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
                     android:orientation="horizontal">
 
                         <androidx.recyclerview.widget.RecyclerView
                             android:id="@+id/recyclerView"
-                            android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
-                            android:layout_margin="1dp"
-                            android:background="@color/colorAccent"/>
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_margin="2dp"
+                            android:background="@color/colorAccent" />
 
                 </LinearLayout>
 
@@ -65,15 +67,15 @@
                     android:layout_height="18dp" />
 
                 <LinearLayout
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:paddingBottom="15dp"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    android:paddingBottom="15dp">
 
                         <com.jjoe64.graphview.GraphView
                             android:id="@+id/graph"
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                            android:layout_height="150dp"
                             android:layout_gravity="center"
                             android:layout_margin="14dp" />
 
