@@ -16,6 +16,13 @@
     <string name="mark_F">F</string>
 
 
+    <!-- Home -->
+    <string name="text_prumer">Průměr</string>
+    <string name="text_odchylka">Stand. odchylka</string>
+    <string name="text_median">Median</string>
+
+
+
 
     <!-- Settings -->
     <string name="scaleOneFive">Škála od 1 do 5</string>

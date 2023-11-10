@@ -24,7 +24,6 @@ class Window1Fragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val rootView = inflater.inflate(R.layout.activity_home, container, false)
-        val recyclerView = rootView.findViewById<RecyclerView>(R.id.recyclerView)
 
         val textView = rootView.findViewById<TextView>(R.id.textView4)
 
