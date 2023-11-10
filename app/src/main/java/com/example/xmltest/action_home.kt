@@ -15,10 +15,7 @@ import com.jjoe64.graphview.helper.StaticLabelsFormatter
 import com.jjoe64.graphview.series.BarGraphSeries
 import com.jjoe64.graphview.series.DataPoint
 
-/*val textView = rootView.findViewById<TextView>(R.id.textView4)
 
-        // Nyní máte referenci na TextView a můžete jej upravit
-        textView.text = "Aktuální škálecák"*/
 
 class Window1Fragment : Fragment() {
 
@@ -42,11 +39,8 @@ class Window1Fragment : Fragment() {
         }
 
 
-        val adapter = ButtonAdapter(buttonData)
-        recyclerView.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
-        recyclerView.adapter = adapter
 
-        /*fujky*/
+        /*Obsluha grafu*/
         // Get a reference to your GraphView from the XML layout
         val graphView = rootView.findViewById<GraphView>(R.id.graph)
 
@@ -90,7 +84,7 @@ class Window1Fragment : Fragment() {
             series.resetData(arrayOf())
         }
 
-        /*endoffujky*/
+        /*KOnec grafu + reset butonu*/
 
 
 
@@ -102,39 +96,4 @@ class Window1Fragment : Fragment() {
         return (1..100).random() // Generuje náhodná čísla od 1 do 100
     }
 }
-
-
-class MyAdapter : RecyclerView.Adapter<MyAdapter.ViewHolder>() {
-    private val buttonData = mutableListOf<Int>()
-    private var average: Double = 0.0
-
-    inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val button: Button = itemView.findViewById(R.id.markBtn)
-
-        init {
-            button.setOnClickListener {
-                val value = adapterPosition + 1
-                buttonData.add(value)
-                average = buttonData.average()
-                notifyDataSetChanged() // Aktualizujte RecyclerView
-            }
-        }
-    }
-
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val itemView = LayoutInflater.from(parent.context).inflate(R.layout.button_item, parent, false)
-        return ViewHolder(itemView)
-    }
-
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.button.text = (position + 1).toString()
-    }
-
-    override fun getItemCount(): Int {
-        return buttonData.size
-    }
-}
-
-
-
 

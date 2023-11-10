@@ -5,6 +5,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
 
+
     <Space
         android:layout_width="match_parent"
         android:layout_height="13dp" />
@@ -74,7 +75,7 @@
                         android:layout_margin="12dp"
                         android:fontFamily="sans-serif-black"
                         android:gravity="center"
-                        android:text="1"
+                        android:text="@string/mark_1"
                         android:textColor="@color/black"
                         android:textSize="24sp" />
                 </androidx.cardview.widget.CardView>
@@ -151,7 +152,7 @@
                         android:layout_margin="12dp"
                         android:fontFamily="sans-serif-black"
                         android:gravity="center"
-                        android:text="2"
+                        android:text="@string/mark_2"
                         android:textColor="@color/black"
                         android:textSize="24sp" />
                 </androidx.cardview.widget.CardView>
@@ -227,7 +228,7 @@
                         android:layout_margin="12dp"
                         android:fontFamily="sans-serif-black"
                         android:gravity="center"
-                        android:text="3"
+                        android:text="@string/mark_3"
                         android:textColor="@color/black"
                         android:textSize="24sp" />
                 </androidx.cardview.widget.CardView>
@@ -303,7 +304,7 @@
                         android:layout_margin="12dp"
                         android:fontFamily="sans-serif-black"
                         android:gravity="center"
-                        android:text="4"
+                        android:text="@string/mark_4"
                         android:textColor="@color/black"
                         android:textSize="24sp" />
                 </androidx.cardview.widget.CardView>
@@ -379,7 +380,7 @@
                         android:layout_margin="12dp"
                         android:fontFamily="sans-serif-black"
                         android:gravity="center"
-                        android:text="5"
+                        android:text="@string/mark_5"
                         android:textColor="@color/black"
                         android:textSize="24sp" />
                 </androidx.cardview.widget.CardView>
@@ -491,5 +492,4 @@
 
         </LinearLayout>
     </androidx.cardview.widget.CardView>
-
 </LinearLayout>

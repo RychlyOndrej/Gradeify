@@ -11,4 +11,12 @@
     <color name="colorPrimaryDark">#303F9F</color> <!-- Example primary dark color -->
     <color name="colorAccent">#FF4081</color> <!-- Example accent color -->
     <!-- Define other colors here -->
+
+    <color name="mark_1">#B2FF59</color>
+    <color name="mark_2">#EEFF41</color>
+    <color name="mark_3">#FFD740</color>
+    <color name="mark_4">#FFAB40</color>
+    <color name="mark_5">#FF6E40</color>
+    <color name="Split_color">#BBBBBB</color>
+
 </resources>
