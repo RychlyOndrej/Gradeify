@@ -7,8 +7,6 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
 import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.example.xmltest.ui.theme.ButtonModel
 import com.jjoe64.graphview.GraphView
 import com.jjoe64.graphview.helper.StaticLabelsFormatter
@@ -77,7 +75,7 @@ class Window1Fragment : Fragment() {
 
         graphView.addSeries(series)
 
-        val resetBtn: Button = rootView.findViewById(R.id.Reset_stats_btn)
+        val resetBtn: Button = rootView.findViewById(R.id.resetStatsBtn)
         resetBtn.setOnClickListener {
             // Clear the data in the graph
             series.resetData(arrayOf())

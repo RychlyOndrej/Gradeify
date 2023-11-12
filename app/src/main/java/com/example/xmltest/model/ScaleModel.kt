@@ -1,6 +1,4 @@
-package com.example.xmltest.model
-
-
+package com.example.xmltest
 
 /*
 data class Scale(
@@ -11,12 +9,14 @@ data class Scale(
     val procentFour: Int,
     val procentFive: Int,)
 */
+
 interface ScaleModel{
     fun getAllScales(): List<Scale>
     fun removeScale(scale: Scale)
+    fun editScale(scale: Scale)
 }
 
-class ScaleModelImp1: ScaleModel{
+class ScaleModelImp: ScaleModel{
     private val scales = ArrayList<Scale>()
 
     init {
@@ -25,12 +25,15 @@ class ScaleModelImp1: ScaleModel{
         scales.add(Scale("Pre-school",100,80,60,30,10))
     }
 
-
     override fun getAllScales(): List<Scale> {
         return scales.toList()
     }
 
     override fun removeScale(scale: Scale) {
         scales.remove(scale)
+    }
+
+    override fun editScale(scale: Scale) {
+        TODO("Not yet implemented")
     }
 }
