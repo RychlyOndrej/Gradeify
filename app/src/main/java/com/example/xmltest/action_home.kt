@@ -7,6 +7,8 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.xmltest.ui.theme.ButtonModel
 import com.jjoe64.graphview.GraphView
 import com.jjoe64.graphview.helper.StaticLabelsFormatter
@@ -17,6 +19,7 @@ import com.jjoe64.graphview.series.DataPoint
 
 class Window1Fragment : Fragment() {
 
+    private lateinit var model:ScaleModelImp
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -91,6 +94,12 @@ class Window1Fragment : Fragment() {
 
     private fun generateRandomNumber(): Int {
         return (1..100).random() // Generuje náhodná čísla od 1 do 100
+    }
+
+    fun showAllScales(rootView: View){
+        val scaleList = rootView.findViewById<RecyclerView>(R.id.scaleList)
+        scaleList.layoutManager = LinearLayoutManager(requireContext())
+        scaleList.adapter = ScaleAdapter(model.getAllScales())
     }
 }
 
