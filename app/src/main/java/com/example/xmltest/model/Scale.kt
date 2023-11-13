@@ -8,25 +8,6 @@ data class Scale(
     val procentFour: Int,
     val procentFive: Int
 ) {
-    // Primární konstruktor
-    constructor(
-        name: String,
-        procentTwo: Int,
-        procentThree: Int,
-        procentFour: Int,
-        procentFive: Int
-    ) : this(
-        name,
-        100, // Nastavíme procentOne na 100
-        procentTwo,
-        procentThree,
-        procentFour,
-        procentFive
-    ) {
-        // Další inicializační kód, pokud je potřeba
-    }
-
-    // Sekundární konstruktor
     constructor(
         name: String,
         procentOne: Int,
