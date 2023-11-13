@@ -3,7 +3,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical">
+
 
     <Space
         android:layout_width="match_parent"
@@ -435,6 +437,7 @@
             </LinearLayout>
 
         </LinearLayout>
+
     </androidx.cardview.widget.CardView>
 
     <Space
@@ -463,11 +466,31 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:id="@+id/spaceSeparator"
             android:layout_marginStart="10dp"
             android:layout_marginTop="40dp"
             android:layout_marginEnd="10dp"
             android:layout_marginBottom="10dp"
             android:padding="5dp">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/scaleList"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_above="@id/floatingBtn"
+                android:layout_alignParentTop="true"
+                android:layout_marginHorizontal="0dp"
+                android:layout_marginVertical="2dp"
+                android:layout_marginTop="7dp"
+                android:nestedScrollingEnabled="true"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:itemCount="7"
+                tools:listitem="@layout/recycler_view_item" />
 
         <!-- Floating tlačítko dole v pravo, pro jasnější ikonu importuj obrázek dovnitř -->
             <com.google.android.material.floatingactionbutton.FloatingActionButton

@@ -19,7 +19,7 @@ interface MainView {
     fun showGraph()
     fun showStatsTable()
     fun showProcentArray()
-    fun showAllTasks()
+    fun showAllScales()
     fun showBtnPressed()
 
 }
@@ -52,8 +52,10 @@ class MainViewImp : ComponentActivity(), MainView{
     override fun showProcentArray(){
 
     }
-    override fun showAllTasks(){
-
+    override fun showAllScales(){
+        val scaleList = findViewById<RecyclerView>(R.id.scaleList)
+        scaleList.layoutManager = LinearLayoutManager(this)
+        scaleList.adapter = ScaleAdapter(controller.getAllScales())
     }
 
     override fun showBtnPressed(){
