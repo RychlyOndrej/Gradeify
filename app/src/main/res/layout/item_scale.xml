@@ -19,10 +19,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="TextView"
+            android:textColor="@color/black"
             android:gravity="center"
             android:textSize="22sp"
             android:layout_margin="10dp"
-            android:background="@color/Split_color"
+            android:background="@color/colorPrimary"
 
             />
     </androidx.cardview.widget.CardView>

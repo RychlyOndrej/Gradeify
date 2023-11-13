@@ -482,15 +482,12 @@
                 android:layout_marginHorizontal="0dp"
                 android:layout_marginVertical="2dp"
                 android:layout_marginTop="7dp"
-                android:nestedScrollingEnabled="true"
+                android:nestedScrollingEnabled="false"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:itemCount="7"
-                tools:listitem="@layout/recycler_view_item" />
+                app:layout_constraintTop_toTopOf="parent" />
 
         <!-- Floating tlačítko dole v pravo, pro jasnější ikonu importuj obrázek dovnitř -->
             <com.google.android.material.floatingactionbutton.FloatingActionButton
