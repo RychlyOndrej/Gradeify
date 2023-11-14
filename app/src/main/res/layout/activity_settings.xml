@@ -49,21 +49,24 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/scaleOneFive"
-                            android:textSize="18dp"/>
+                            android:textSize="18dp"
+                            android:onClick="onRadioButtonClicked"/>
 
                         <RadioButton
                             android:id="@+id/radio_button_a_f"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/scaleAF"
-                            android:textSize="18dp"/>
+                            android:textSize="18dp"
+                            android:onClick="onRadioButtonClicked"/>
 
                         <RadioButton
                             android:id="@+id/radio_button_one_four"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/scaleOneFour"
-                            android:textSize="18dp"/>
+                            android:textSize="18dp"
+                            android:onClick="onRadioButtonClicked"/>
 
                     </LinearLayout>
                 </LinearLayout>
