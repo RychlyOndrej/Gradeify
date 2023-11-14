@@ -2,7 +2,14 @@ package com.example.xmltest
 
 import com.jjoe64.graphview.series.DataPoint
 
-class ScaleModel {
+interface ScaleModel{
+    fun onViewCreated()
+    fun onResetBtnClick()
+    fun getAllScales(): List<Scale>
+
+}
+
+class ScaleModelImp: ScaleModel {
     private val scales = ArrayList<Scale>()
 
     init {
@@ -12,9 +19,7 @@ class ScaleModel {
         scales.add(Scale("jmenasdsadsadsadsadsado1", 100, 85,60,40,20))
     }
 
-    fun onViewCreated() {
-
-
+    override fun onViewCreated() {
 
         // Initialize data and set up the view
         val dataPoints = arrayOf(
@@ -24,15 +29,9 @@ class ScaleModel {
             DataPoint(4.0, 40.0),
             DataPoint(5.0, 15.0)
         )
-
-        /*
-        view?.showDataOnGraph(dataPoints)
-        view?.showTextViewContent("Aktuální škálecák")
-
-         */
     }
 
-    fun onResetBtnClick() {
+    override fun onResetBtnClick() {
         // Clear the data in the graph
         //view?.showDataOnGraph(arrayOf())
     }
@@ -45,7 +44,7 @@ class ScaleModel {
         //this.view = null
     }
 
-    fun getAllScales(): List<Scale> {
+    override fun getAllScales(): List<Scale> {
         return scales.toList()
     }
 }

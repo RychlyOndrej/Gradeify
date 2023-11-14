@@ -12,7 +12,7 @@ interface HomeController{
     fun setActiveScale()
 }
 
-class HomeControllerImp(private val model: ScaleModel): ComponentActivity(), HomeController{
+class HomeControllerImp(private val model: ScaleModelImp): ComponentActivity(), HomeController{
     private var activeScaleName = "Standart"
     private var maxScore = 0
     private var procentArray: Array<Int>? = null

@@ -21,8 +21,8 @@ class EditViewImp : Fragment(), EditView {
     ): View? {
         val rootView = inflater.inflate(R.layout.activity_edit, container, false)
         // Initialize the controller before using it
-        val scaleModel = ScaleModel()
-        controller = EditControllerImp(scaleModel)
+        val scaleModelImp = ScaleModelImp()
+        controller = EditControllerImp(scaleModelImp)
         showAllScales(rootView)
         return rootView
     }

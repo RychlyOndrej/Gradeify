@@ -16,7 +16,7 @@ interface HomeView {
 }
 
 class HomeViewImp : Fragment(), HomeView {
-    private val presenter = ScaleModel()
+    private val presenter = ScaleModelImp()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

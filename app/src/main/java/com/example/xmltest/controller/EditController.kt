@@ -6,8 +6,8 @@ interface EditController {
 }
 
 // Implement the controller
-class EditControllerImp(private val scaleModel: ScaleModel) : EditController {
+class EditControllerImp(private val scaleModelImp: ScaleModelImp) : EditController {
     override fun getAllScales(): List<Scale> {
-        return scaleModel.getAllScales()
+        return scaleModelImp.getAllScales()
     }
 }
