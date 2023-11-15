@@ -251,6 +251,65 @@
 
                         </LinearLayout>
 
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="center"
+                            android:layout_margin="3dp"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                                <androidx.cardview.widget.CardView
+                                    android:id="@+id/markFiveBtn"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:clickable="true"
+                                    android:focusable="true"
+                                    app:cardBackgroundColor="@color/mark_5"
+                                    app:cardCornerRadius="20dp">
+
+                                        <LinearLayout
+                                            android:layout_width="match_parent"
+                                            android:layout_height="match_parent"
+                                            android:orientation="vertical">
+
+                                                <TextView
+                                                    android:layout_width="match_parent"
+                                                    android:layout_height="wrap_content"
+                                                    android:layout_margin="12dp"
+                                                    android:fontFamily="sans-serif-black"
+                                                    android:gravity="center"
+                                                    android:text="@string/mark_5"
+                                                    android:textColor="@color/black"
+                                                    android:textSize="24sp" />
+
+                                                <TextView
+                                                    android:layout_width="match_parent"
+                                                    android:layout_height="wrap_content"
+                                                    android:layout_marginTop="12dp"
+                                                    android:fontFamily="sans-serif-black"
+                                                    android:gravity="center"
+                                                    android:text="xy b."
+                                                    android:textColor="@color/black"
+                                                    android:textSize="18sp" />
+
+                                                <TextView
+                                                    android:layout_width="match_parent"
+                                                    android:layout_height="wrap_content"
+                                                    android:layout_marginBottom="12dp"
+                                                    android:fontFamily="sans-serif-black"
+                                                    android:gravity="center"
+                                                    android:text="xy b."
+                                                    android:textColor="@color/black"
+                                                    android:textSize="18sp" />
+                                        </LinearLayout>
+                                </androidx.cardview.widget.CardView>
+
+                        </LinearLayout>
+
+
                 </LinearLayout>
         </androidx.cardview.widget.CardView>
 
