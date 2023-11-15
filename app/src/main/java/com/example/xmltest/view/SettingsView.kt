@@ -1,5 +1,7 @@
 package com.example.xmltest
 
+import android.content.Context
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -16,6 +18,7 @@ interface SettingsView {
 class SettingsViewImp : Fragment(), SettingsView {
     private lateinit var controller: SettingsController
     private lateinit var model: SettingsModel
+    private lateinit var sharedPreferences: SharedPreferences
 
     private lateinit var radioButtonOneFive: RadioButton
     private lateinit var radioButtonAF: RadioButton
@@ -27,9 +30,14 @@ class SettingsViewImp : Fragment(), SettingsView {
     ): View? {
         val rootView = inflater.inflate(R.layout.activity_settings, container, false)
 
+
+
         // Initialize model and controller
-        model = SettingsModelImp()
+        model = SettingsModelImp(requireContext())
         controller = SettingsControllerImp(this, model)
+
+        // Initialize SharedPreferences
+        sharedPreferences = requireActivity().getPreferences(Context.MODE_PRIVATE)
 
         // Set up click listeners for radio buttons
         radioButtonOneFive = rootView.findViewById(R.id.radio_button_one_five)
@@ -41,6 +49,8 @@ class SettingsViewImp : Fragment(), SettingsView {
         radioButtonOneFour.setOnClickListener { controller.onRadioButtonClicked(3) }
 
         // Use the controller to update the view or handle interactions
+        val lastSelectedOption = model.getLastSelectedOption()
+        updateRadioButton(lastSelectedOption)
 
         return rootView
     }
