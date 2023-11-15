@@ -8,7 +8,7 @@ interface SettingsModel {
 
 class SettingsModelImp : SettingsModel {
     // Implement the model's functionality
-    private var selectedOption: Int = 0
+    private var selectedOption: Int = 1
 
     override fun setSelectedOption(option: Int) {
         selectedOption = option

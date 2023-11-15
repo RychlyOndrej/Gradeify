@@ -3,13 +3,13 @@ package com.example.xmltest
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import android.widget.RadioButton
 import androidx.fragment.app.Fragment
-import android.view.ViewGroup as ViewGroup
 
 interface SettingsView {
-    // Define methods to update the UI based on the model
     fun updateRadioButton(option: Int)
+    // Define methods to update the UI based on the model
     // Define other methods as needed
 }
 
@@ -17,6 +17,9 @@ class SettingsViewImp : Fragment(), SettingsView {
     private lateinit var controller: SettingsController
     private lateinit var model: SettingsModel
 
+    private lateinit var radioButtonOneFive: RadioButton
+    private lateinit var radioButtonAF: RadioButton
+    private lateinit var radioButtonOneFour: RadioButton
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -28,6 +31,15 @@ class SettingsViewImp : Fragment(), SettingsView {
         model = SettingsModelImp()
         controller = SettingsControllerImp(this, model)
 
+        // Set up click listeners for radio buttons
+        radioButtonOneFive = rootView.findViewById(R.id.radio_button_one_five)
+        radioButtonAF = rootView.findViewById(R.id.radio_button_a_f)
+        radioButtonOneFour = rootView.findViewById(R.id.radio_button_one_four)
+
+        radioButtonOneFive.setOnClickListener { controller.onRadioButtonClicked(1) }
+        radioButtonAF.setOnClickListener { controller.onRadioButtonClicked(2) }
+        radioButtonOneFour.setOnClickListener { controller.onRadioButtonClicked(3) }
+
         // Use the controller to update the view or handle interactions
 
         return rootView
@@ -35,13 +47,8 @@ class SettingsViewImp : Fragment(), SettingsView {
 
     override fun updateRadioButton(option: Int) {
         // Update the UI based on the selected radio button option
-        // For example, you can check the option and update the corresponding radio button
-        when (option) {
-            1 -> view?.findViewById<RadioButton>(R.id.radio_button_one_five)?.isChecked = true
-            2 -> view?.findViewById<RadioButton>(R.id.radio_button_a_f)?.isChecked = true
-            3 -> view?.findViewById<RadioButton>(R.id.radio_button_one_four)?.isChecked = true
-            // Handle other options as needed
-        }
+        radioButtonOneFive.isChecked = option == 1
+        radioButtonAF.isChecked = option == 2
+        radioButtonOneFour.isChecked = option == 3
     }
-
 }
