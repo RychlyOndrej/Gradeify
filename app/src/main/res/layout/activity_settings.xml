@@ -5,7 +5,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <LinearLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
@@ -18,7 +17,8 @@
             android:gravity="center"
             android:layout_marginTop="15dp"
             android:textColor="@color/black"
-            android:textSize="24sp"/>
+            android:textSize="24sp"
+            />
 
 
         <androidx.cardview.widget.CardView
@@ -80,10 +80,12 @@
             android:gravity="center"
             android:layout_marginTop="50dp"
             android:textColor="@color/black"
-            android:textSize="24sp"/>
+            android:textSize="24sp"
+            />
 
 
         <androidx.cardview.widget.CardView
+            android:id="@+id/buttonResetAll"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:cardBackgroundColor="@color/Split_color"
@@ -91,20 +93,19 @@
             android:layout_gravity="center"
             android:layout_marginStart="5dp"
             android:layout_marginEnd="5dp"
-            android:id="@+id/buttonResetAll"
             android:clickable="true"
-
+            android:onClick="onRadioButtonClicked"
             android:focusable="true">
                 <Button
-
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Budiž"
+                    android:text="Budiž vše smazáno"
                     android:background="#00BBBBBB"
                     android:textColor="#000000"
                     android:layout_gravity="center"
                     android:textAllCaps="false"
                     android:textSize="18sp"
+
                 />
         </androidx.cardview.widget.CardView>
 

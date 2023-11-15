@@ -21,7 +21,7 @@ class ScaleModelImp: ScaleModel {
 
     override fun onViewCreated() {
 
-        // Initialize data and set up the view
+        // Zkouška grafu
         val dataPoints = arrayOf(
             DataPoint(1.0, 10.0),
             DataPoint(2.0, 20.0),

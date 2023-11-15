@@ -427,12 +427,13 @@
                     android:layout_height="55dp"
                     android:layout_marginStart="15dp"
                     android:layout_marginEnd="15dp"
+                    android:layout_marginBottom="20dp"
                     android:orientation="horizontal">
 
                         <Button
                             android:id="@+id/resetStatsBtn"
                             android:layout_width="225dp"
-                            android:layout_height="55dp"
+                            android:layout_height="wrap_content"
                             android:layout_marginEnd="15dp"
                             android:layout_marginStart="15dp"
                             android:layout_weight="1"
@@ -441,16 +442,14 @@
                         <Button
                             android:id="@+id/deleteLastMarkBtn"
                             android:layout_width="225dp"
-                            android:layout_height="55dp"
+                            android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:layout_marginEnd="15dp"
                             android:layout_marginStart="15dp"
                             android:text="Delete last mark" />
                 </LinearLayout>
 
-                <Space
-                    android:layout_width="match_parent"
-                    android:layout_height="10dp" />
+
 
         </LinearLayout>
 </ScrollView>
