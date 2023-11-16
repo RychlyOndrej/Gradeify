@@ -12,6 +12,7 @@ interface SettingsModel {
 
 class SettingsModelImp(context: Context) : SettingsModel {
     // Implement the model's functionality
+    //Todo: předělat na novější typ
     private val sharedPreferences: SharedPreferences =
         context.getSharedPreferences("SettingsPrefs", Context.MODE_PRIVATE)
 

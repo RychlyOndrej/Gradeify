@@ -12,6 +12,11 @@ interface HomeController{
     fun setActiveScale()
 }
 
+/*Todo zprovoznit dtabázi, room. a recylclerview add and delete
+*  Floating btn, - přidat škálu na první místo a dát ji jako vybranou
+*   vyřešit editaci jmen škál - u jména mít ikonu tušky(editace) - jméno by mělo jít editovat
+*  pluskem do módu editace - přidá tlačítko, uživatel pak přes edit zadává jméno.
+*/
 class HomeControllerImp(private val model: ScaleModelImp): ComponentActivity(), HomeController{
     private var activeScaleName = "Standart"
     private var maxScore = 0

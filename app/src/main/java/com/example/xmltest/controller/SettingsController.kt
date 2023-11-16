@@ -3,7 +3,7 @@ package com.example.xmltest
 interface SettingsController {
     // Define methods to handle user interactions and update the model
     fun onRadioButtonClicked(option: Int)
-    // fun updateView(option: Int)
+
 }
 
 class SettingsControllerImp(private val view: SettingsView, private val model: SettingsModel) : SettingsController {

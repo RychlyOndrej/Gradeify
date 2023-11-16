@@ -22,6 +22,8 @@ class ScaleAdapter(private val scales: List<Scale>) : RecyclerView.Adapter<Scale
         val scale = scales[position]
         holder.scaleName.text = scale.name
 
+
+        //ToDO: Zbavit se spacingInPixels
         val spacingInPixels = holder.itemView.resources.getDimensionPixelSize(R.dimen.spacing_between_items)
         val layoutParams = holder.itemView.layoutParams as ViewGroup.MarginLayoutParams
         layoutParams.setMargins(spacingInPixels, spacingInPixels, spacingInPixels, spacingInPixels)
