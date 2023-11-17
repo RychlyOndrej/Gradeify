@@ -1,6 +1,13 @@
 package com.example.xmltest
 
+import androidx.room.Entity
+import androidx.room.PrimaryKey
+
+
+@Entity
 data class Scale(
+    @PrimaryKey(autoGenerate = true)
+    val id: Long = 0,
     val name: String,
     val procentOne: Int,
     val procentTwo: Int,
@@ -14,16 +21,14 @@ data class Scale(
         procentTwo: Int,
         procentThree: Int,
         procentFour: Int,
-        procentFive: Int,
-        additionalParam: Int
+        procentFive: Int
     ) : this(
+        0,
         name,
         procentOne,
         procentTwo,
         procentThree,
         procentFour,
         procentFive
-    ) {
-        // Další inicializační kód, pokud je potřeba
-    }
+    )
 }

@@ -2,12 +2,13 @@ package com.example.xmltest
 
 // Define your controller interface
 interface EditController {
-    fun getAllScales(): List<Scale>
+    suspend fun getAllScales(context: Context): List<Scale>
+
 }
 
 // Implement the controller
 class EditControllerImp(private val scaleModelImp: ScaleModelImp) : EditController {
-    override fun getAllScales(): List<Scale> {
+    override suspend fun getAllScales(context: Context): List<Scale> {
         return scaleModelImp.getAllScales()
     }
 }

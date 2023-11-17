@@ -5,7 +5,7 @@ import androidx.activity.ComponentActivity
 interface HomeController{
     fun maxScore(maxPoints: Int)
     fun procentArray(pole: Array<Int>)
-    fun getAllScales(): List<Scale>
+    suspend fun getAllScales(): List<Scale>
     fun createNewScale()
     fun getMarks(marks: Array<Int>)
     fun getActiveScale()
@@ -30,7 +30,7 @@ class HomeControllerImp(private val model: ScaleModelImp): ComponentActivity(), 
     override fun procentArray(pole: Array<Int>){
 
     }
-    override fun getAllScales(): List<Scale>{
+    override suspend fun getAllScales(): List<Scale>{
         return(model.getAllScales())
     }
     override fun createNewScale(){
