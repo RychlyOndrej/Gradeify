@@ -6,7 +6,6 @@ interface SettingsController {
 
 }
 
-/*Todo: ukázkový controller*/
 class SettingsControllerImp(private val view: SettingsView, private val model: SettingsModel) : SettingsController {
     // Implement the controller's functionality
 

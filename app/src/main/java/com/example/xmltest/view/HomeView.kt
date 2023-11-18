@@ -16,10 +16,11 @@ interface HomeView {
 }
 
 class HomeViewImp : Fragment(), HomeView {
-    private val presenter = ScaleModelImp()
+    private lateinit var presenter: ScaleModel
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         val rootView = inflater.inflate(R.layout.activity_home, container, false)
@@ -29,7 +30,8 @@ class HomeViewImp : Fragment(), HomeView {
         val graphView = rootView.findViewById<GraphView>(R.id.graph)
         val resetBtn: Button = rootView.findViewById(R.id.resetStatsBtn)
 
-        // Attach the view to the presenter
+        // Initialize the presenter
+        presenter = ScaleModelImp(requireContext())
 
         // Set up button click listener
         resetBtn.setOnClickListener { presenter.onResetBtnClick() }
@@ -54,6 +56,6 @@ class HomeViewImp : Fragment(), HomeView {
     override fun onDestroyView() {
         super.onDestroyView()
         // Detach the view from the presenter to avoid memory leaks
-        presenter.detachView()
+        //presenter.detachView()
     }
 }

@@ -17,7 +17,7 @@ interface HomeController{
 *   vyřešit editaci jmen škál - u jména mít ikonu tušky(editace) - jméno by mělo jít editovat
 *  pluskem do módu editace - přidá tlačítko, uživatel pak přes edit zadává jméno.
 */
-class HomeControllerImp(private val model: ScaleModelImp): ComponentActivity(), HomeController{
+class HomeControllerImp(private val model: ScaleModel): ComponentActivity(), HomeController{
     private var activeScaleName = "Standart"
     private var maxScore = 0
     private var procentArray: Array<Int>? = null

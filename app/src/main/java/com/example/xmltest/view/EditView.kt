@@ -8,37 +8,35 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.MainScope
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
 interface EditView {
-    fun getContext(): Context
+    // Remove the getContext method
 }
-class EditViewImp : Fragment(), EditView , CoroutineScope by MainScope(){
-    private lateinit var controller: EditController
 
+class EditViewImp : Fragment(), EditView {
+    private lateinit var controller: HomeController
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         val rootView = inflater.inflate(R.layout.activity_edit, container, false)
         // Initialize the controller before using it
-        val scaleModel: ScaleModel = ScaleModelImp(this)
-        controller = EditControllerImp(scaleModel)
+        val scaleRepository: ScaleModel = ScaleModelImp(requireContext())
+        controller = HomeControllerImp(scaleRepository)
         showAllScales(rootView)
         return rootView
-    }
-
-    override fun getContext(): Context {
-        return requireContext()
     }
 
     private fun showAllScales(rootView: View) {
         val scaleList = rootView.findViewById<RecyclerView>(R.id.scaleList) // Change ID to match your actual layout
         scaleList.layoutManager = LinearLayoutManager(requireContext())
-        /*val scales = controller.getAllScales()
-        scaleList.adapter = ScaleAdapter(scales)*/
+        GlobalScope.launch {
+            val scales = controller.getAllScales()
+            scaleList.adapter = ScaleAdapter(scales)
+        }
     }
 }
-
