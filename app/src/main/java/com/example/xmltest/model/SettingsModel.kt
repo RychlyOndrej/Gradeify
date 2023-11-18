@@ -1,8 +1,12 @@
 package com.example.xmltest
 
-import androidx.datastore.core.DataStore
+
+import kotlinx.coroutines.flow.first
+import androidx.datastore.core.edit
 import androidx.datastore.preferences.core.Preferences
-import androidx.datastore.preferences.core.edit
+import androidx.datastore.preferences.core.preferencesKey
+
+
 
 
 // Rozhraní definující metody pro nastavení a získání vybrané možnosti.

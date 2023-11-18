@@ -62,9 +62,9 @@ dependencies {
     kapt("androidx.room:room-compiler:$room_version")
 
     //Data store db na párové hodnoty
-    implementation ("androidx.datastore:datastore-preferences:1.0.0")
-    implementation ("androidx.datastore:datastore:1.0.0")
-    implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.5.2")
+    implementation("androidx.datastore:datastore-core:1.0.0")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.5.2")
+
 
     //Na graf
     implementation ("com.jjoe64:graphview:4.2.2")

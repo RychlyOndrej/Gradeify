@@ -1,8 +1,8 @@
 package com.example.xmltest
 
-import androidx.datastore.core.DataStore
-import androidx.datastore.preferences.core.Preferences
-import androidx.datastore.preferences.core.edit
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import kotlinx.coroutines.launch
 
 
 // Rozhraní definující metody pro zpracování interakcí uživatele a aktualizaci modelu.
@@ -12,17 +12,18 @@ interface SettingsController {
 }
 
 
-class SettingsControllerImp(private val view: SettingsView, private val model: SettingsModel) : SettingsController {
+class SettingsControllerImp(private val view: SettingsView, private val model: SettingsModel) : ViewModel(), SettingsController {
+
     // Implement the controller's functionality
 
     override fun onRadioButtonClicked(option: Int) {
-        coroutineScope.launch {
-            // Nastavení vybrané možnosti v modelu.
+        viewModelScope.launch { // předpokládám, že byste mohli používat ViewModel
+            // Set the selected option in the model.
             model.setSelectedOption(option)
         }
 
-        coroutineScope.launch {
-            // Aktualizace view podle vybrané možnosti.
+        viewModelScope.launch {
+            // Update the view based on the selected option.
             view.updateRadioButton(option)
         }
     }
