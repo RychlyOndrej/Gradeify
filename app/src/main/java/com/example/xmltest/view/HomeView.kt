@@ -12,50 +12,53 @@ import com.jjoe64.graphview.series.BarGraphSeries
 import com.jjoe64.graphview.series.DataPoint
 
 interface HomeView {
-    //udelej si to :)
+    // TODO: Doplnit potřebné metody pro komunikaci s UI.
 }
 
 class HomeViewImp : Fragment(), HomeView {
+    // Presenter pro komunikaci s modelem.
     private lateinit var presenter: ScaleModel
 
+    // Inicializace UI prvků a presenteru.
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        // Inicializace UI prvků.
         val rootView = inflater.inflate(R.layout.activity_home, container, false)
-
-        // Initialize your views
         val textView = rootView.findViewById<TextView>(R.id.textView4)
         val graphView = rootView.findViewById<GraphView>(R.id.graph)
         val resetBtn: Button = rootView.findViewById(R.id.resetStatsBtn)
 
-        // Initialize the presenter
+        // Inicializace presenteru.
         presenter = ScaleModelImp(requireContext())
 
-        // Set up button click listener
+        // Nastavení posluchače události pro tlačítko resetBtn.
         resetBtn.setOnClickListener { presenter.onResetBtnClick() }
 
-        // Call the presenter to set up the initial state
+        // Volání presenteru pro nastavení počátečního stavu.
         presenter.onViewCreated()
 
         return rootView
     }
 
+    // Zobrazení dat na grafu.
     fun showDataOnGraph(dataPoints: Array<DataPoint>) {
-        // Update the graph with the provided data points
+        // TODO: Aktualizace grafu s poskytnutými daty.
         val series = BarGraphSeries(dataPoints)
-
     }
 
+    // Zobrazení obsahu na TextView.
     fun showTextViewContent(content: String) {
-        // Update the TextView with the provided content
+        // TODO: Aktualizace TextView s poskytnutým obsahem.
         //textView.text = content
     }
 
+    // Odpojení view od presenteru při zničení fragmentu.
     override fun onDestroyView() {
         super.onDestroyView()
-        // Detach the view from the presenter to avoid memory leaks
+        // TODO: Odpojení view od presenteru pro zabránění úniku paměti.
         //presenter.detachView()
     }
 }

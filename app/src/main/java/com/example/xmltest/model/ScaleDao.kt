@@ -7,15 +7,18 @@ import androidx.room.Query
 import com.example.xmltest.Scale
 
 
+// Data Access Object pro práci s databází škál.
 @Dao
 interface ScaleDao {
-
+    // Vložení škály do databáze.
     @Insert
     suspend fun insertScale(scale: Scale)
 
+    // Získání všech škál z databáze.
     @Query("SELECT * FROM Scale")
     suspend fun getAllScales(): List<Scale>
 
+    // Smazání škály z databáze.
     @Delete
     suspend fun deleteScale(scale: Scale)
 }

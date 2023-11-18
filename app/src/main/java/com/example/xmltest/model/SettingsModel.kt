@@ -1,34 +1,32 @@
 package com.example.xmltest
 
-import android.content.Context
-import android.content.SharedPreferences
+import androidx.datastore.core.DataStore
+import androidx.datastore.preferences.core.Preferences
+import androidx.datastore.preferences.core.edit
 
+
+// Rozhraní definující metody pro nastavení a získání vybrané možnosti.
 interface SettingsModel {
-    // Define any data or functionality needed for the fragment
-    fun setSelectedOption(option: Int)
-    // Define other methods as needed
-    fun getLastSelectedOption(): Int
+    suspend fun setSelectedOption(option: Int)
+    suspend fun getLastSelectedOption(): Int
 }
 
-class SettingsModelImp(context: Context) : SettingsModel {
-    // Implement the model's functionality
-    //Todo: předělat na novější typ
-    private val sharedPreferences: SharedPreferences =
-        context.getSharedPreferences("SettingsPrefs", Context.MODE_PRIVATE)
 
-    private var selectedOption: Int = sharedPreferences.getInt("selectedOption", 1)
+class SettingsModelImp(private val dataStore: SetDataStore) : SettingsModel {
 
-
-    override fun setSelectedOption(option: Int) {
-        selectedOption = option
-        // Save the selected option to SharedPreferences
-        with(sharedPreferences.edit()) {
-            putInt("selectedOption", option)
-            apply()
+    override suspend fun setSelectedOption(option: Int) {
+        dataStore.selectedOption.edit { preferences ->
+            preferences[SELECTED_OPTION_KEY] = option
         }
     }
 
-    override fun getLastSelectedOption(): Int {
-        return selectedOption
+    override suspend fun getLastSelectedOption(): Int {
+        val preferences = dataStore.selectedOption.data.first()
+        return preferences[SELECTED_OPTION_KEY] ?: DEFAULT_SELECTED_OPTION
+    }
+
+    companion object {
+        private val SELECTED_OPTION_KEY = preferencesKey<Int>("selectedOption")
+        private const val DEFAULT_SELECTED_OPTION = 1
     }
 }

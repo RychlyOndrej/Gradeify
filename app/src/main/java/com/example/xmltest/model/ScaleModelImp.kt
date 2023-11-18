@@ -23,40 +23,39 @@ interface ScaleModel{
 
 }
 
-class ScaleModelImp (private val context: Context): ScaleModel {
+// Implementace modelu pro práci s daty škál.
+class ScaleModelImp(private val context: Context) : ScaleModel {
+    // Instance Dao pro práci s databází škál.
     private val scaleDao = ScaleDatabase.getDatabase(context).scaleDao()
 
+    // Inicializace databáze škál při vytvoření instance.
     private suspend fun insertInitialScales() {
-        /*
-                val initialScales = listOf(
-                    Scale("Standart", 100, 85, 60, 40, 20),
-                    Scale("Inferno", 100, 85, 60, 40, 20),
-                    Scale("Preschool", 100, 60, 40, 20, 5)
-                )
-
-                initialScales.forEach { insertScale(it) }
-
-                 */
+        // TODO: Případně vložení výchozích škál do databáze.
     }
 
+    // Spuštění inicializace databáze škál v novém vlákně.
     init {
         GlobalScope.launch(Dispatchers.IO) {
             insertInitialScales()
         }
     }
 
+    // Získání všech škál z databáze.
     override suspend fun getAllScales(): List<Scale> = withContext(Dispatchers.IO) {
         return@withContext scaleDao.getAllScales()
     }
 
+    // Odebrání škály z databáze.
     override suspend fun removeScale(scale: Scale) {
         scaleDao.deleteScale(scale)
     }
 
+    // Vložení nové škály do databáze.
     override suspend fun insertScale(scale: Scale) = withContext(Dispatchers.IO) {
         scaleDao.insertScale(scale)
     }
 
+    // Přidání nové škály s určenými parametry.
     override suspend fun addNewScale(
         name: String,
         procentOne: Int,
@@ -76,8 +75,9 @@ class ScaleModelImp (private val context: Context): ScaleModel {
         insertScale(newScale)
     }
 
+    // Metoda volaná při vytvoření pohledu.
     override fun onViewCreated() {
-        // Zkouška grafu
+        // TODO: Příprava dat pro graf nebo jiné inicializační kroky.
         val dataPoints = arrayOf(
             DataPoint(1.0, 10.0),
             DataPoint(2.0, 20.0),
@@ -85,11 +85,12 @@ class ScaleModelImp (private val context: Context): ScaleModel {
             DataPoint(4.0, 40.0),
             DataPoint(5.0, 15.0)
         )
-        // You can use 'dataPoints' as needed
+        // Můžete použít 'dataPoints' podle potřeby.
     }
 
+    // Metoda volaná při stisku tlačítka reset.
     override fun onResetBtnClick() {
-        // Clear the data in the graph
+        // TODO: Vyčištění dat na grafu nebo jiné akce při resetu.
         //view?.showDataOnGraph(arrayOf())
     }
 }

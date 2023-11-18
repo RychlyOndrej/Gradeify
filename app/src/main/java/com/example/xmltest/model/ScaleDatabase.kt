@@ -7,6 +7,7 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 
 
+// Definice Room databáze pro ukládání škál.
 @Database(entities = [Scale::class], version = 1, exportSchema = false)
 abstract class ScaleDatabase : RoomDatabase() {
     abstract fun scaleDao(): ScaleDao
@@ -15,6 +16,7 @@ abstract class ScaleDatabase : RoomDatabase() {
         @Volatile
         private var INSTANCE: ScaleDatabase? = null
 
+        // Získání instance databáze s využitím návrhového vzoru Singleton.
         fun getDatabase(context: Context): ScaleDatabase {
             return INSTANCE ?: synchronized(this) {
                 val instance = Room.databaseBuilder(

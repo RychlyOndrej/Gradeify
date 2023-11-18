@@ -1,19 +1,29 @@
 package com.example.xmltest
 
-interface SettingsController {
-    // Define methods to handle user interactions and update the model
-    fun onRadioButtonClicked(option: Int)
+import androidx.datastore.core.DataStore
+import androidx.datastore.preferences.core.Preferences
+import androidx.datastore.preferences.core.edit
 
+
+// Rozhraní definující metody pro zpracování interakcí uživatele a aktualizaci modelu.
+interface SettingsController {
+    // Definujte metody pro zpracování kliknutí na radio buttony.
+    fun onRadioButtonClicked(option: Int)
 }
+
 
 class SettingsControllerImp(private val view: SettingsView, private val model: SettingsModel) : SettingsController {
     // Implement the controller's functionality
 
     override fun onRadioButtonClicked(option: Int) {
-        // Update the model with the selected option
-        model.setSelectedOption(option)
+        coroutineScope.launch {
+            // Nastavení vybrané možnosti v modelu.
+            model.setSelectedOption(option)
+        }
 
-        // Update the view to reflect the selected option
-        view.updateRadioButton(option)
+        coroutineScope.launch {
+            // Aktualizace view podle vybrané možnosti.
+            view.updateRadioButton(option)
+        }
     }
 }

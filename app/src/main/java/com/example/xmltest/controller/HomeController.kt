@@ -2,14 +2,13 @@ package com.example.xmltest
 
 import androidx.activity.ComponentActivity
 
-interface HomeController{
-    fun maxScore(maxPoints: Int)
-    fun procentArray(pole: Array<Int>)
+// Rozhraní definující funkce, které bude obsluhovat HomeControllerImp.
+interface HomeController {
+
+    //  získání všech škál.
     suspend fun getAllScales(): List<Scale>
-    fun createNewScale()
-    fun getMarks(marks: Array<Int>)
-    fun getActiveScale()
-    fun setActiveScale()
+
+
 }
 
 /*Todo zprovoznit dtabázi, room. a recylclerview add and delete
@@ -18,32 +17,19 @@ interface HomeController{
 *  pluskem do módu editace - přidá tlačítko, uživatel pak přes edit zadává jméno.
 */
 class HomeControllerImp(private val model: ScaleModel): ComponentActivity(), HomeController{
+
+    // Název aktuální škály. - bude muset být předěláno aby bylo kompatibilní s databází (DataStore)
     private var activeScaleName = "Standart"
+
+    // Maximální skóre. - nutno dále předělat na kompatibilitutu s dtabází (Datastore)
     private var maxScore = 0
-    private var procentArray: Array<Int>? = null
-    private var createNewScaleName: String? = null
 
 
-    override fun maxScore(maxPoints: Int){
+    // Implementace jednotlivých funkcí - bude muset být rozház
 
-    }
-    override fun procentArray(pole: Array<Int>){
-
-    }
     override suspend fun getAllScales(): List<Scale>{
         return(model.getAllScales())
     }
-    override fun createNewScale(){
 
-    }
-    override fun getMarks(marks: Array<Int>){
-
-    }
-    override fun getActiveScale(){
-
-    }
-    override fun setActiveScale(){
-
-    }
 
 }
