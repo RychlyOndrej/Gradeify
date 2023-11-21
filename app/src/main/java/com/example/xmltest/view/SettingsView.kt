@@ -36,10 +36,11 @@ class SettingsViewImp : Fragment(), SettingsView {
 
         // Initialization of DataStore, model, and controller
         model = SettingsModelImp(requireContext())
+        val homeController: HomeControllerImp = ViewModelProvider(requireActivity()).get(HomeControllerImp::class.java)
         controller = SettingsControllerImp(
             settingsView = this,
             model = model,
-            homeController = ViewModelProvider(requireActivity()).get(HomeController::class.java)
+            homeController = homeController
         )
 
         // Initialization of UI elements
@@ -74,3 +75,4 @@ class SettingsViewImp : Fragment(), SettingsView {
         // Add more cases if needed
     }
 }
+

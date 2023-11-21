@@ -38,4 +38,13 @@ class HomeControllerImp(
             homeView.updateCardView(getXmlResourceForOption(option))
         }
     }
+
+    private fun getXmlResourceForOption(option: Int): Int {
+        return when (option) {
+            1 -> R.layout.activity_home_marks_one_five
+            2 -> R.layout.activity_home_marks_a_f
+            3 -> R.layout.activity_home_marks_one_four
+            else -> R.layout.activity_home_marks_one_five
+        }
+    }
 }

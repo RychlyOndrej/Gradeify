@@ -47,6 +47,7 @@
 
                 <!-- TODO: Změň na wrap contánt ve výšce - toto jen test pro switch s html -->
                 <androidx.cardview.widget.CardView
+                    android:id="@+id/cardViewToFill"
                     android:layout_width="match_parent"
                     android:layout_height="200dp"
                     app:cardBackgroundColor="@color/Split_color"

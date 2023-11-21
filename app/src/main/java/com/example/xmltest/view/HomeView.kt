@@ -39,7 +39,7 @@ class HomeViewImp : Fragment(), HomeView {
         scaleModel = ScaleModelImp(requireContext())
         settingsModel = SettingsModelImp(requireContext())
 
-        cardViewContainer = rootView.findViewById(R.id.card_view_container)
+        cardViewContainer = rootView.findViewById(R.id.cardViewToFill)
 
         lifecycleScope.launchWhenStarted {
             settingsModel.getValueFromDataStore().collect { option ->
