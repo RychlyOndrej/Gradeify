@@ -7,18 +7,19 @@ import android.view.ViewGroup
 import android.widget.RadioButton
 import androidx.datastore.core.DataStore
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 
 
+
+
+// SettingsViewImp.kt
+// SettingsViewImp.kt
+// SettingsView.kt
 interface SettingsView {
     fun updateRadioButton(option: Int)
-    // Define methods to update the UI based on the model
-    // Define other methods as needed
 }
 
-
-// SettingsViewImp.kt
-// SettingsViewImp.kt
 class SettingsViewImp : Fragment(), SettingsView {
     private lateinit var controller: SettingsController
     private lateinit var model: SettingsModel
@@ -35,7 +36,11 @@ class SettingsViewImp : Fragment(), SettingsView {
 
         // Initialization of DataStore, model, and controller
         model = SettingsModelImp(requireContext())
-        controller = SettingsControllerImp(this, model)
+        controller = SettingsControllerImp(
+            settingsView = this,
+            model = model,
+            homeController = ViewModelProvider(requireActivity()).get(HomeController::class.java)
+        )
 
         // Initialization of UI elements
         radioButtonOneFive = rootView.findViewById(R.id.radio_button_one_five)

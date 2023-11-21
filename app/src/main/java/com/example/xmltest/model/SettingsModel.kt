@@ -6,13 +6,10 @@ import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.intPreferencesKey
 import androidx.datastore.preferences.preferencesDataStore
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.map
 
 
-
-
-// Rozhraní definující metody pro nastavení a získání vybrané možnosti.
+// SettingsModel.kt
 interface SettingsModel {
     fun getValueFromDataStore(): Flow<Int>
     suspend fun saveValueToDataStore(value: Int)
@@ -31,9 +28,9 @@ class SettingsModelImp(private val context: Context) : SettingsModel {
     }
 
     override suspend fun saveValueToDataStore(value: Int) {
-        val key = intPreferencesKey("example_counter")
         context.dataStore.edit { settings ->
-            settings[key] = value
+            settings[dataStoreKey] = value
         }
     }
 }
+

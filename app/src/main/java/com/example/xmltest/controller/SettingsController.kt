@@ -14,14 +14,18 @@ interface SettingsController {
 }
 
 
-class SettingsControllerImp(private val view: SettingsView, private val model: SettingsModel) : ViewModel(), SettingsController {
+class SettingsControllerImp(
+    private val settingsView: SettingsView,
+    private val model: SettingsModel,
+    private val homeController: HomeController
+) : ViewModel(), SettingsController {
 
     // Implement the controller's functionality
-
     override fun onRadioButtonClicked(option: Int) {
         viewModelScope.launch {
             model.saveValueToDataStore(option)
+            settingsView.updateRadioButton(option)
+            homeController.onRadioButtonClicked(option)
         }
     }
-
 }

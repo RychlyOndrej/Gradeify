@@ -1,13 +1,16 @@
 package com.example.xmltest
 
 import androidx.activity.ComponentActivity
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import kotlinx.coroutines.launch
 
 // Rozhraní definující funkce, které bude obsluhovat HomeControllerImp.
 interface HomeController {
 
     //  získání všech škál.
     suspend fun getAllScales(): List<Scale>
-
+    fun onRadioButtonClicked(option: Int)
 
 }
 
@@ -16,20 +19,23 @@ interface HomeController {
 *   vyřešit editaci jmen škál - u jména mít ikonu tušky(editace) - jméno by mělo jít editovat
 *  pluskem do módu editace - přidá tlačítko, uživatel pak přes edit zadává jméno.
 */
-class HomeControllerImp(private val model: ScaleModel): ComponentActivity(), HomeController{
+class HomeControllerImp(
+    private val scaleModel: ScaleModel,
+    private val homeView: HomeView,
+    private val settingsModel: SettingsModel
+) : ViewModel(), HomeController {
 
-    // Název aktuální škály. - bude muset být předěláno aby bylo kompatibilní s databází (DataStore)
     private var activeScaleName = "Standart"
-
-    // Maximální skóre. - nutno dále předělat na kompatibilitutu s dtabází (Datastore)
     private var maxScore = 0
 
-
-    // Implementace jednotlivých funkcí - bude muset být rozház
-
-    override suspend fun getAllScales(): List<Scale>{
-        return(model.getAllScales())
+    override suspend fun getAllScales(): List<Scale> {
+        return scaleModel.getAllScales()
     }
 
-
+    override fun onRadioButtonClicked(option: Int) {
+        viewModelScope.launch {
+            settingsModel.saveValueToDataStore(option)
+            homeView.updateCardView(getXmlResourceForOption(option))
+        }
+    }
 }
