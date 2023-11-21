@@ -5,7 +5,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.RadioButton
+import androidx.datastore.core.DataStore
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.lifecycleScope
 
 
 interface SettingsView {
@@ -14,11 +16,12 @@ interface SettingsView {
     // Define other methods as needed
 }
 
-// Implementace rozhraní SettingsView jako Fragmentu.
+
+// SettingsViewImp.kt
+// SettingsViewImp.kt
 class SettingsViewImp : Fragment(), SettingsView {
     private lateinit var controller: SettingsController
     private lateinit var model: SettingsModel
-    private lateinit var dataStore: SetDataStore
 
     private lateinit var radioButtonOneFive: RadioButton
     private lateinit var radioButtonAF: RadioButton
@@ -30,29 +33,39 @@ class SettingsViewImp : Fragment(), SettingsView {
     ): View? {
         val rootView = inflater.inflate(R.layout.activity_settings, container, false)
 
-        // Inicializace DataStore
-        dataStore = DataStoreImp(requireContext())
-
-        // Inicializace modelu s DataStore
-        model = SettingsModelImp(dataStore)
-
-        // Inicializace controlleru s view a modelem
+        // Initialization of DataStore, model, and controller
+        model = SettingsModelImp(requireContext())
         controller = SettingsControllerImp(this, model)
 
-        // Nastavení posluchačů kliknutí pro radio buttony
+        // Initialization of UI elements
         radioButtonOneFive = rootView.findViewById(R.id.radio_button_one_five)
         radioButtonAF = rootView.findViewById(R.id.radio_button_a_f)
         radioButtonOneFour = rootView.findViewById(R.id.radio_button_one_four)
 
-        radioButtonOneFive.setOnClickListener { controller.onRadioButtonClicked(1) }
-        radioButtonAF.setOnClickListener { controller.onRadioButtonClicked(2) }
-        radioButtonOneFour.setOnClickListener { controller.onRadioButtonClicked(3) }
+        // Setting click listeners for radio buttons
+        radioButtonOneFive.setOnClickListener { onRadioButtonClicked(1) }
+        radioButtonAF.setOnClickListener { onRadioButtonClicked(2) }
+        radioButtonOneFour.setOnClickListener { onRadioButtonClicked(3) }
+
+        // Observe changes in the data and update the UI
+        lifecycleScope.launchWhenStarted {
+            model.getValueFromDataStore().collect { option ->
+                updateRadioButton(option)
+            }
+        }
 
         return rootView
     }
 
+    private fun onRadioButtonClicked(option: Int) {
+        controller.onRadioButtonClicked(option)
+        updateRadioButton(option)
+    }
+
     override fun updateRadioButton(option: Int) {
-        // Implementace logiky pro aktualizaci UI zde
-        // Například můžete zvýraznit vybraný radio button.
+        radioButtonOneFive.isChecked = option == 1
+        radioButtonAF.isChecked = option == 2
+        radioButtonOneFour.isChecked = option == 3
+        // Add more cases if needed
     }
 }
