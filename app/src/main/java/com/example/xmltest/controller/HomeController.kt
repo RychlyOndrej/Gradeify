@@ -1,5 +1,6 @@
 package com.example.xmltest
 
+import android.content.Context
 import androidx.activity.ComponentActivity
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -9,8 +10,8 @@ import kotlinx.coroutines.launch
 interface HomeController {
 
     //  získání všech škál.
-    suspend fun getAllScales(): List<Scale>
-    fun onRadioButtonClicked(option: Int)
+    suspend fun getAllScales(context: Context): List<Scale>
+    fun onRadioButtonClicked(context: Context, option: Int)
 
 }
 
@@ -25,14 +26,15 @@ class HomeControllerImp(
     private val settingsModel: SettingsModel
 ) : ViewModel(), HomeController {
 
+
     private var activeScaleName = "Standart"
     private var maxScore = 0
 
-    override suspend fun getAllScales(): List<Scale> {
-        return scaleModel.getAllScales()
+    override suspend fun getAllScales(context: Context): List<Scale> {
+        return scaleModel.getAllScales(context)
     }
 
-    override fun onRadioButtonClicked(option: Int) {
+    override fun onRadioButtonClicked(context: Context, option: Int) {
         viewModelScope.launch {
             settingsModel.saveValueToDataStore(option)
             homeView.updateCardView(getXmlResourceForOption(option))

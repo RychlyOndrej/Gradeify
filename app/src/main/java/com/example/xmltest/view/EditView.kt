@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.coroutines.GlobalScope
@@ -25,17 +26,20 @@ class EditViewImp : Fragment(), EditView {
         val rootView = inflater.inflate(R.layout.activity_edit, container, false)
         // Initialize the controller before using it
         val scaleRepository: ScaleModel = ScaleModelImp(requireContext())
-        controller = HomeControllerImp(scaleRepository)
+        val homeView: HomeView = HomeViewImp()  // Zde vytvořte instanci HomeView, pokud ji ještě nemáte
+        val settingsModel: SettingsModel = SettingsModelImp(requireContext())
+        controller = HomeControllerImp(scaleRepository, homeView, settingsModel)
         showAllScales(rootView)
         return rootView
     }
 
     private fun showAllScales(rootView: View) {
-        val scaleList = rootView.findViewById<RecyclerView>(R.id.scaleList) // Change ID to match your actual layout
+        val scaleList = rootView.findViewById<RecyclerView>(R.id.scaleList)
         scaleList.layoutManager = LinearLayoutManager(requireContext())
-        GlobalScope.launch {
-            val scales = controller.getAllScales()
+        viewLifecycleOwner.lifecycleScope.launch {
+            val scales = controller.getAllScales(requireContext())
             scaleList.adapter = ScaleAdapter(scales)
         }
     }
+
 }
