@@ -12,13 +12,16 @@ import androidx.lifecycle.lifecycleScope
 import com.jjoe64.graphview.GraphView
 import com.jjoe64.graphview.series.BarGraphSeries
 import com.jjoe64.graphview.series.DataPoint
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
 interface HomeView {
     // TODO: Doplnit potřebné metody pro komunikaci s UI.
     // TODO: Aktualizace grafu s poskytnutými daty.
     // TODO: Aktualizace TextView s poskytnutým obsahem.
 
-    fun updateCardView(xmlResource: Int)
+    fun updateCardView(option: Int)
+    fun onRadioButtonClicked(option: Int)
 }
 
 class HomeViewImp : Fragment(), HomeView {
@@ -54,11 +57,19 @@ class HomeViewImp : Fragment(), HomeView {
         return rootView
     }
 
-    override fun updateCardView(xmlResource: Int) {
+
+    override fun updateCardView(option: Int) {
         val inflater = LayoutInflater.from(requireContext())
-        val xmlLayout = inflater.inflate(xmlResource, cardViewContainer, false)
+        val xmlLayout = inflater.inflate(getXmlResourceForOption(option), cardViewContainer, false)
         cardViewContainer.removeAllViews()
         cardViewContainer.addView(xmlLayout)
+    }
+
+    override fun onRadioButtonClicked(option: Int) {
+        GlobalScope.launch {
+            settingsModel.saveValueToDataStore(option)
+            updateCardView(option)
+        }
     }
 
     private fun getXmlResourceForOption(option: Int): Int {

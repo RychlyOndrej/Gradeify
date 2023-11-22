@@ -21,8 +21,9 @@ interface SettingsView {
 }
 
 class SettingsViewImp : Fragment(), SettingsView {
-    private lateinit var controller: SettingsController
-    private lateinit var model: SettingsModel
+    private lateinit var settingsController: SettingsController
+    private lateinit var homeController: HomeControllerImp
+    private lateinit var settingsModel: SettingsModel
 
     private lateinit var radioButtonOneFive: RadioButton
     private lateinit var radioButtonAF: RadioButton
@@ -35,11 +36,14 @@ class SettingsViewImp : Fragment(), SettingsView {
         val rootView = inflater.inflate(R.layout.activity_settings, container, false)
 
         // Initialization of DataStore, model, and controller
-        model = SettingsModelImp(requireContext())
-        val homeController: HomeControllerImp = ViewModelProvider(requireActivity()).get(HomeControllerImp::class.java)
-        controller = SettingsControllerImp(
+        settingsModel = SettingsModelImp(requireContext())
+        homeController = ViewModelProvider(this)
+
+
+        // Initialize the controller
+        settingsController = SettingsControllerImp(
             settingsView = this,
-            model = model,
+            model = settingsModel,
             homeController = homeController
         )
 
@@ -55,7 +59,7 @@ class SettingsViewImp : Fragment(), SettingsView {
 
         // Observe changes in the data and update the UI
         lifecycleScope.launchWhenStarted {
-            model.getValueFromDataStore().collect { option ->
+            settingsModel.getValueFromDataStore().collect { option ->
                 updateRadioButton(option)
             }
         }
@@ -64,7 +68,7 @@ class SettingsViewImp : Fragment(), SettingsView {
     }
 
     private fun onRadioButtonClicked(option: Int) {
-        controller.onRadioButtonClicked(option)
+        settingsController.onRadioButtonClicked(option)
         updateRadioButton(option)
     }
 
@@ -75,4 +79,7 @@ class SettingsViewImp : Fragment(), SettingsView {
         // Add more cases if needed
     }
 }
+
+
+
 

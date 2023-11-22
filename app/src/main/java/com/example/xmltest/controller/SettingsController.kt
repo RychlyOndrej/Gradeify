@@ -17,7 +17,7 @@ interface SettingsController {
 class SettingsControllerImp(
     private val settingsView: SettingsView,
     private val model: SettingsModel,
-    private val homeController: HomeController
+    private val homeController: HomeController,
 ) : ViewModel(), SettingsController {
 
     // Implement the controller's functionality
