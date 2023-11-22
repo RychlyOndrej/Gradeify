@@ -9,6 +9,7 @@ import androidx.datastore.core.DataStore
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import com.example.xmltest.controller.Communication
+import kotlinx.coroutines.flow.first
 
 
 interface SettingsView {
@@ -47,9 +48,14 @@ class SettingsViewImp : Fragment(), SettingsView {
         radioButtonOneFour.setOnClickListener { onRadioButtonClicked(3) }
 
         lifecycleScope.launchWhenStarted {
-            model.getValueFromDataStore().collect { option ->
-                updateRadioButton(option)
-            }
+            // Získáme hodnotu z DataStore
+            val valueFromDataStore = model.getValueFromDataStore().first()
+
+            // Při vytvoření fragmentu odešleme hodnotu z DataStore do presenteru
+            (activity as? Communication)?.onOptionSelected(valueFromDataStore)
+
+            // Nastavíme výchozí hodnotu z DataStore
+            updateRadioButton(valueFromDataStore)
         }
 
         return rootView
