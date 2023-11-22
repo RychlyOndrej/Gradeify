@@ -6,82 +6,59 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
-import androidx.cardview.widget.CardView
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.lifecycleScope
 import com.jjoe64.graphview.GraphView
 import com.jjoe64.graphview.series.BarGraphSeries
 import com.jjoe64.graphview.series.DataPoint
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
 
 interface HomeView {
     // TODO: Doplnit potřebné metody pro komunikaci s UI.
-    // TODO: Aktualizace grafu s poskytnutými daty.
-    // TODO: Aktualizace TextView s poskytnutým obsahem.
-
-    fun updateCardView(option: Int)
-    fun onRadioButtonClicked(option: Int)
 }
 
 class HomeViewImp : Fragment(), HomeView {
-    private lateinit var scaleModel: ScaleModel
-    private lateinit var settingsModel: SettingsModel
-    private lateinit var cardViewContainer: CardView
+    // Presenter pro komunikaci s modelem.
+    private lateinit var presenter: ScaleModel
 
+    // Inicializace UI prvků a presenteru.
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        // Inicializace UI prvků.
         val rootView = inflater.inflate(R.layout.activity_home, container, false)
         val textView = rootView.findViewById<TextView>(R.id.textView4)
         val graphView = rootView.findViewById<GraphView>(R.id.graph)
         val resetBtn: Button = rootView.findViewById(R.id.resetStatsBtn)
 
-        scaleModel = ScaleModelImp(requireContext())
-        settingsModel = SettingsModelImp(requireContext())
+        // Inicializace presenteru.
+        presenter = ScaleModelImp(requireContext())
 
-        cardViewContainer = rootView.findViewById(R.id.cardViewToFill)
+        // Nastavení posluchače události pro tlačítko resetBtn.
+        resetBtn.setOnClickListener { presenter.onResetBtnClick() }
 
-        lifecycleScope.launchWhenStarted {
-            settingsModel.getValueFromDataStore().collect { option ->
-                updateCardView(getXmlResourceForOption(option))
-            }
-        }
-
-        resetBtn.setOnClickListener { scaleModel.onResetBtnClick() }
-
-        scaleModel.onViewCreated()
+        // Volání presenteru pro nastavení počátečního stavu.
+        presenter.onViewCreated()
 
         return rootView
     }
 
-
-    override fun updateCardView(option: Int) {
-        val inflater = LayoutInflater.from(requireContext())
-        val xmlLayout = inflater.inflate(getXmlResourceForOption(option), cardViewContainer, false)
-        cardViewContainer.removeAllViews()
-        cardViewContainer.addView(xmlLayout)
+    // Zobrazení dat na grafu.
+    fun showDataOnGraph(dataPoints: Array<DataPoint>) {
+        // TODO: Aktualizace grafu s poskytnutými daty.
+        val series = BarGraphSeries(dataPoints)
     }
 
-    override fun onRadioButtonClicked(option: Int) {
-        GlobalScope.launch {
-            settingsModel.saveValueToDataStore(option)
-            updateCardView(option)
-        }
+    // Zobrazení obsahu na TextView.
+    fun showTextViewContent(content: String) {
+        // TODO: Aktualizace TextView s poskytnutým obsahem.
+        //textView.text = content
     }
 
-    private fun getXmlResourceForOption(option: Int): Int {
-        return when (option) {
-            1 -> R.layout.activity_home_marks_one_five
-            2 -> R.layout.activity_home_marks_a_f
-            3 -> R.layout.activity_home_marks_one_four
-            else -> R.layout.activity_home_marks_one_five
-        }
-    }
-
+    // Odpojení view od presenteru při zničení fragmentu.
     override fun onDestroyView() {
         super.onDestroyView()
+        // TODO: Odpojení view od presenteru pro zabránění úniku paměti.
+        //presenter.detachView()
     }
 }

@@ -41,12 +41,9 @@ class ScaleModelImp(private val context: Context) : ScaleModel {
     }
 
     // Získání všech škál z databáze.
-    override suspend fun getAllScales(): List<Scale> {
-        return withContext(Dispatchers.IO) {
-            return@withContext scaleDao.getAllScales()
-        }
+    override suspend fun getAllScales(): List<Scale> = withContext(Dispatchers.IO) {
+        return@withContext scaleDao.getAllScales()
     }
-
 
     // Odebrání škály z databáze.
     override suspend fun removeScale(scale: Scale) {
