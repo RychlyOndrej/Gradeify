@@ -27,6 +27,7 @@ class HomeControllerImp(private val model: ScaleModel): ComponentActivity(), Hom
 
     // Implementace jednotlivých funkcí - bude muset být rozház
 
+
     override suspend fun getAllScales(): List<Scale>{
         return(model.getAllScales())
     }

@@ -3,10 +3,10 @@ package com.example.xmltest
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import com.example.xmltest.controller.Communication
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
-class MainActivity : AppCompatActivity() {
-
+class MainActivity : AppCompatActivity(), Communication {
     private val homeView = HomeViewImp()
     private val editView = EditViewImp()
     private val settingsView = SettingsViewImp()
@@ -17,15 +17,13 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-
-
-        supportFragmentManager.beginTransaction().add(R.id.content_container, settingsView, "3").hide(settingsView).commit()
+        supportFragmentManager.beginTransaction().add(R.id.content_container, settingsView, "3").hide(settingsView)
+            .commit()
         supportFragmentManager.beginTransaction().add(R.id.content_container, editView, "2").hide(editView).commit()
         supportFragmentManager.beginTransaction().add(R.id.content_container, homeView, "1").commit()
 
         val bottomNavigation: BottomNavigationView = findViewById(R.id.bottom_navigation)
 
-        //todo: zbavit se tohoto pod tím
         bottomNavigation.setOnNavigationItemSelectedListener { menuItem ->
             when (menuItem.itemId) {
                 R.id.action_window1 -> {
@@ -45,6 +43,13 @@ class MainActivity : AppCompatActivity() {
                 }
                 else -> false
             }
+        }
+    }
+
+    override fun onOptionSelected(option: Int) {
+        val activeFragment = supportFragmentManager.findFragmentById(R.id.content_container)
+        if (activeFragment is HomeView) {
+            activeFragment.onOptionSelected(option)
         }
     }
 }

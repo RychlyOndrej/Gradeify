@@ -49,12 +49,12 @@
                 <androidx.cardview.widget.CardView
                     android:id="@+id/cardViewToFill"
                     android:layout_width="match_parent"
-                    android:layout_height="200dp"
-                    app:cardBackgroundColor="@color/Split_color"
-                    app:cardCornerRadius="20dp"
+                    android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginStart="5dp"
-                    android:layout_marginEnd="5dp">
+                    android:layout_marginEnd="5dp"
+                    app:cardBackgroundColor="@color/Split_color"
+                    app:cardCornerRadius="20dp">
 
                 </androidx.cardview.widget.CardView>
 

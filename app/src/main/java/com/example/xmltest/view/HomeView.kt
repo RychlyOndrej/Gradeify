@@ -6,18 +6,24 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
+import androidx.cardview.widget.CardView
 import androidx.fragment.app.Fragment
+import com.example.xmltest.controller.Communication
 import com.jjoe64.graphview.GraphView
 import com.jjoe64.graphview.series.BarGraphSeries
 import com.jjoe64.graphview.series.DataPoint
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
-interface HomeView {
+interface HomeView: Communication  {
     // TODO: Doplnit potřebné metody pro komunikaci s UI.
+    fun updateCardViewContent(option: Int)
 }
 
 class HomeViewImp : Fragment(), HomeView {
     // Presenter pro komunikaci s modelem.
     private lateinit var presenter: ScaleModel
+    private lateinit var cardViewToFill: CardView
 
     // Inicializace UI prvků a presenteru.
     override fun onCreateView(
@@ -30,6 +36,8 @@ class HomeViewImp : Fragment(), HomeView {
         val textView = rootView.findViewById<TextView>(R.id.textView4)
         val graphView = rootView.findViewById<GraphView>(R.id.graph)
         val resetBtn: Button = rootView.findViewById(R.id.resetStatsBtn)
+
+        cardViewToFill = rootView.findViewById(R.id.cardViewToFill)
 
         // Inicializace presenteru.
         presenter = ScaleModelImp(requireContext())
@@ -45,20 +53,43 @@ class HomeViewImp : Fragment(), HomeView {
 
     // Zobrazení dat na grafu.
     fun showDataOnGraph(dataPoints: Array<DataPoint>) {
-        // TODO: Aktualizace grafu s poskytnutými daty.
         val series = BarGraphSeries(dataPoints)
+        // TODO: Add logic to update the graph
     }
 
-    // Zobrazení obsahu na TextView.
     fun showTextViewContent(content: String) {
-        // TODO: Aktualizace TextView s poskytnutým obsahem.
-        //textView.text = content
+        // TODO: Add logic to update TextView
     }
 
-    // Odpojení view od presenteru při zničení fragmentu.
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        (activity as? Communication)?.onOptionSelected(1)
+    }
+
+    private fun setCardViewContent(layoutResId: Int) {
+        val inflater = LayoutInflater.from(requireContext())
+        val contentView = inflater.inflate(layoutResId, cardViewToFill, false)
+        cardViewToFill.removeAllViews()
+        cardViewToFill.addView(contentView)
+    }
+
+    override fun updateCardViewContent(option: Int) {
+        when (option) {
+            1 -> setCardViewContent(R.layout.activity_home_marks_one_five)
+            2 -> setCardViewContent(R.layout.activity_home_marks_a_f)
+            3 -> setCardViewContent(R.layout.activity_home_marks_one_four)
+            // Add more cases as needed
+            else -> setCardViewContent(R.layout.activity_home_marks_a_f)
+        }
+    }
+
+    override fun onOptionSelected(option: Int) {
+        updateCardViewContent(option)
+    }
+
     override fun onDestroyView() {
         super.onDestroyView()
-        // TODO: Odpojení view od presenteru pro zabránění úniku paměti.
-        //presenter.detachView()
+        // TODO: Disconnect the view from the presenter to prevent memory leaks
+        // presenter.detachView()
     }
 }
