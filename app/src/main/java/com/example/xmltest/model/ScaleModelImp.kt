@@ -31,6 +31,16 @@ class ScaleModelImp(private val context: Context) : ScaleModel {
     // Inicializace databáze škál při vytvoření instance.
     private suspend fun insertInitialScales() {
         // TODO: Případně vložení výchozích škál do databáze.
+/*
+        val initialScales = listOf(
+            Scale("Standart", 100, 85, 60, 40, 20),
+            Scale("Inferno", 100, 85, 60, 40, 20),
+            Scale("Preschool", 100, 60, 40, 20, 5)
+        )
+
+        initialScales.forEach { insertScale(it) }
+
+*/
     }
 
     // Spuštění inicializace databáze škál v novém vlákně.

@@ -9,12 +9,13 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 
 
-// Rozhraní definující metody pro nastavení a získání vybrané možnosti.
+// Definice rozhraní SettingsModel, které popisuje metody pro získání a uložení hodnoty v datovém úložišti.
 interface SettingsModel {
-    fun getValueFromDataStore(): Flow<Int>
-    suspend fun saveValueToDataStore(value: Int)
+    fun getValueFromDataStore(): Flow<Int> // Získání hodnoty z datového úložiště jako Flow (asynchronní proud).
+    suspend fun saveValueToDataStore(value: Int) // Uložení hodnoty do datového úložiště.
 }
 
+// Rozšíření vlastnosti dataStore pro přístup k PreferencesDataStore, které ukládá a získává data jako Flow.
 private val Context.dataStore by preferencesDataStore(name = "settings")
 
 class SettingsModelImp(private val context: Context) : SettingsModel {
@@ -22,15 +23,16 @@ class SettingsModelImp(private val context: Context) : SettingsModel {
     private val dataStoreKey = intPreferencesKey("example_counter")
 
     override fun getValueFromDataStore(): Flow<Int> {
+        // Mapování hodnoty z datového úložiště na Flow.
         return context.dataStore.data.map { preferences ->
-            preferences[dataStoreKey] ?: 0
+            preferences[dataStoreKey] ?: 0 // Pokud hodnota není k dispozici, vrátíme 0.
         }
     }
 
     override suspend fun saveValueToDataStore(value: Int) {
-        val key = intPreferencesKey("example_counter")
+        // Uložení hodnoty do datového úložiště.
         context.dataStore.edit { settings ->
-            settings[key] = value
+            settings[dataStoreKey] = value
         }
     }
 }

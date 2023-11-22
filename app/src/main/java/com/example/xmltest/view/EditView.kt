@@ -23,13 +23,14 @@ class EditViewImp : Fragment(), EditView {
         savedInstanceState: Bundle?
     ): View? {
         val rootView = inflater.inflate(R.layout.activity_edit, container, false)
-        // Initialize the controller before using it
+        // Inicializace controlleru před použitím
         val scaleRepository: ScaleModel = ScaleModelImp(requireContext())
         controller = HomeControllerImp(scaleRepository)
         showAllScales(rootView)
         return rootView
     }
 
+    // funkce na zobrazení všech škál
     private fun showAllScales(rootView: View) {
         val scaleList = rootView.findViewById<RecyclerView>(R.id.scaleList) // Change ID to match your actual layout
         scaleList.layoutManager = LinearLayoutManager(requireContext())

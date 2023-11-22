@@ -35,9 +35,11 @@ class SettingsViewImp : Fragment(), SettingsView {
     ): View? {
         val rootView = inflater.inflate(R.layout.activity_settings, container, false)
 
+        // Inicializace modelu a controlleru.
         model = SettingsModelImp(requireContext())
         controller = SettingsControllerImp(this, model)
 
+        // Nastavení posluchačů pro RadioButtony.
         radioButtonOneFive = rootView.findViewById(R.id.radio_button_one_five)
         radioButtonAF = rootView.findViewById(R.id.radio_button_a_f)
         radioButtonOneFour = rootView.findViewById(R.id.radio_button_one_four)
@@ -46,32 +48,33 @@ class SettingsViewImp : Fragment(), SettingsView {
         radioButtonAF.setOnClickListener { onRadioButtonClicked(2) }
         radioButtonOneFour.setOnClickListener { onRadioButtonClicked(3) }
 
+        // Asynchronní získání hodnoty z datového úložiště a aktualizace UI.
+        //ToDO: vyřešit přeškrtnutí věcí
         lifecycleScope.launchWhenStarted {
-            // Získáme hodnotu z DataStore
             val valueFromDataStore = model.getValueFromDataStore().first()
-
-            // Při vytvoření fragmentu odešleme hodnotu z DataStore do presenteru
             (activity as? Communication)?.onOptionSelected(valueFromDataStore)
-
-            // Nastavíme výchozí hodnotu z DataStore
             updateRadioButton(valueFromDataStore)
         }
+
 
         return rootView
     }
 
+
+    // Metoda volaná při změně RadioButton.
     private fun onRadioButtonClicked(option: Int) {
         controller.onRadioButtonClicked(option)
         updateRadioButton(option)
     }
 
+    // Metoda pro aktualizaci stavu RadioButton na základě modelu.
     override fun updateRadioButton(option: Int) {
         radioButtonOneFive.isChecked = option == 1
         radioButtonAF.isChecked = option == 2
         radioButtonOneFour.isChecked = option == 3
-        // Add more cases if needed
     }
 
+    // Metoda volaná při změně RadioButton.
     override fun onRadioButtonChanged(option: Int) {
         (activity as? Communication)?.onOptionSelected(option)
     }

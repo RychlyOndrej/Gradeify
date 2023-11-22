@@ -4,11 +4,8 @@ import androidx.activity.ComponentActivity
 
 // Rozhraní definující funkce, které bude obsluhovat HomeControllerImp.
 interface HomeController {
-
-    //  získání všech škál.
+    // získání všech škál.
     suspend fun getAllScales(): List<Scale>
-
-
 }
 
 /*Todo zprovoznit dtabázi, room. a recylclerview add and delete
@@ -21,16 +18,11 @@ class HomeControllerImp(private val model: ScaleModel): ComponentActivity(), Hom
     // Název aktuální škály. - bude muset být předěláno aby bylo kompatibilní s databází (DataStore)
     private var activeScaleName = "Standart"
 
-    // Maximální skóre. - nutno dále předělat na kompatibilitutu s dtabází (Datastore)
+    // Maximální skóre. - nutno dále předělat na kompatibilitutu s databází (Datastore)
     private var maxScore = 0
 
-
     // Implementace jednotlivých funkcí - bude muset být rozház
-
-
-    override suspend fun getAllScales(): List<Scale>{
-        return(model.getAllScales())
+    override suspend fun getAllScales(): List<Scale> {
+        return model.getAllScales()
     }
-
-
 }

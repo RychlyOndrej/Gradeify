@@ -21,6 +21,7 @@ class SettingsControllerImp(private val view: SettingsView, private val model: S
         viewModelScope.launch {
             // Při změně radio buttonu voláme metodu v SettingsViewImp
             view.onRadioButtonChanged(option)
+            // Při změně se také tato hodnota ukládá do DataStore - zde do SettingsModelu a pak uloží
             model.saveValueToDataStore(option)
 
 

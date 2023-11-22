@@ -59,11 +59,13 @@ class HomeViewImp : Fragment(), HomeView {
         // TODO: Add logic to update TextView
     }
 
+    //Funkce na vložení v počátku rozdílných XML kódů marks do activity_home
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         (activity as? Communication)?.onOptionSelected(1)
     }
 
+    //Funkce na nastavení xml částy karty a její přepsání
     private fun setCardViewContent(layoutResId: Int) {
         val inflater = LayoutInflater.from(requireContext())
         val contentView = inflater.inflate(layoutResId, cardViewToFill, false)
@@ -71,6 +73,7 @@ class HomeViewImp : Fragment(), HomeView {
         cardViewToFill.addView(contentView)
     }
 
+    //Logika pro nastavení daného xml dle radioBtn
     override fun updateCardViewContent(option: Int) {
         when (option) {
             1 -> setCardViewContent(R.layout.activity_home_marks_one_five)
@@ -81,6 +84,7 @@ class HomeViewImp : Fragment(), HomeView {
         }
     }
 
+    //Pro přenos INT z settingsview
     override fun onOptionSelected(option: Int) {
         updateCardViewContent(option)
     }
