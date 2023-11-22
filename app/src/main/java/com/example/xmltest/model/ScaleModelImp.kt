@@ -1,11 +1,11 @@
 package com.example.xmltest
 
+import android.content.Context
 import com.jjoe64.graphview.series.DataPoint
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import android.content.Context
 
 interface ScaleModel{
     fun onViewCreated()

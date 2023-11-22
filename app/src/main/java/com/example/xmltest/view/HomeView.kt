@@ -12,8 +12,6 @@ import com.example.xmltest.controller.Communication
 import com.jjoe64.graphview.GraphView
 import com.jjoe64.graphview.series.BarGraphSeries
 import com.jjoe64.graphview.series.DataPoint
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
 
 interface HomeView: Communication  {
     // TODO: Doplnit potřebné metody pro komunikaci s UI.
