@@ -4,14 +4,11 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.launch
 
-
 // Rozhraní definující metody pro zpracování interakcí uživatele a aktualizaci modelu.
 interface SettingsController {
     // Definujte metody pro zpracování kliknutí na radio buttony.
     fun onRadioButtonClicked(option: Int)
-
 }
-
 
 class SettingsControllerImp(private val view: SettingsView, private val model: SettingsModel) : ViewModel(), SettingsController {
 
@@ -23,8 +20,6 @@ class SettingsControllerImp(private val view: SettingsView, private val model: S
             view.onRadioButtonChanged(option)
             // Při změně se také tato hodnota ukládá do DataStore - zde do SettingsModelu a pak uloží
             model.saveValueToDataStore(option)
-
-
         }
     }
 }

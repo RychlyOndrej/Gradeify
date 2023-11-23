@@ -21,7 +21,7 @@ interface HomeView: Communication  {
 class HomeViewImp : Fragment(), HomeView {
     // Presenter pro komunikaci s modelem.
     private lateinit var presenter: ScaleModel
-    private lateinit var cardViewToFill: CardView
+    private lateinit var cardViewToFillHome: CardView
 
     // Inicializace UI prvků a presenteru.
     override fun onCreateView(
@@ -35,17 +35,13 @@ class HomeViewImp : Fragment(), HomeView {
         val graphView = rootView.findViewById<GraphView>(R.id.graph)
         val resetBtn: Button = rootView.findViewById(R.id.resetStatsBtn)
 
-        cardViewToFill = rootView.findViewById(R.id.cardViewToFill)
-
+        cardViewToFillHome = rootView.findViewById(R.id.cardViewToFillHomeId)
         // Inicializace presenteru.
         presenter = ScaleModelImp(requireContext())
-
         // Nastavení posluchače události pro tlačítko resetBtn.
         resetBtn.setOnClickListener { presenter.onResetBtnClick() }
-
         // Volání presenteru pro nastavení počátečního stavu.
         presenter.onViewCreated()
-
         return rootView
     }
 
@@ -68,9 +64,9 @@ class HomeViewImp : Fragment(), HomeView {
     //Funkce na nastavení xml částy karty a její přepsání
     private fun setCardViewContent(layoutResId: Int) {
         val inflater = LayoutInflater.from(requireContext())
-        val contentView = inflater.inflate(layoutResId, cardViewToFill, false)
-        cardViewToFill.removeAllViews()
-        cardViewToFill.addView(contentView)
+        val contentView = inflater.inflate(layoutResId, cardViewToFillHome, false)
+        cardViewToFillHome.removeAllViews()
+        cardViewToFillHome.addView(contentView)
     }
 
     //Logika pro nastavení daného xml dle radioBtn

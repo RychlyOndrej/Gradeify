@@ -8,7 +8,6 @@ import androidx.datastore.preferences.preferencesDataStore
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 
-
 // Definice rozhraní SettingsModel, které popisuje metody pro získání a uložení hodnoty v datovém úložišti.
 interface SettingsModel {
     fun getValueFromDataStore(): Flow<Int> // Získání hodnoty z datového úložiště jako Flow (asynchronní proud).

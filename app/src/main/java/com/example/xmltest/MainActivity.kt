@@ -51,5 +51,8 @@ class MainActivity : AppCompatActivity(), Communication {
         if (activeFragment is HomeView) {
             activeFragment.onOptionSelected(option)
         }
+        if(activeFragment is EditView){
+            activeFragment.onOptionSelected(option)
+        }
     }
 }
