@@ -38,9 +38,7 @@ class ScaleModelImp(private val context: Context) : ScaleModel {
             Scale("Inferno", 100, 85, 60, 40, 20),
             Scale("Preschool", 100, 60, 40, 20, 5)
         )
-
         initialScales.forEach { insertScale(it) }
-
 */
     }
 

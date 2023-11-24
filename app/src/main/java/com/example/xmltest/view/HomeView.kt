@@ -1,6 +1,7 @@
 package com.example.xmltest
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -82,6 +83,7 @@ class HomeViewImp : Fragment(), HomeView {
 
     //Pro přenos INT z settingsview
     override fun onOptionSelected(option: Int) {
+        Log.d("HomViewImp", "RadioButton clicked with option: $option")
         updateCardViewContent(option)
     }
 

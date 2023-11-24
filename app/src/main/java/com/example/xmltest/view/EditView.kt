@@ -1,6 +1,7 @@
 package com.example.xmltest
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -48,7 +49,7 @@ class EditViewImp : Fragment(), EditView {
     //Funkce na vložení v počátku rozdílných XML kódů marks do activity_home
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        (activity as? Communication)?.onOptionSelected(1)
+       (activity as? Communication)?.onOptionSelected(1)
     }
 
     //Funkce na nastavení xml částy karty a její přepsání
@@ -72,6 +73,7 @@ class EditViewImp : Fragment(), EditView {
 
     //Pro přenos INT z settingsview
     override fun onOptionSelected(option: Int) {
+        Log.d("Edit", "RadioButton clicked with option: $option")
         updateCardViewContent(option)
     }
 

@@ -15,12 +15,6 @@ interface HomeController {
 */
 class HomeControllerImp(private val model: ScaleModel): ComponentActivity(), HomeController{
 
-    // Název aktuální škály. - bude muset být předěláno aby bylo kompatibilní s databází (DataStore)
-    private var activeScaleName = "Standart"
-
-    // Maximální skóre. - nutno dále předělat na kompatibilitutu s databází (Datastore)
-    private var maxScore = 0
-
     // Implementace jednotlivých funkcí - bude muset být rozház
     override suspend fun getAllScales(): List<Scale> {
         return model.getAllScales()

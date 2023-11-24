@@ -24,6 +24,7 @@ class MainActivity : AppCompatActivity(), Communication {
 
         val bottomNavigation: BottomNavigationView = findViewById(R.id.bottom_navigation)
 
+        //ToDo: Zneškodnit depricated, jinak chytře (Šimon něco podobného řešil)
         bottomNavigation.setOnNavigationItemSelectedListener { menuItem ->
             when (menuItem.itemId) {
                 R.id.action_window1 -> {
