@@ -1,13 +1,11 @@
 package com.example.xmltest
 
-import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.lifecycle.lifecycleScope
 import kotlinx.coroutines.launch
 import kotlin.math.pow
 import kotlin.math.sqrt
 
-// Rozhraní definující funkce, které bude obsluhovat HomeControllerImp.
 interface HomeController {
     fun handleMarkButtonClick(markValue: Int)
     fun getAverageMark(): Double
@@ -27,9 +25,10 @@ interface HomeController {
 class HomeControllerImp(
     private val model: ScaleModel,
     private val markModel: MarkModel
-): ComponentActivity(), HomeController {
+) : ComponentActivity(), HomeController {
 
     private var marksList: MutableList<Double> = mutableListOf()
+
     init {
         lifecycleScope.launch {
             marksList = markModel.getAllMarks().map { it.markValue.toDouble() }.toMutableList()
@@ -55,7 +54,7 @@ class HomeControllerImp(
         val sortedMarks = marksList.sorted()
 
         return if (sortedMarks.isEmpty()) {
-            0.0  // or any default value you prefer when the list is empty
+            0.0
         } else if (sortedMarks.size % 2 == 0) {
             val middle1 = sortedMarks[(sortedMarks.size / 2) - 1].toDouble()
             val middle2 = sortedMarks[sortedMarks.size / 2].toDouble()
@@ -73,21 +72,17 @@ class HomeControllerImp(
         return sqrt(variance)
     }
 
-
     override fun removeLastMark() {
         if (marksList.isNotEmpty()) {
             marksList.removeAt(marksList.size - 1)
-
-            // Odstranění poslední značky z Room databáze
             lifecycleScope.launch {
                 markModel.deleteLastData()
             }
         }
     }
+
     override fun clearMarksList() {
         marksList.clear()
-
-        // Smazání všech značek z Room databáze
         lifecycleScope.launch {
             markModel.deleteAllMarks()
         }
