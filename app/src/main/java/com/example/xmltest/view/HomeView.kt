@@ -13,16 +13,24 @@ import com.example.xmltest.controller.Communication
 import com.jjoe64.graphview.GraphView
 import com.jjoe64.graphview.series.BarGraphSeries
 import com.jjoe64.graphview.series.DataPoint
+import java.text.DecimalFormat
 
-interface HomeView: Communication  {
+interface HomeView : Communication {
     // TODO: Doplnit potřebné metody pro komunikaci s UI.
     fun updateCardViewContent(option: Int)
 }
 
 class HomeViewImp : Fragment(), HomeView {
     // Presenter pro komunikaci s modelem.
-    private lateinit var presenter: ScaleModel
+    private lateinit var presenterScaleModel: ScaleModel
     private lateinit var cardViewToFillHome: CardView
+    private lateinit var presenterHomeController: HomeController
+    private lateinit var rootView: View // Declare rootView at the class level
+    private lateinit var averageTextView: TextView
+    private lateinit var stdDevTextView: TextView
+    private lateinit var medianTextView: TextView
+    private lateinit var deleteLastMarkBtn: Button
+    private var currentLayoutResId: Int = 0
 
     // Inicializace UI prvků a presenteru.
     override fun onCreateView(
@@ -31,20 +39,79 @@ class HomeViewImp : Fragment(), HomeView {
         savedInstanceState: Bundle?
     ): View? {
         // Inicializace UI prvků.
-        val rootView = inflater.inflate(R.layout.activity_home, container, false)
+        rootView = inflater.inflate(R.layout.activity_home, container, false)
         val textView = rootView.findViewById<TextView>(R.id.textView4)
         val graphView = rootView.findViewById<GraphView>(R.id.graph)
         val resetBtn: Button = rootView.findViewById(R.id.resetStatsBtn)
+        averageTextView = rootView.findViewById(R.id.Avarage_num)
+        deleteLastMarkBtn = rootView.findViewById(R.id.deleteLastMarkBtn)
+        stdDevTextView = rootView.findViewById(R.id.Std_num)
+        medianTextView = rootView.findViewById(R.id.Median_num)
+
+
 
         cardViewToFillHome = rootView.findViewById(R.id.cardViewToFillHomeId)
         // Inicializace presenteru.
-        presenter = ScaleModelImp(requireContext())
+        presenterScaleModel = ScaleModelImp(requireContext())
         // Nastavení posluchače události pro tlačítko resetBtn.
-        resetBtn.setOnClickListener { presenter.onResetBtnClick() }
+        resetBtn.setOnClickListener {
+            if (isAdded) {
+                presenterScaleModel.onResetBtnClick()
+                presenterHomeController.clearMarksList()
+                updateTableOfNumbers()
+            }
+        }
         // Volání presenteru pro nastavení počátečního stavu.
-        presenter.onViewCreated()
+        presenterScaleModel.onViewCreated()
+
+        presenterHomeController = HomeControllerImp(ScaleModelImp(requireContext()))
+
+        currentLayoutResId = R.layout.activity_home_marks_one_five
+        setCardViewContent(currentLayoutResId)
+
+
+
+        // Přidání posluchačů kliknutí na tlačítka
+        rootView.findViewById<CardView>(R.id.markOneBtn).setOnClickListener {
+            presenterHomeController.handleMarkButtonClick(1)
+            updateTableOfNumbers()
+        }
+        rootView.findViewById<CardView>(R.id.markTwoBtn).setOnClickListener {
+            presenterHomeController.handleMarkButtonClick(2)
+            updateTableOfNumbers()
+        }
+        rootView.findViewById<CardView>(R.id.markThreeBtn).setOnClickListener {
+            presenterHomeController.handleMarkButtonClick(3)
+            updateTableOfNumbers()
+        }
+        rootView.findViewById<CardView>(R.id.markFourBtn).setOnClickListener {
+            presenterHomeController.handleMarkButtonClick(4)
+            updateTableOfNumbers()
+        }
+        rootView.findViewById<CardView>(R.id.markFiveBtn).setOnClickListener {
+            presenterHomeController.handleMarkButtonClick(5)
+            updateTableOfNumbers()
+        }
         return rootView
     }
+
+    private fun updateTableOfNumbers() {
+        val average = presenterHomeController.getAverageMark()
+        val StandardDeviation = presenterHomeController.getStandardDeviation()
+        val median = presenterHomeController.getMedian()
+
+        //počet desetinných míst
+        val decimalFormat = DecimalFormat("#.##")
+        val formattedtextAvarage = decimalFormat.format(average)
+        val formattedtextStd = decimalFormat.format(StandardDeviation)
+        val formattedtextMedian = decimalFormat.format(median)
+
+        averageTextView.text = formattedtextAvarage
+        stdDevTextView.text = formattedtextStd
+        medianTextView.text = formattedtextMedian
+
+    }
+
 
     // Zobrazení dat na grafu.
     fun showDataOnGraph(dataPoints: Array<DataPoint>) {
@@ -60,6 +127,35 @@ class HomeViewImp : Fragment(), HomeView {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         (activity as? Communication)?.onOptionSelected(1)
+        deleteLastMarkBtn.setOnClickListener {
+            presenterHomeController.removeLastMark()
+            updateTableOfNumbers()
+        }
+    }
+
+    // Implementation of the missing method from HomeView interface
+    override fun updateCardViewContent(option: Int) {
+        if (isAdded) { // Kontrola, zda je fragment připojen
+            when (option) {
+                1 -> {
+                    currentLayoutResId = R.layout.activity_home_marks_one_five
+                    setCardViewContent(currentLayoutResId)
+                }
+                2 -> {
+                    currentLayoutResId = R.layout.activity_home_marks_a_f
+                    setCardViewContent(currentLayoutResId)
+                }
+                3 -> {
+                    currentLayoutResId = R.layout.activity_home_marks_one_four
+                    setCardViewContent(currentLayoutResId)
+                }
+                // Add more cases as needed
+                else -> {
+                    currentLayoutResId = R.layout.activity_home_marks_a_f
+                    setCardViewContent(currentLayoutResId)
+                }
+            }
+        }
     }
 
     //Funkce na nastavení xml částy karty a její přepsání
@@ -68,24 +164,38 @@ class HomeViewImp : Fragment(), HomeView {
         val contentView = inflater.inflate(layoutResId, cardViewToFillHome, false)
         cardViewToFillHome.removeAllViews()
         cardViewToFillHome.addView(contentView)
+
+        // Add listeners for buttons in the new layout
+        setupButtonListeners()
     }
 
-    //Logika pro nastavení daného xml dle radioBtn
-    override fun updateCardViewContent(option: Int) {
-        if (isAdded) { // Kontrola, zda je fragment připojen
-            when (option) {
-                1 -> setCardViewContent(R.layout.activity_home_marks_one_five)
-                2 -> setCardViewContent(R.layout.activity_home_marks_a_f)
-                3 -> setCardViewContent(R.layout.activity_home_marks_one_four)
-                // Add more cases as needed
-                else -> setCardViewContent(R.layout.activity_home_marks_a_f)
-            }
+    private fun setupButtonListeners() {
+        // Assuming you have buttons in the new layout with these IDs
+        cardViewToFillHome.findViewById<CardView>(R.id.markOneBtn)?.setOnClickListener {
+            presenterHomeController.handleMarkButtonClick(1)
+            updateTableOfNumbers()
         }
+        cardViewToFillHome.findViewById<CardView>(R.id.markTwoBtn)?.setOnClickListener {
+            presenterHomeController.handleMarkButtonClick(2)
+            updateTableOfNumbers()
+        }
+        cardViewToFillHome.findViewById<CardView>(R.id.markThreeBtn)?.setOnClickListener {
+            presenterHomeController.handleMarkButtonClick(3)
+            updateTableOfNumbers()
+        }
+        cardViewToFillHome.findViewById<CardView>(R.id.markFourBtn)?.setOnClickListener {
+            presenterHomeController.handleMarkButtonClick(4)
+            updateTableOfNumbers()
+        }
+        cardViewToFillHome.findViewById<CardView>(R.id.markFiveBtn)?.setOnClickListener {
+            presenterHomeController.handleMarkButtonClick(5)
+            updateTableOfNumbers()
+        }
+        // Add listeners for other buttons as needed
     }
 
-    //Pro přenos INT z settingsview
     override fun onOptionSelected(option: Int) {
-        Log.d("HomViewImp", "RadioButton clicked with option: $option")
+        Log.d("HomeViewImp", "RadioButton clicked with option: $option")
         if (isAdded) { // Kontrola, zda je fragment připojen
             updateCardViewContent(option)
         }

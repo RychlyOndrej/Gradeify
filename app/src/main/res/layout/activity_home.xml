@@ -121,7 +121,7 @@
                                     android:layout_height="match_parent"
                                     android:layout_weight="1"
                                     android:gravity="center"
-                                    android:text="1"
+                                    android:text="0"
                                     android:textColor="@color/black"
                                     android:textSize="24sp" />
 
@@ -131,7 +131,7 @@
                                     android:layout_height="match_parent"
                                     android:layout_weight="1"
                                     android:gravity="center"
-                                    android:text="1"
+                                    android:text="0"
                                     android:textColor="@color/black"
                                     android:textSize="24sp" />
 
@@ -141,7 +141,7 @@
                                     android:layout_height="match_parent"
                                     android:layout_weight="1"
                                     android:gravity="center"
-                                    android:text="1"
+                                    android:text="0"
                                     android:textColor="@color/black"
                                     android:textSize="24sp" />
                         </TableRow>
