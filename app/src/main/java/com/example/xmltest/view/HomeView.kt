@@ -26,10 +26,15 @@ class HomeViewImp : Fragment(), HomeView {
     private lateinit var cardViewToFillHome: CardView
     private lateinit var presenterHomeController: HomeController
     private lateinit var rootView: View // Declare rootView at the class level
+
     private lateinit var averageTextView: TextView
     private lateinit var stdDevTextView: TextView
     private lateinit var medianTextView: TextView
     private lateinit var deleteLastMarkBtn: Button
+
+    private lateinit var graphView: GraphView
+    private lateinit var barGraphSeries: BarGraphSeries<DataPoint>
+
     private var currentLayoutResId: Int = 0
 
     // Inicializace UI prvků a presenteru.
@@ -43,11 +48,24 @@ class HomeViewImp : Fragment(), HomeView {
         val textView = rootView.findViewById<TextView>(R.id.textView4)
         val graphView = rootView.findViewById<GraphView>(R.id.graph)
         val resetBtn: Button = rootView.findViewById(R.id.resetStatsBtn)
+
+
         averageTextView = rootView.findViewById(R.id.Avarage_num)
         deleteLastMarkBtn = rootView.findViewById(R.id.deleteLastMarkBtn)
         stdDevTextView = rootView.findViewById(R.id.Std_num)
         medianTextView = rootView.findViewById(R.id.Median_num)
 
+        presenterScaleModel = ScaleModelImp(requireContext())
+        presenterHomeController = HomeControllerImp(presenterScaleModel, MarkModel(MarkDatabase.getInstance(requireContext()).markDao()))
+
+
+        // Inicializujte BarGraphSeries s prázdnými daty
+        barGraphSeries = BarGraphSeries(arrayOf(DataPoint(1.0, 0.0), DataPoint(2.0, 0.0),
+            DataPoint(3.0, 0.0), DataPoint(4.0, 0.0),
+            DataPoint(5.0, 0.0)))
+
+        // Přidejte BarGraphSeries do GraphView
+        graphView.addSeries(barGraphSeries)
 
 
         cardViewToFillHome = rootView.findViewById(R.id.cardViewToFillHomeId)
@@ -64,7 +82,8 @@ class HomeViewImp : Fragment(), HomeView {
         // Volání presenteru pro nastavení počátečního stavu.
         presenterScaleModel.onViewCreated()
 
-        presenterHomeController = HomeControllerImp(ScaleModelImp(requireContext()))
+        presenterHomeController = HomeControllerImp(ScaleModelImp(requireContext()), MarkModel(MarkDatabase.getInstance(requireContext()).markDao()))
+
 
         currentLayoutResId = R.layout.activity_home_marks_one_five
         setCardViewContent(currentLayoutResId)
@@ -99,28 +118,12 @@ class HomeViewImp : Fragment(), HomeView {
         val average = presenterHomeController.getAverageMark()
         val StandardDeviation = presenterHomeController.getStandardDeviation()
         val median = presenterHomeController.getMedian()
-
         //počet desetinných míst
         val decimalFormat = DecimalFormat("#.##")
-        val formattedtextAvarage = decimalFormat.format(average)
-        val formattedtextStd = decimalFormat.format(StandardDeviation)
-        val formattedtextMedian = decimalFormat.format(median)
 
-        averageTextView.text = formattedtextAvarage
-        stdDevTextView.text = formattedtextStd
-        medianTextView.text = formattedtextMedian
-
-    }
-
-
-    // Zobrazení dat na grafu.
-    fun showDataOnGraph(dataPoints: Array<DataPoint>) {
-        val series = BarGraphSeries(dataPoints)
-        // TODO: Add logic to update the graph
-    }
-
-    fun showTextViewContent(content: String) {
-        // TODO: Add logic to update TextView
+        averageTextView.text = decimalFormat.format(average)
+        stdDevTextView.text = decimalFormat.format(StandardDeviation)
+        medianTextView.text = decimalFormat.format(median)
     }
 
     //Funkce na vložení v počátku rozdílných XML kódů marks do activity_home
@@ -193,6 +196,8 @@ class HomeViewImp : Fragment(), HomeView {
         }
         // Add listeners for other buttons as needed
     }
+
+
 
     override fun onOptionSelected(option: Int) {
         Log.d("HomeViewImp", "RadioButton clicked with option: $option")

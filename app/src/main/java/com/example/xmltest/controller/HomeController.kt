@@ -2,6 +2,8 @@ package com.example.xmltest
 
 import android.util.Log
 import androidx.activity.ComponentActivity
+import androidx.lifecycle.lifecycleScope
+import kotlinx.coroutines.launch
 import kotlin.math.pow
 import kotlin.math.sqrt
 
@@ -14,6 +16,7 @@ interface HomeController {
     fun getMedian(): Double
     fun getStandardDeviation(): Double
     fun clearMarksList()
+    fun getMarksList(): List<Double>
 }
 
 /*Todo zprovoznit dtabázi, room. a recylclerview add and delete
@@ -21,12 +24,27 @@ interface HomeController {
 *   vyřešit editaci jmen škál - u jména mít ikonu tušky(editace) - jméno by mělo jít editovat
 *  pluskem do módu editace - přidá tlačítko, uživatel pak přes edit zadává jméno.
 */
-class HomeControllerImp(private val model: ScaleModel): ComponentActivity(), HomeController{
-    private val marksList = mutableListOf<Double>()
+class HomeControllerImp(
+    private val model: ScaleModel,
+    private val markModel: MarkModel
+): ComponentActivity(), HomeController {
+
+    private var marksList: MutableList<Double> = mutableListOf()
+    init {
+        lifecycleScope.launch {
+            marksList = markModel.getAllMarks().map { it.markValue.toDouble() }.toMutableList()
+        }
+    }
 
     override fun handleMarkButtonClick(markValue: Int) {
-        Log.d("marksList", "Cislo do listu: $markValue")
         marksList.add(markValue.toDouble())
+        lifecycleScope.launch {
+            markModel.insertMark(MarkEntity(markValue = markValue))
+        }
+    }
+
+    override fun getMarksList(): List<Double> {
+        return marksList.toList()
     }
 
     override fun getAverageMark(): Double {
@@ -59,10 +77,20 @@ class HomeControllerImp(private val model: ScaleModel): ComponentActivity(), Hom
     override fun removeLastMark() {
         if (marksList.isNotEmpty()) {
             marksList.removeAt(marksList.size - 1)
+
+            // Odstranění poslední značky z Room databáze
+            lifecycleScope.launch {
+                markModel.deleteLastData()
+            }
         }
     }
     override fun clearMarksList() {
         marksList.clear()
+
+        // Smazání všech značek z Room databáze
+        lifecycleScope.launch {
+            markModel.deleteAllMarks()
+        }
     }
 
     override suspend fun getAllScales(): List<Scale> {

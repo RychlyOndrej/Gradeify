@@ -21,6 +21,7 @@ interface EditView: Communication {
 class EditViewImp : Fragment(), EditView {
     private lateinit var controller: HomeController
     private lateinit var cardViewToFillEdit: CardView
+    private lateinit var markDatabase: MarkDatabase
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -31,7 +32,8 @@ class EditViewImp : Fragment(), EditView {
         cardViewToFillEdit = rootView.findViewById(R.id.cardViewToFillEditId)
         // Inicializace controlleru před použitím
         val scaleRepository: ScaleModel = ScaleModelImp(requireContext())
-        controller = HomeControllerImp(scaleRepository)
+        markDatabase = MarkDatabase.getInstance(requireContext())
+        controller = HomeControllerImp(scaleRepository,MarkModel(markDatabase.markDao()))
         showAllScales(rootView)
         return rootView
     }
