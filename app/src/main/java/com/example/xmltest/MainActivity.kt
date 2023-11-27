@@ -1,6 +1,7 @@
 package com.example.xmltest
 
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.example.xmltest.controller.Communication
@@ -11,6 +12,7 @@ class MainActivity : AppCompatActivity(), Communication {
     private val editView = EditViewImp()
     private val settingsView = SettingsViewImp()
     private var activeFragment: Fragment = homeView
+    private val fragments: List<Fragment> = listOf(homeView, editView)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         supportActionBar?.hide()
@@ -48,12 +50,10 @@ class MainActivity : AppCompatActivity(), Communication {
     }
 
     override fun onOptionSelected(option: Int) {
-        val activeFragment = supportFragmentManager.findFragmentById(R.id.content_container)
-        if (activeFragment is HomeView) {
-            activeFragment.onOptionSelected(option)
-        }
-        if(activeFragment is EditView){
-            activeFragment.onOptionSelected(option)
+        fragments.forEach { fragment ->
+            if (fragment is Communication) {
+                fragment.onOptionSelected(option)
+            }
         }
     }
 }

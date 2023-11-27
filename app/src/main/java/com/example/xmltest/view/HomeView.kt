@@ -72,19 +72,23 @@ class HomeViewImp : Fragment(), HomeView {
 
     //Logika pro nastavení daného xml dle radioBtn
     override fun updateCardViewContent(option: Int) {
-        when (option) {
-            1 -> setCardViewContent(R.layout.activity_home_marks_one_five)
-            2 -> setCardViewContent(R.layout.activity_home_marks_a_f)
-            3 -> setCardViewContent(R.layout.activity_home_marks_one_four)
-            // Add more cases as needed
-            else -> setCardViewContent(R.layout.activity_home_marks_a_f)
+        if (isAdded) { // Kontrola, zda je fragment připojen
+            when (option) {
+                1 -> setCardViewContent(R.layout.activity_home_marks_one_five)
+                2 -> setCardViewContent(R.layout.activity_home_marks_a_f)
+                3 -> setCardViewContent(R.layout.activity_home_marks_one_four)
+                // Add more cases as needed
+                else -> setCardViewContent(R.layout.activity_home_marks_a_f)
+            }
         }
     }
 
     //Pro přenos INT z settingsview
     override fun onOptionSelected(option: Int) {
         Log.d("HomViewImp", "RadioButton clicked with option: $option")
-        updateCardViewContent(option)
+        if (isAdded) { // Kontrola, zda je fragment připojen
+            updateCardViewContent(option)
+        }
     }
 
     override fun onDestroyView() {
