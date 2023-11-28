@@ -1,5 +1,6 @@
 package com.example.xmltest
 
+import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -121,7 +122,7 @@ class HomeViewImp : Fragment(), HomeView {
             entries.add(BarEntry(i.toFloat(), frequency.toFloat()))
         }
 
-        val dataSet = BarDataSet(entries, null) // Nastavení popisku na null
+        val dataSet = BarDataSet(entries, null)
 
         // Definice barev pro jednotlivé sloupce
         val colors = intArrayOf(
@@ -135,14 +136,55 @@ class HomeViewImp : Fragment(), HomeView {
         // Nastavení barev pro jednotlivé sloupce
         dataSet.colors = colors.map { requireContext().getColor(it) }
 
+        // Přidání černého ohraničení jednotlivým sloupcům
+        dataSet.barBorderColor = Color.BLACK
+        dataSet.barBorderWidth = 1f
+
         val data = BarData(dataSet)
 
         val barChart = rootView.findViewById<BarChart>(R.id.chart)
         barChart.data = data
 
+        // Vypnutí popisků pro hlavní graf
+        barChart.description = null
+
+        // Vypnutí popisků podgrafů s barvami
+        for (set in barChart.data.dataSets) {
+            set.setDrawValues(false)
+        }
+
         // Vypnutí automatického generování etiket pro osu X
         barChart.xAxis.setDrawLabels(false)
         barChart.xAxis.setDrawAxisLine(false)
+        barChart.legend.isEnabled = false
+
+        // Nastavení osy Y na pravé straně
+        val rightAxis = barChart.axisRight
+        rightAxis.valueFormatter = object : ValueFormatter() {
+            override fun getAxisLabel(value: Float, axis: AxisBase?): String {
+                return (value - 2).toInt().toString() // Posunutí osy Y o 2 body napřed
+            }
+        }
+
+        // Nastavení rozsahu osy Y od 0 do maximální hodnoty nebo 8, pokud nepřesáhne 8
+        val maxValue = marksFrequency.values.maxOrNull() ?: 8
+        barChart.axisLeft.axisMinimum = 0f
+        barChart.axisLeft.axisMaximum = if (maxValue > 8) maxValue.toFloat() else 8f
+        rightAxis.axisMinimum = 0f
+        rightAxis.axisMaximum = if (maxValue > 8) maxValue.toFloat() else 8f
+
+        // Nastavení mřížky grafu
+        barChart.xAxis.setDrawGridLines(true)
+        barChart.xAxis.gridColor = Color.BLACK
+        barChart.xAxis.gridLineWidth = 1.5f
+
+        barChart.axisLeft.setDrawGridLines(true)
+        barChart.axisLeft.gridColor = Color.BLACK
+        barChart.axisLeft.gridLineWidth = 1.5f
+
+        barChart.axisRight.setDrawGridLines(true)
+        barChart.axisRight.gridColor = Color.BLACK
+        barChart.axisRight.gridLineWidth = 1.5f
 
         val xAxis: XAxis = barChart.xAxis
         xAxis.position = XAxis.XAxisPosition.BOTTOM
@@ -162,23 +204,13 @@ class HomeViewImp : Fragment(), HomeView {
             }
         }
 
-        // Skrytí popisku pro tyto barvy
-        for (i in 0 until dataSet.entryCount) {
-            data.getDataSetByIndex(0).setDrawValues(false)
-        }
+        // Nastavení velikosti písma pro osu Y
+        yAxis.textSize = 16f
+
+        // Vypnutí pravé osy Y
+        barChart.axisRight.isEnabled = false
 
         barChart.invalidate()
-    }
-
-    private class MarkAxisValueFormatter : ValueFormatter() {
-        override fun getAxisLabel(value: Float, axis: AxisBase?): String {
-            // Omezení hodnot na 1 až 5
-            return if (value in 1.0f..5.0f) {
-                value.toInt().toString()
-            } else {
-                "" // Prázdný řetězec pro neplatné hodnoty
-            }
-        }
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
