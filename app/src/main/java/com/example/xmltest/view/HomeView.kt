@@ -46,19 +46,13 @@ class HomeViewImp : Fragment(), HomeView {
         presenterHomeController =
             HomeControllerImp(presenterScaleModel, MarkModel(MarkDatabase.getInstance(requireContext()).markDao()))
 
-        barGraphSeries = BarGraphSeries(
-            arrayOf(
-                DataPoint(1.0, 0.0), DataPoint(2.0, 0.0),
-                DataPoint(3.0, 0.0), DataPoint(4.0, 0.0),
-                DataPoint(5.0, 0.0)
-            )
-        )
+        currentLayoutResId = R.layout.activity_home_marks_one_five
 
-        val graphView = rootView.findViewById<GraphView>(R.id.graph)
-        graphView.addSeries(barGraphSeries)
-
+        // Initialize cardViewToFillHome before calling setCardViewContent
         cardViewToFillHome = rootView.findViewById(R.id.cardViewToFillHomeId)
-        presenterScaleModel = ScaleModelImp(requireContext())
+        setCardViewContent(currentLayoutResId)
+
+        // Correctly initialize resetBtn
         val resetBtn: Button = rootView.findViewById(R.id.resetStatsBtn)
         resetBtn.setOnClickListener {
             if (isAdded) {
@@ -67,12 +61,6 @@ class HomeViewImp : Fragment(), HomeView {
                 updateTableOfNumbers()
             }
         }
-        presenterScaleModel.onViewCreated()
-        presenterHomeController =
-            HomeControllerImp(ScaleModelImp(requireContext()), MarkModel(MarkDatabase.getInstance(requireContext()).markDao()))
-
-        currentLayoutResId = R.layout.activity_home_marks_one_five
-        setCardViewContent(currentLayoutResId)
 
         rootView.findViewById<CardView>(R.id.markOneBtn)?.setOnClickListener {
             presenterHomeController.handleMarkButtonClick(1)
@@ -94,9 +82,10 @@ class HomeViewImp : Fragment(), HomeView {
             presenterHomeController.handleMarkButtonClick(5)
             updateTableOfNumbers()
         }
-
+        updateTableOfNumbers()
         return rootView
     }
+
 
     private fun updateTableOfNumbers() {
         val average = presenterHomeController.getAverageMark()
@@ -120,6 +109,8 @@ class HomeViewImp : Fragment(), HomeView {
 
     override fun updateCardViewContent(option: Int) {
         if (isAdded) {
+            //na update tabulky protože jinde se neprovede až po načtení db
+            updateTableOfNumbers()
             when (option) {
                 1 -> {
                     currentLayoutResId = R.layout.activity_home_marks_one_five
