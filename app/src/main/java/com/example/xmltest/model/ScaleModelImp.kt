@@ -1,15 +1,13 @@
 package com.example.xmltest
 
 import android.content.Context
-import com.jjoe64.graphview.series.DataPoint
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 interface ScaleModel{
-    fun onViewCreated()
-    fun onResetBtnClick()
+     fun onResetBtnClick()
     suspend fun getAllScales(): List<Scale>
     suspend fun removeScale(scale: Scale)
     suspend fun insertScale(scale: Scale)
@@ -84,22 +82,9 @@ class ScaleModelImp(private val context: Context) : ScaleModel {
         insertScale(newScale)
     }
 
-    // Metoda volaná při vytvoření pohledu.
-    override fun onViewCreated() {
-        // TODO: Příprava dat pro graf nebo jiné inicializační kroky.
-        val dataPoints = arrayOf(
-            DataPoint(1.0, 10.0),
-            DataPoint(2.0, 20.0),
-            DataPoint(3.0, 30.0),
-            DataPoint(4.0, 40.0),
-            DataPoint(5.0, 15.0)
-        )
-        // Můžete použít 'dataPoints' podle potřeby.
-    }
 
     // Metoda volaná při stisku tlačítka reset.
     override fun onResetBtnClick() {
         // TODO: Vyčištění dat na grafu nebo jiné akce při resetu.
-        //view?.showDataOnGraph(arrayOf())
     }
 }
