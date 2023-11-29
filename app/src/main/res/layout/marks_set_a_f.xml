@@ -88,6 +88,7 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:id="@+id/markOneBottomProcentage"
                         android:layout_margin="5dp"
                         android:fontFamily="sans-serif-black"
                         android:gravity="center"
@@ -165,6 +166,7 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:id="@+id/markTwoBottomProcentage"
                         android:layout_margin="5dp"
                         android:fontFamily="sans-serif-black"
                         android:gravity="center"
@@ -241,6 +243,7 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:id="@+id/markThreeBottomProcentage"
                         android:layout_margin="5dp"
                         android:fontFamily="sans-serif-black"
                         android:gravity="center"
@@ -317,6 +320,7 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:id="@+id/markFourBottomProcentage"
                         android:layout_margin="5dp"
                         android:fontFamily="sans-serif-black"
                         android:gravity="center"
@@ -393,6 +397,7 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:id="@+id/markFiveBottomProcentage"
                         android:layout_margin="5dp"
                         android:fontFamily="sans-serif-black"
                         android:gravity="center"
