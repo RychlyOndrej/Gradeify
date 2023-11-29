@@ -65,6 +65,7 @@
                         <com.google.android.material.textfield.TextInputEditText
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:id="@+id/markOneProcentage"
                             android:digits="0123456789"
                             android:gravity="center"
                             android:hint="100%"
@@ -143,6 +144,7 @@
                         <com.google.android.material.textfield.TextInputEditText
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:id="@+id/markTwoProcentage"
                             android:digits="0123456789"
                             android:gravity="center"
                             android:hint="90%"
@@ -220,6 +222,7 @@
                         <com.google.android.material.textfield.TextInputEditText
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:id="@+id/markThreeProcentage"
                             android:digits="0123456789"
                             android:gravity="center"
                             android:hint="80%"
@@ -297,6 +300,7 @@
                         <com.google.android.material.textfield.TextInputEditText
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:id="@+id/markFourProcentage"
                             android:digits="0123456789"
                             android:gravity="center"
                             android:hint="70%"
