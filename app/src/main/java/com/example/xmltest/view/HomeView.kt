@@ -14,11 +14,13 @@ import com.example.xmltest.controller.Communication
 import com.github.mikephil.charting.charts.BarChart
 import com.github.mikephil.charting.components.AxisBase
 import com.github.mikephil.charting.components.XAxis
+import com.github.mikephil.charting.components.YAxis
 import com.github.mikephil.charting.data.BarData
 import com.github.mikephil.charting.data.BarDataSet
 import com.github.mikephil.charting.data.BarEntry
 import com.github.mikephil.charting.formatter.ValueFormatter
 import java.text.DecimalFormat
+import kotlin.math.roundToInt
 
 // Rozhraní pro komunikaci mezi třídami
 interface HomeView : Communication {
@@ -147,10 +149,10 @@ class HomeViewImp : Fragment(), HomeView {
         medianTextView.text = decimalFormat.format(median)
     }
 
+
     // Metoda pro aktualizaci sloupcového grafu
     private fun updateBarChart() {
         val marksFrequency = presenterHomeController.getMarksList().groupingBy { it.toInt() }.eachCount()
-
         val entries = mutableListOf<BarEntry>()
 
         // Přidání hodnot do datové sady a nastavení etiket pro osu X
@@ -182,6 +184,16 @@ class HomeViewImp : Fragment(), HomeView {
         val barChart = rootView.findViewById<BarChart>(R.id.chart)
         barChart.data = data
 
+        // Odebrání posluchače kliknutí na sloupce
+        barChart.setOnChartValueSelectedListener(null)
+
+        // Zakázání interakce s grafem
+        barChart.setTouchEnabled(false)
+
+        // Povolte zoomování pouze podél osy Y a zakážte podél osy X
+        barChart.setScaleYEnabled(true)
+        barChart.setScaleXEnabled(false)
+
         // Vypnutí popisků pro hlavní graf
         barChart.description = null
 
@@ -190,10 +202,29 @@ class HomeViewImp : Fragment(), HomeView {
             set.setDrawValues(false)
         }
 
+        // Získání poslední známky
+        val lastMark = presenterHomeController.getLastMark()?.toFloat() ?: 0f
+
+// Zaokrouhlení hodnoty poslední známky
+        val roundedLastMark = lastMark.roundToInt().toFloat()
+
+// Zjištění indexu sloupce s zaokrouhlenou hodnotou poslední známkou
+        val highlightIndex = entries.indexOfFirst { entry -> entry.x == roundedLastMark + 1 }
+
+// Zvýraznění sloupce s poslední známkou
+        if (highlightIndex != -1) {
+            barChart.highlightValue(highlightIndex.toFloat(), 0, 0)
+            Log.d("LastMark", "HighLight: $highlightIndex")
+        }
+
+
+
+
         // Vypnutí automatického generování etiket pro osu X
         barChart.xAxis.setDrawLabels(false)
         barChart.xAxis.setDrawAxisLine(false)
         barChart.legend.isEnabled = false
+        barChart.setPinchZoom(false)
 
         // Nastavení osy Y na pravé straně
         val rightAxis = barChart.axisRight
@@ -211,9 +242,7 @@ class HomeViewImp : Fragment(), HomeView {
         rightAxis.axisMaximum = if (maxValue > 8) maxValue.toFloat() else 8f
 
         // Nastavení mřížky grafu
-        barChart.xAxis.setDrawGridLines(true)
-        barChart.xAxis.gridColor = Color.BLACK
-        barChart.xAxis.gridLineWidth = 1.5f
+        barChart.xAxis.setDrawGridLines(false)
 
         barChart.axisLeft.setDrawGridLines(true)
         barChart.axisLeft.gridColor = Color.BLACK
@@ -249,6 +278,8 @@ class HomeViewImp : Fragment(), HomeView {
 
         barChart.invalidate()
     }
+
+
 
     // Metoda volaná po vytvoření view pro fragment
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

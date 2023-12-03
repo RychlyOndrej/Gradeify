@@ -1,5 +1,6 @@
 package com.example.xmltest
 
+import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.lifecycle.lifecycleScope
 import kotlinx.coroutines.launch
@@ -15,6 +16,7 @@ interface HomeController {
     fun getMedian(): Double
     fun getStandardDeviation(): Double
     fun clearMarksList()
+    fun getLastMark(): Double?
     fun getMarksList(): List<Double>
 }
 
@@ -99,5 +101,16 @@ class HomeControllerImp(
     // Metoda pro získání všech škál (scales)
     override suspend fun getAllScales(): List<Scale> {
         return model.getAllScales()
+    }
+
+    override fun getLastMark(): Double?{
+        if (marksList.isNotEmpty()) {
+            val lastMark = marksList.get(marksList.size - 1)
+            Log.d("LastMark", "Poslední známka: $lastMark")
+            return lastMark
+        }
+        else{
+            return null
+        }
     }
 }
