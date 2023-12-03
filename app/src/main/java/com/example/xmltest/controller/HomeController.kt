@@ -6,6 +6,7 @@ import kotlinx.coroutines.launch
 import kotlin.math.pow
 import kotlin.math.sqrt
 
+// Rozhraní pro definici metod, které řídí logiku pro interakci s uživatelským rozhraním
 interface HomeController {
     fun handleMarkButtonClick(markValue: Int)
     fun getAverageMark(): Double
@@ -17,39 +18,43 @@ interface HomeController {
     fun getMarksList(): List<Double>
 }
 
-/*Todo zprovoznit dtabázi, room. a recylclerview add and delete
-*  Floating btn, - přidat škálu na první místo a dát ji jako vybranou
-*   vyřešit editaci jmen škál - u jména mít ikonu tušky(editace) - jméno by mělo jít editovat
-*  pluskem do módu editace - přidá tlačítko, uživatel pak přes edit zadává jméno.
-*/
+// Implementace rozhraní HomeController
 class HomeControllerImp(
     private val model: ScaleModel,
     private val markModel: MarkModel
 ) : ComponentActivity(), HomeController {
 
+    // Seznam hodnocení uživatele
     private var marksList: MutableList<Double> = mutableListOf()
 
+    // Inicializace při vytvoření instance
     init {
+        // Načtení hodnocení z databáze při startu aplikace
         lifecycleScope.launch {
             marksList = markModel.getAllMarks().map { it.markValue.toDouble() }.toMutableList()
         }
     }
 
+    // Metoda pro obsluhu kliknutí na tlačítko s hodnocením
     override fun handleMarkButtonClick(markValue: Int) {
+        // Přidání hodnocení do seznamu a aktualizace databáze
         marksList.add(markValue.toDouble())
         lifecycleScope.launch {
             markModel.insertMark(MarkEntity(markValue = markValue))
         }
     }
 
+    // Metoda pro získání seznamu všech hodnocení
     override fun getMarksList(): List<Double> {
         return marksList.toList()
     }
 
+    // Metoda pro výpočet průměru hodnocení
     override fun getAverageMark(): Double {
         return marksList.average()
     }
 
+    // Metoda pro výpočet mediánu hodnocení
     override fun getMedian(): Double {
         val sortedMarks = marksList.sorted()
 
@@ -64,6 +69,7 @@ class HomeControllerImp(
         }
     }
 
+    // Metoda pro výpočet směrodatné odchylky hodnocení
     override fun getStandardDeviation(): Double {
         val sumOfSquares = marksList.map { (it - getAverageMark()).pow(2) }.sum()
 
@@ -72,6 +78,7 @@ class HomeControllerImp(
         return sqrt(variance)
     }
 
+    // Metoda pro odstranění posledního hodnocení
     override fun removeLastMark() {
         if (marksList.isNotEmpty()) {
             marksList.removeAt(marksList.size - 1)
@@ -81,6 +88,7 @@ class HomeControllerImp(
         }
     }
 
+    // Metoda pro vymazání všech hodnocení
     override fun clearMarksList() {
         marksList.clear()
         lifecycleScope.launch {
@@ -88,8 +96,8 @@ class HomeControllerImp(
         }
     }
 
+    // Metoda pro získání všech škál (scales)
     override suspend fun getAllScales(): List<Scale> {
         return model.getAllScales()
     }
 }
-

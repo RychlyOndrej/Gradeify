@@ -20,11 +20,14 @@ import com.github.mikephil.charting.data.BarEntry
 import com.github.mikephil.charting.formatter.ValueFormatter
 import java.text.DecimalFormat
 
+// Rozhraní pro komunikaci mezi třídami
 interface HomeView : Communication {
     fun updateCardViewContent(option: Int)
 }
 
+// Implementace fragmentu HomeView
 class HomeViewImp : Fragment(), HomeView {
+    // Proměnné pro uchování referencí na komponenty uživatelského rozhraní
     private lateinit var presenterScaleModel: ScaleModel
     private lateinit var cardViewToFillHome: CardView
     private lateinit var presenterHomeController: HomeController
@@ -34,34 +37,36 @@ class HomeViewImp : Fragment(), HomeView {
     private lateinit var medianTextView: TextView
     private lateinit var deleteLastMarkBtn: Button
     private var currentLayoutResId: Int = 0
-
     private lateinit var barChart: BarChart
 
+    // Metoda volaná při vytváření view pro fragment
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        // Inflace layoutu pro tento fragment
         rootView = inflater.inflate(R.layout.activity_home, container, false)
+
+        // Inicializace komponent uživatelského rozhraní
         averageTextView = rootView.findViewById(R.id.Avarage_num)
         deleteLastMarkBtn = rootView.findViewById(R.id.deleteLastMarkBtn)
         stdDevTextView = rootView.findViewById(R.id.Std_num)
         medianTextView = rootView.findViewById(R.id.Median_num)
         barChart = rootView.findViewById(R.id.chart)
 
-
+        // Inicializace modelu a controlleru
         presenterScaleModel = ScaleModelImp(requireContext())
         presenterHomeController =
             HomeControllerImp(presenterScaleModel, MarkModel(MarkDatabase.getInstance(requireContext()).markDao()))
 
-
+        // Nastavení výchozího layoutu pro CardView
         currentLayoutResId = R.layout.activity_home_marks_one_five
-        // Initialize cardViewToFillHome before calling setCardViewContent
         cardViewToFillHome = rootView.findViewById(R.id.cardViewToFillHomeId)
         setCardViewContent(currentLayoutResId)
 
 
-        // Correctly initialize resetBtn
+        // Inicializace a nastavení posluchače pro tlačítko reset
         val resetBtn: Button = rootView.findViewById(R.id.resetStatsBtn)
         resetBtn.setOnClickListener {
             if (isAdded) {
@@ -70,7 +75,14 @@ class HomeViewImp : Fragment(), HomeView {
                 updateStatistics()
             }
         }
+        setupMarkButtonsListeners()
+        updateStatistics()
+        return rootView
+    }
 
+    // ToDo: Zamyslet se zda toto nepůjde sdružit -> velice podobný kód.
+    // Metoda pro nastavení posluchačů pro tlačítka s hodnocením
+    private fun setupMarkButtonsListeners(){
         rootView.findViewById<CardView>(R.id.markOneBtn)?.setOnClickListener {
             presenterHomeController.handleMarkButtonClick(1)
             updateStatistics()
@@ -91,15 +103,39 @@ class HomeViewImp : Fragment(), HomeView {
             presenterHomeController.handleMarkButtonClick(5)
             updateStatistics()
         }
-        updateStatistics()
-        return rootView
     }
 
+    // Metoda pro nastavení posluchačů pro tlačítka s hodnocením
+    private fun setupButtonListeners() {
+        cardViewToFillHome.findViewById<CardView>(R.id.markOneBtn)?.setOnClickListener {
+            presenterHomeController.handleMarkButtonClick(1)
+            updateStatistics()
+        }
+        cardViewToFillHome.findViewById<CardView>(R.id.markTwoBtn)?.setOnClickListener {
+            presenterHomeController.handleMarkButtonClick(2)
+            updateStatistics()
+        }
+        cardViewToFillHome.findViewById<CardView>(R.id.markThreeBtn)?.setOnClickListener {
+            presenterHomeController.handleMarkButtonClick(3)
+            updateStatistics()
+        }
+        cardViewToFillHome.findViewById<CardView>(R.id.markFourBtn)?.setOnClickListener {
+            presenterHomeController.handleMarkButtonClick(4)
+            updateStatistics()
+        }
+        cardViewToFillHome.findViewById<CardView>(R.id.markFiveBtn)?.setOnClickListener {
+            presenterHomeController.handleMarkButtonClick(5)
+            updateStatistics()
+        }
+    }
+
+    // Metoda pro aktualizaci statistik a grafu
     private fun updateStatistics(){
         updateTableOfNumbers()
         updateBarChart()
     }
 
+    // Metoda pro aktualizaci tabulky s hodnotami
     private fun updateTableOfNumbers() {
         val average = presenterHomeController.getAverageMark()
         val StandardDeviation = presenterHomeController.getStandardDeviation()
@@ -111,6 +147,7 @@ class HomeViewImp : Fragment(), HomeView {
         medianTextView.text = decimalFormat.format(median)
     }
 
+    // Metoda pro aktualizaci sloupcového grafu
     private fun updateBarChart() {
         val marksFrequency = presenterHomeController.getMarksList().groupingBy { it.toInt() }.eachCount()
 
@@ -213,18 +250,22 @@ class HomeViewImp : Fragment(), HomeView {
         barChart.invalidate()
     }
 
+    // Metoda volaná po vytvoření view pro fragment
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        // Nastavení vybrané možnosti po vytvoření view
         (activity as? Communication)?.onOptionSelected(1)
+        // Nastavení posluchače pro tlačítko pro odstranění poslední známky
         deleteLastMarkBtn.setOnClickListener {
             presenterHomeController.removeLastMark()
             updateStatistics()
         }
     }
 
+    // Metoda pro aktualizaci obsahu CardView podle vybrané možnosti
     override fun updateCardViewContent(option: Int) {
         if (isAdded) {
-            //na update tabulky protože jinde se neprovede až po načtení db
+            // Aktualizace statistik, protože jinde se neprovede až po načtení databáze
             updateStatistics()
             when (option) {
                 1 -> {
@@ -247,6 +288,7 @@ class HomeViewImp : Fragment(), HomeView {
         }
     }
 
+    // Metoda pro nastavení obsahu CardView podle layoutu
     private fun setCardViewContent(layoutResId: Int) {
         val inflater = LayoutInflater.from(requireContext())
         val contentView = inflater.inflate(layoutResId, cardViewToFillHome, false)
@@ -255,29 +297,7 @@ class HomeViewImp : Fragment(), HomeView {
         setupButtonListeners()
     }
 
-    private fun setupButtonListeners() {
-        cardViewToFillHome.findViewById<CardView>(R.id.markOneBtn)?.setOnClickListener {
-            presenterHomeController.handleMarkButtonClick(1)
-            updateStatistics()
-        }
-        cardViewToFillHome.findViewById<CardView>(R.id.markTwoBtn)?.setOnClickListener {
-            presenterHomeController.handleMarkButtonClick(2)
-            updateStatistics()
-        }
-        cardViewToFillHome.findViewById<CardView>(R.id.markThreeBtn)?.setOnClickListener {
-            presenterHomeController.handleMarkButtonClick(3)
-            updateStatistics()
-        }
-        cardViewToFillHome.findViewById<CardView>(R.id.markFourBtn)?.setOnClickListener {
-            presenterHomeController.handleMarkButtonClick(4)
-            updateStatistics()
-        }
-        cardViewToFillHome.findViewById<CardView>(R.id.markFiveBtn)?.setOnClickListener {
-            presenterHomeController.handleMarkButtonClick(5)
-            updateStatistics()
-        }
-    }
-
+    // Metoda volaná při výběru možnosti
     override fun onOptionSelected(option: Int) {
         Log.d("HomeViewImp", "RadioButton clicked with option: $option")
         if (isAdded) {
@@ -285,8 +305,9 @@ class HomeViewImp : Fragment(), HomeView {
         }
     }
 
+    // Metoda volaná při zničení view
+    //TODO: Je opravdu nutná?? - zatím nechat do doby než se bude optimalizovat
     override fun onDestroyView() {
         super.onDestroyView()
-        // TODO: Disconnect the view from the presenter to prevent memory leaks
     }
 }

@@ -3,11 +3,10 @@ package com.example.xmltest
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
-
-// Entita pro záznamy o značkách
+// Entita pro záznamy o značkách v databázi pomocí Room
 @Entity(tableName = "mark_table")
 data class MarkEntity(
     @PrimaryKey(autoGenerate = true)
-    val id: Int = 0,
-    val markValue: Int
+    val id: Int = 0, // Primární klíč s možností automatického generování hodnot
+    val markValue: Int // Hodnota značky
 )

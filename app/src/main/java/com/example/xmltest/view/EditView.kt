@@ -17,43 +17,57 @@ import com.example.xmltest.controller.Communication
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
+// Rozhraní pro komunikaci mezi třídami
 interface EditView : Communication {
     fun updateCardViewContent(option: Int)
 }
 
+// Implementace fragmentu EditView
 class EditViewImp : Fragment(), EditView {
     private lateinit var controller: HomeController
     private lateinit var cardViewToFillEdit: CardView
     private lateinit var markDatabase: MarkDatabase
 
+    // Metoda volaná při vytváření fragmentu
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        // Inflace layoutu pro tento fragment
         val rootView = inflater.inflate(R.layout.activity_edit, container, false)
         cardViewToFillEdit = rootView.findViewById(R.id.cardViewToFillEditId)
+
+        // Inicializace modelu a controlleru
         val scaleRepository: ScaleModel = ScaleModelImp(requireContext())
         markDatabase = MarkDatabase.getInstance(requireContext())
         controller = HomeControllerImp(scaleRepository, MarkModel(markDatabase.markDao()))
+
+        // Zobrazení všech skal ve fragmentu
         showAllScales(rootView)
         return rootView
     }
 
+    // Metoda pro zobrazení všech skal
     private fun showAllScales(rootView: View) {
         val scaleList = rootView.findViewById<RecyclerView>(R.id.scaleList)
         scaleList.layoutManager = LinearLayoutManager(requireContext())
+
+        // Spuštění asynchronní operace pro získání všech skal
         GlobalScope.launch {
             val scales = controller.getAllScales()
             scaleList.adapter = ScaleAdapter(scales)
         }
     }
 
+    // Metoda volaná po vytvoření view
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        // Nastavení vybrané možnosti po vytvoření view
         (activity as? Communication)?.onOptionSelected(1)
     }
 
+    // Metoda pro aktualizaci obsahu CardView podle vybrané možnosti
     override fun updateCardViewContent(option: Int) {
         when (option) {
             1 -> setCardViewContent(R.layout.marks_set_one_five)
@@ -63,23 +77,27 @@ class EditViewImp : Fragment(), EditView {
         }
     }
 
+    // Metoda volaná při výběru možnosti
     override fun onOptionSelected(option: Int) {
         Log.d("Edit", "RadioButton clicked with option: $option")
         updateCardViewContent(option)
     }
 
+    // Metoda volaná při zničení view
     override fun onDestroyView() {
         super.onDestroyView()
-        // TODO: Disconnect the view from the presenter to prevent memory leaks
+        // TODO: Odpojení view od presenteru k zabránění memory leaks
         // presenter.detachView()
     }
 
+    // Metoda pro nastavení obsahu CardView podle layoutu
     private fun setCardViewContent(layoutResId: Int) {
         val inflater = LayoutInflater.from(requireContext())
         val contentView = inflater.inflate(layoutResId, cardViewToFillEdit, false)
         cardViewToFillEdit.removeAllViews()
         cardViewToFillEdit.addView(contentView)
 
+        // Seznam id EditText a TextView pro nastavení watcheru
         val marks = listOf(
             R.id.markTwoProcentage to R.id.markOneBottomProcentage,
             R.id.markThreeProcentage to R.id.markTwoBottomProcentage,
@@ -87,6 +105,7 @@ class EditViewImp : Fragment(), EditView {
             R.id.markFiveProcentage to R.id.markFourBottomProcentage
         )
 
+        // Přidání watcheru k jednotlivým EditText
         for ((editTextId, textViewId) in marks) {
             val editText = contentView.findViewById<EditText>(editTextId)
             val textView = contentView.findViewById<TextView>(textViewId)
@@ -97,6 +116,7 @@ class EditViewImp : Fragment(), EditView {
         }
     }
 
+    // Metoda pro nastavení watcheru pro výpočet procentuální hodnoty
     private fun setPercentageWatcher(editText: EditText, bottomProcentTextView: TextView) {
         editText.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(

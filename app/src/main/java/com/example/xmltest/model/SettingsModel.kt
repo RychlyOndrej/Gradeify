@@ -1,6 +1,5 @@
 package com.example.xmltest
 
-
 import android.content.Context
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.intPreferencesKey
@@ -17,6 +16,7 @@ interface SettingsModel {
 // Rozšíření vlastnosti dataStore pro přístup k PreferencesDataStore, které ukládá a získává data jako Flow.
 private val Context.dataStore by preferencesDataStore(name = "settings")
 
+// Implementace rozhraní SettingsModel
 class SettingsModelImp(private val context: Context) : SettingsModel {
 
     private val dataStoreKey = intPreferencesKey("example_counter")
