@@ -87,12 +87,13 @@ class EditViewImp : Fragment(), EditView {
             R.id.markFiveProcentage to R.id.markFourBottomProcentage
         )
 
-        for (i in marks.indices) {
-            val (editTextId, textViewId) = marks[i]
+        for ((editTextId, textViewId) in marks) {
             val editText = contentView.findViewById<EditText>(editTextId)
             val textView = contentView.findViewById<TextView>(textViewId)
 
-            setPercentageWatcher(editText, textView)
+            if (editText != null && textView != null) {
+                setPercentageWatcher(editText, textView)
+            }
         }
     }
 
