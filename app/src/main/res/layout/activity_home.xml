@@ -45,15 +45,14 @@
                     android:layout_width="match_parent"
                     android:layout_height="18dp" />
 
-                <!-- TODO: Změň na wrap contánt ve výšce - toto jen test pro switch s html -->
                 <androidx.cardview.widget.CardView
                     android:id="@+id/cardViewToFillHomeId"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
+                    app:cardBackgroundColor="@color/white"
                     android:layout_marginStart="5dp"
                     android:layout_marginEnd="5dp"
-                    app:cardBackgroundColor="@color/Split_color"
                     app:cardCornerRadius="20dp">
 
                 </androidx.cardview.widget.CardView>

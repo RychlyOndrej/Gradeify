@@ -42,8 +42,7 @@
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:id="@+id/cardViewToFillEditId"
-        android:layout_height="200dp"
-        app:cardBackgroundColor="@color/Split_color"
+        android:layout_height="wrap_content"
         app:cardCornerRadius="20dp"
         android:layout_gravity="center"
         android:layout_marginStart="5dp"
