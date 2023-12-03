@@ -26,4 +26,13 @@
     <color name="color_mark_5">#FF6E40</color>
     <color name="color_Split">#BBBBBB</color>
 
+    <color name="color_last_added_mark_1">#3EC8DA</color>
+    <color name="color_last_added_mark_2">#A61ED6</color>
+    <color name="color_last_added_mark_3">#341B49</color>
+    <color name="color_last_added_mark_4">#54576A</color>
+    <color name="color_last_added_mark_5">#6471BB</color>
+    <color name="color_last_added_mark_6">#3647AF</color>
+
+
+
 </resources>
