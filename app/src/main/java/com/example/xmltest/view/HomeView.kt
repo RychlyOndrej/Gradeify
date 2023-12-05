@@ -209,11 +209,11 @@ class HomeViewImp : Fragment(), HomeView {
         val roundedLastMark = lastMark.roundToInt().toFloat()
 
 // Zjištění indexu sloupce s zaokrouhlenou hodnotou poslední známkou
-        val highlightIndex = entries.indexOfFirst { entry -> entry.x == roundedLastMark + 1 }
+        val highlightIndex = entries.indexOfFirst { entry -> entry.x == roundedLastMark}
 
 // Zvýraznění sloupce s poslední známkou
         if (highlightIndex != -1) {
-            barChart.highlightValue(highlightIndex.toFloat(), 0, 0)
+            barChart.highlightValue(highlightIndex.toFloat()+1, 0, 0)
             Log.d("LastMark", "HighLight: $highlightIndex")
         }
 
