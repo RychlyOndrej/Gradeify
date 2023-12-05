@@ -1,61 +1,43 @@
 # XMLTEST
-**Gradeify - Zjednodušte si práci s hodnocením!**
+**Gradeify - Simplify your work with ratings!**
 
-Vítejte v repozitáři Gradeify, vašeho spolehlivého pomocníka pro učitele,
-který usnadňuje práci s hodnotícími škálami a procenty. Gradeify je navržen tak, 
-aby vám ušetřil čas a usnadnil proces hodnocení.
+Welcome to the Gradeify repository, your reliable teacher's helper,
+that makes it easy to work with grading scales and percentages. Gradeify is designed to, 
+to save you time and make the grading process easier.
 
-**Funkce**
-**1. První screen - Home**
+**Features**
+**1. First screen - Home**
 
- První obrazovka vám poskytne přehledné informace o hodnoceních a statistikách, abyste mohli rychle a snadno vyhodnotit výkonnost vašich studentů.
- Zde naleznete zobrazení aktuální škály a několik tlačítek umožňující přidat známky do statistik
+ The first screen provides you with clear information about assessments and statistics so you can quickly and easily evaluate your students' performance.
+ Here you will find a display of the current scale and several buttons that allow you to add grades to the statistics
 
- Dále nalezneme graf, který zobrazuje aktuální rozložení známek a jejich počet.
- Pod ním nalezneme informace o průměru std. dev. a medianu
+ You will also find a graph that shows the current distribution of grades and the number of grades.
+ Below that we find information about the average std. dev. and median
 
- Dále i tlačítka dlete last mark a reset statistics
-
- 
-
-**2. Druhý screen - Edit**
-
- Druhý screen vám umožňuje jednoduše upravovat hodnotící škály podle vašich potřeb.
- V horní části nejpve naleznete je Nastavení maximálního počtu bodů. 
- Níže je blok pro zadávání horního procentuální ohodnocení - 1 by nemusela být psána protože 100%
- Můžete si tak  snadno přizpůsobit hodnoty a kritéria podle specifických požadavků vašeho vzdělávacího programu.
- Ve spodním řádku naleznete úvodní tři škály, které si můžete upravit.
- Dále zde bude Floating button, který nám umožní vybrat si škálu, či nějak vytvořit novou škálu (idk zda neudělat to jinak)
-
+ There are also buttons to delete last mark and reset statistics
 
  
 
-**3. Třetí screen - Settings**
+**2. Second screen - Edit**
 
- Třetí obrazovka vám umožňuje přizpůsobit typ hodnotící škály podle toho, co nejlépe vyhovuje vašemu výukovému prostředí.
- Můžete si vybrat mezi různými typy škál, které odpovídají různým metodám hodnocení. Od A po E, či 1 až 4 či klasické 1-5.
- Bude nějak doděláno další principy.
+ The second screen allows you to easily edit the rating scales according to your needs.
+ At the top you will find the Maximum Score setting. 
+ Below that is a block for entering the top percentage rating                                                            (- 1 might not be typed because 100%)
+ You can easily customize the values and criteria to meet the specific requirements of your training program.
+ At the bottom you you will find the initial three scales that you can customize.
+There is also a Floating button that allows you to insert another scale to expand the number of options
 
 
  
 
-**Todo**
+**3. Third screen - Settings**
 
- Implementovat první screen a statistiku.
- Vytvořit druhý screen pro úpravu hodnotících škál.
- Implementovat třetí screen pro nastavení typu škály.
- Přidat tlačítko u reset statistics k delete last mark.
- Vlastně všechno co není done
+ The third screen allows you to customize the type of rating scale to what best suits your learning environment.
+ You can choose between different types of scales to suit different assessment methods. From A to F, or 1 to 4, or the classic 1-5.
 
 
  
-
-**Informace**
-
- I když jsou tři různé možnosti škál, každá má svůj vlastní XML soubor pro snadné spravování.
- XML soubory jsou vytvořeny staticky, což zajišťuje rychlý a spolehlivý přístup k datům.
- Děkujeme, že jste si vybrali Gradeify. Ulehčujeme vám práci s hodnocením, abyste se mohli plně soustředit na výuku a rozvoj svých studentů.
+ Thank you for choosing Gradeify. We make it easy for you to work with grades so you can focus fully on teaching and developing your students.
 
 
  
-
