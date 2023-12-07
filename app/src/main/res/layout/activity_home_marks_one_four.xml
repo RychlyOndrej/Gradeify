@@ -36,7 +36,9 @@
                                     android:clickable="true"
                                     android:focusable="true"
                                     app:cardBackgroundColor="@color/mark_1"
-                                    app:cardCornerRadius="20dp">
+                                    app:cardCornerRadius="20dp"
+                                    android:foreground="?android:attr/selectableItemBackground"
+                                    android:onClick="onMarkButtonClick">
 
                                         <LinearLayout
                                             android:layout_width="match_parent"
@@ -93,7 +95,9 @@
                                     android:clickable="true"
                                     android:focusable="true"
                                     app:cardBackgroundColor="@color/mark_2"
-                                    app:cardCornerRadius="20dp">
+                                    app:cardCornerRadius="20dp"
+                                    android:foreground="?android:attr/selectableItemBackground"
+                                    android:onClick="onMarkButtonClick">
 
                                         <LinearLayout
                                             android:layout_width="match_parent"
@@ -150,7 +154,9 @@
                                     android:clickable="true"
                                     android:focusable="true"
                                     app:cardBackgroundColor="@color/mark_3"
-                                    app:cardCornerRadius="20dp">
+                                    app:cardCornerRadius="20dp"
+                                    android:foreground="?android:attr/selectableItemBackground"
+                                    android:onClick="onMarkButtonClick">
 
                                         <LinearLayout
                                             android:layout_width="match_parent"
@@ -208,7 +214,9 @@
                                     android:clickable="true"
                                     android:focusable="true"
                                     app:cardBackgroundColor="@color/mark_4"
-                                    app:cardCornerRadius="20dp">
+                                    app:cardCornerRadius="20dp"
+                                    android:foreground="?android:attr/selectableItemBackground"
+                                    android:onClick="onMarkButtonClick">
 
                                         <LinearLayout
                                             android:layout_width="match_parent"

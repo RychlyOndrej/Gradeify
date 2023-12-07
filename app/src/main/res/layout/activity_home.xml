@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fillViewport="true"
-    android:scrollbars="none">
+    android:scrollbars="none"
+    android:background="@color/background">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -156,7 +157,10 @@
                             android:layout_marginEnd="15dp"
                             android:layout_marginStart="15dp"
                             android:layout_weight="1"
-                            android:text="Reset statistic" />
+                            android:background="@color/white"
+                            android:text="Reset statistic"
+                            android:foreground="?android:attr/selectableItemBackground"
+                            android:onClick="onButtonClick"/>
 
                         <Button
                             android:id="@+id/deleteLastMarkBtn"
@@ -165,7 +169,10 @@
                             android:layout_weight="1"
                             android:layout_marginEnd="15dp"
                             android:layout_marginStart="15dp"
-                            android:text="Delete last mark" />
+                            android:background="@color/white"
+                            android:text="Delete last mark"
+                            android:foreground="?android:attr/selectableItemBackground"
+                            android:onClick="onButtonClick"/>
                 </LinearLayout>
         </LinearLayout>
 </LinearLayout>
