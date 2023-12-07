@@ -1,7 +1,6 @@
 package com.example.xmltest
 
 import android.os.Bundle
-import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.example.xmltest.controller.Communication
@@ -29,17 +28,17 @@ class MainActivity : AppCompatActivity(), Communication {
         //ToDo: Zneškodnit depricated, jinak chytře (Šimon něco podobného řešil)
         bottomNavigation.setOnNavigationItemSelectedListener { menuItem ->
             when (menuItem.itemId) {
-                R.id.action_window1 -> {
+                R.id.home_window -> {
                     supportFragmentManager.beginTransaction().hide(activeFragment).show(homeView).commit()
                     activeFragment = homeView
                     true
                 }
-                R.id.action_window2 -> {
+                R.id.edit_window -> {
                     supportFragmentManager.beginTransaction().hide(activeFragment).show(editView).commit()
                     activeFragment = editView
                     true
                 }
-                R.id.action_window3 -> {
+                R.id.settings_window -> {
                     supportFragmentManager.beginTransaction().hide(activeFragment).show(settingsView).commit()
                     activeFragment = settingsView
                     true

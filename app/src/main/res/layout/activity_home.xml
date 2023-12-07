@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -28,7 +28,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginStart="10dp"
                             android:text="Používaná škála"
-                            android:textColor="#000000"
+                            android:textColor="@color/black"
                             android:textSize="20sp" />
 
                         <TextView
@@ -38,22 +38,18 @@
                             android:hint="Aktuální škála"
                             android:layout_marginStart="120dp"
                             android:layout_marginTop="8dp"
-                            android:textColor="#000000"
+                            android:textColor="@color/black"
                             android:textSize="16sp" />
                 </LinearLayout>
-
-                <Space
-                    android:layout_width="match_parent"
-                    android:layout_height="18dp" />
 
                 <androidx.cardview.widget.CardView
                     android:id="@+id/cardViewToFillHomeId"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    app:cardBackgroundColor="@color/white"
                     android:layout_marginStart="5dp"
                     android:layout_marginEnd="5dp"
+                    android:layout_marginTop="10dp"
                     app:cardCornerRadius="20dp">
 
                 </androidx.cardview.widget.CardView>
@@ -62,7 +58,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:paddingBottom="15dp"
                     android:layout_margin="5dp">
 
                         <com.github.mikephil.charting.charts.BarChart
@@ -75,7 +70,8 @@
                 <TableLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginEnd="12dp"
                     android:padding="5dp">
 
                         <TableRow android:layout_height="100dp">
@@ -172,4 +168,4 @@
                             android:text="Delete last mark" />
                 </LinearLayout>
         </LinearLayout>
-</ScrollView>
+</LinearLayout>

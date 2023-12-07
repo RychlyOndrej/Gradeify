@@ -26,6 +26,10 @@
     <color name="color_mark_5">#FF6E40</color>
     <color name="color_Split">#BBBBBB</color>
 
+    <color name="background">#E4E4E4</color>
+    <color name="scale_default">#959595</color>
+    <color name="scale_active">#DCFFCB</color>
+
 
 
 

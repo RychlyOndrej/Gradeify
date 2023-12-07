@@ -1,15 +1,15 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:id="@+id/action_window1"
-        android:icon="@android:drawable/sym_action_email"
+        android:id="@+id/home_window"
+        android:icon="@drawable/home_icon"
         android:title="Home" />
     <item
-        android:id="@+id/action_window2"
-        android:icon="@android:drawable/ic_menu_edit"
+        android:id="@+id/edit_window"
+        android:icon="@drawable/edit_icon"
         android:title="Edit" />
 
     <item
-        android:id="@+id/action_window3"
-        android:icon="@android:drawable/ic_menu_preferences"
+        android:id="@+id/settings_window"
+        android:icon="@drawable/settings_icon"
         android:title="Settings" />
 </menu>

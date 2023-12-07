@@ -4,12 +4,8 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical">
-
-
-    <Space
-        android:layout_width="match_parent"
-        android:layout_height="13dp" />
+    android:orientation="vertical"
+    android:background="@color/background">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -28,16 +24,12 @@
                 android:hint="MAX Bodů"
                 android:inputType="numberDecimal"
                 android:digits="0123456789"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
                 />
 
         </com.google.android.material.textfield.TextInputLayout>
     </LinearLayout>
-
-    <Space
-        android:layout_width="match_parent"
-        android:layout_height="24dp" />
-
-
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
@@ -46,15 +38,9 @@
         app:cardCornerRadius="20dp"
         android:layout_gravity="center"
         android:layout_marginStart="5dp"
-        android:layout_marginEnd="5dp">
-
-
-
-    </androidx.cardview.widget.CardView>
-
-    <Space
-       android:layout_width="match_parent"
-       android:layout_height="25dp"></Space>
+        android:layout_marginEnd="5dp"
+        android:layout_marginBottom="5dp"
+        android:layout_marginTop="5dp"/>
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
@@ -116,7 +102,7 @@
                 app:borderWidth="0dp"
                 android:outlineSpotShadowColor="@color/Split_color"
                 app:maxImageSize="50dp"
-                app:srcCompat="@android:drawable/ic_menu_add" />
+                app:srcCompat="@drawable/add_icon" />
         </RelativeLayout>
     </androidx.cardview.widget.CardView>
 
