@@ -205,13 +205,13 @@ class HomeViewImp : Fragment(), HomeView {
         // Získání poslední známky
         val lastMark = presenterHomeController.getLastMark()?.toFloat() ?: 0f
 
-// Zaokrouhlení hodnoty poslední známky
+        // Zaokrouhlení hodnoty poslední známky
         val roundedLastMark = lastMark.roundToInt().toFloat()
 
-// Zjištění indexu sloupce s zaokrouhlenou hodnotou poslední známkou
+        // Zjištění indexu sloupce s zaokrouhlenou hodnotou poslední známkou
         val highlightIndex = entries.indexOfFirst { entry -> entry.x == roundedLastMark}
 
-// Zvýraznění sloupce s poslední známkou
+        // Zvýraznění sloupce s poslední známkou
         if (highlightIndex != -1) {
             barChart.highlightValue(highlightIndex.toFloat()+1, 0, 0)
             Log.d("LastMark", "HighLight: $highlightIndex")
