@@ -3,6 +3,7 @@ package com.example.xmltest
 import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.lifecycle.lifecycleScope
+import com.example.xmltest.controller.Communication
 import kotlinx.coroutines.launch
 import kotlin.math.pow
 import kotlin.math.sqrt
@@ -18,12 +19,13 @@ interface HomeController {
     fun clearMarksList()
     fun getLastMark(): Double?
     fun getMarksList(): List<Double>
+    fun removeAllFives()
 }
 
 // Implementace rozhraní HomeController
 class HomeControllerImp(
     private val model: ScaleModel,
-    private val markModel: MarkModel
+    private val markModel: MarkModel,
 ) : ComponentActivity(), HomeController {
 
     // Seznam hodnocení uživatele
@@ -112,5 +114,9 @@ class HomeControllerImp(
         else{
             return null
         }
+    }
+
+    override fun removeAllFives() {
+        marksList.removeAll { it == 5.0 }
     }
 }

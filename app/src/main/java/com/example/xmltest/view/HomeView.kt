@@ -40,6 +40,7 @@ class HomeViewImp : Fragment(), HomeView {
     private lateinit var deleteLastMarkBtn: Button
     private var currentLayoutResId: Int = 0
     private lateinit var barChart: BarChart
+    private var numOfColumns: Int = 5
 
     // Metoda volaná při vytváření view pro fragment
     override fun onCreateView(
@@ -156,7 +157,7 @@ class HomeViewImp : Fragment(), HomeView {
         val entries = mutableListOf<BarEntry>()
 
         // Přidání hodnot do datové sady a nastavení etiket pro osu X
-        for (i in 1..5) {
+        for (i in 1..numOfColumns) {
             val frequency = marksFrequency[i] ?: 0
             entries.add(BarEntry(i.toFloat(), frequency.toFloat()))
         }
@@ -297,25 +298,29 @@ class HomeViewImp : Fragment(), HomeView {
     override fun updateCardViewContent(option: Int) {
         if (isAdded) {
             // Aktualizace statistik, protože jinde se neprovede až po načtení databáze
-            updateStatistics()
             when (option) {
                 1 -> {
                     currentLayoutResId = R.layout.activity_home_marks_one_five
                     setCardViewContent(currentLayoutResId)
+                    numOfColumns = 5
                 }
                 2 -> {
                     currentLayoutResId = R.layout.activity_home_marks_a_f
                     setCardViewContent(currentLayoutResId)
+                    numOfColumns = 5
                 }
                 3 -> {
                     currentLayoutResId = R.layout.activity_home_marks_one_four
                     setCardViewContent(currentLayoutResId)
+                    numOfColumns = 4
                 }
                 else -> {
                     currentLayoutResId = R.layout.activity_home_marks_a_f
                     setCardViewContent(currentLayoutResId)
+                    numOfColumns = 5
                 }
             }
+            updateStatistics()
         }
     }
 
@@ -332,6 +337,7 @@ class HomeViewImp : Fragment(), HomeView {
     override fun onOptionSelected(option: Int) {
         Log.d("HomeViewImp", "RadioButton clicked with option: $option")
         if (isAdded) {
+            presenterHomeController.removeAllFives()
             updateCardViewContent(option)
         }
     }

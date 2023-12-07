@@ -16,7 +16,14 @@
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
 
-        <!-- Název aplikace a obrázek můžete přizpůsobit -->
+        <ImageView
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:src="@drawable/gradeify"
+            android:layout_gravity="center"
+            android:layout_marginEnd="16dp" />
+
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -28,12 +35,7 @@
             android:textColor="#FFFFFF"
             android:textSize="18sp" />
 
-        <ImageView
-            android:layout_width="36dp"
-            android:layout_height="36dp"
-            android:src="@drawable/gradeify"
-            android:layout_gravity="center"
-            android:layout_marginEnd="16dp" />
+
 
     </androidx.appcompat.widget.Toolbar>
 
