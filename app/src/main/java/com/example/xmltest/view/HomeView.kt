@@ -1,5 +1,6 @@
 package com.example.xmltest
 
+import android.content.res.Resources
 import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
@@ -42,6 +43,7 @@ class HomeViewImp : Fragment(), HomeView {
     private lateinit var barChart: BarChart
     private var numOfColumns: Int = 5
 
+
     // Metoda volaná při vytváření view pro fragment
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -67,6 +69,8 @@ class HomeViewImp : Fragment(), HomeView {
         currentLayoutResId = R.layout.activity_home_marks_one_five
         cardViewToFillHome = rootView.findViewById(R.id.cardViewToFillHomeId)
         setCardViewContent(currentLayoutResId)
+
+
 
 
         // Inicializace a nastavení posluchače pro tlačítko reset
@@ -134,6 +138,8 @@ class HomeViewImp : Fragment(), HomeView {
 
     // Metoda pro aktualizaci statistik a grafu
     private fun updateStatistics(){
+        val currentLanguage = Resources.getSystem().configuration.locale.language
+        Log.d("Language", "Current Language: $currentLanguage")
         updateTableOfNumbers()
         updateBarChart()
     }

@@ -1,5 +1,6 @@
 package com.example.xmltest
 
+import android.content.res.Resources
 import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.lifecycle.lifecycleScope

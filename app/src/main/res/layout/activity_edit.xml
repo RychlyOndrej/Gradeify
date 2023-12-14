@@ -21,7 +21,7 @@
                 android:layout_width="270dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:hint="MAX Bodů"
+                android:hint="@string/max_points_hint"
                 android:inputType="numberDecimal"
                 android:digits="0123456789"
                 android:layout_marginTop="5dp"
@@ -56,7 +56,7 @@
             android:layout_margin="5dp"
             android:fontFamily="sans-serif-black"
             android:gravity="center_horizontal|top"
-            android:text="Výběr škály"
+            android:text="@string/scale_selection"
             android:textColor="@color/black"
             android:textSize="24sp" />
 

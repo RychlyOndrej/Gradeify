@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Gradeify-cz</string>
+    <string name="app_name">Gradeify</string>
 
     <!-- Známky 1 až 5-->
     <string name="mark_1" translatable="false">1</string>
