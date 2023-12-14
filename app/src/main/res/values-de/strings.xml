@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Gradeify</string>
+    <string name="text_prumer">Durchschnitt</string>
+    <string name="text_odchylka">Standardabweichung</string>
+    <string name="text_median">Median</string>
+    <string name="scaleOneFive">Skala von 1 bis 5</string>
+    <string name="scaleAF">Skala von A bis F</string>
+    <string name="scaleOneFour">Skala von 1 bis 4</string>
+    <string name="reset_btn">RESET-STATISTIK</string>
+    <string name="del_last_mark_btn">DIE LETZTE MARKIERUNG LÖSCHEN</string>
+    <string name="scale_used">Skala im Einsatz</string>
+    <string name="current_scale_hint">Aktuelle Skala</string>
+    <string name="max_points_hint">Max. Punkte</string>
+    <string name="scale_selection">Auswahl der Skala</string>
+    <string name="Scale_type_heading">Skalentyp einstellen</string>
+    <string name="BottomBar_home">Startseite</string>
+    <string name="BottomBar_edit">Bearbeiten</string>
+    <string name="BottomBar_settings">Einstellungen</string>
+</resources>

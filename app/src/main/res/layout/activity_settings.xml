@@ -16,7 +16,7 @@
             android:layout_marginTop="15dp"
             android:fontFamily="sans-serif-black"
             android:gravity="center"
-            android:text="Nastavení typu škály"
+            android:text="@string/Scale_type_heading"
             android:textColor="@color/black"
             android:textSize="24sp" />
 

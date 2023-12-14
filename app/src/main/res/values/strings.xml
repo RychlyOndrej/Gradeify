@@ -1,32 +1,46 @@
 <resources>
-    <string name="app_name">Gradeify</string>
+    <string name="app_name">Gradeify-cz</string>
 
     <!-- Známky 1 až 5-->
-    <string name="mark_1">1</string>
-    <string name="mark_2">2</string>
-    <string name="mark_3">3</string>
-    <string name="mark_4">4</string>
-    <string name="mark_5">5</string>
+    <string name="mark_1" translatable="false">1</string>
+    <string name="mark_2" translatable="false">2</string>
+    <string name="mark_3" translatable="false">3</string>
+    <string name="mark_4" translatable="false">4</string>
+    <string name="mark_5" translatable="false">5</string>
 
     <!-- Známky "A" až "F" -->
-    <string name="mark_A">A</string>
-    <string name="mark_B">B</string>
-    <string name="mark_C">C</string>
-    <string name="mark_D">D</string>
-    <string name="mark_F">F</string>
+    <string name="mark_A" translatable="false">A</string>
+    <string name="mark_B" translatable="false">B</string>
+    <string name="mark_C" translatable="false">C</string>
+    <string name="mark_D" translatable="false">D</string>
+    <string name="mark_F" translatable="false">F</string>
 
 
     <!-- Home -->
-    <string name="text_prumer">Průměr</string>
-    <string name="text_odchylka">Stand. odchylka</string>
+    <string name="text_prumer">Average</string>
+    <string name="text_odchylka">Std. dev.</string>
     <string name="text_median">Median</string>
+    <string name="reset_btn">RESET STATISTIC</string>
+    <string name="del_last_mark_btn">DELETE LAST MARK</string>
+    <string name="scale_used">Scale in use</string>
+    <string name="current_scale_hint">Current Scale</string>
 
 
+    <!-- Edit -->
+    <string name="max_points_hint">Max points</string>
+    <string name="scale_selection">Scale selection</string>
 
 
     <!-- Settings -->
-    <string name="scaleOneFive">Škála od 1 do 5</string>
-    <string name="scaleAF">Škála od A do F</string>
-    <string name="scaleOneFour">Škála od 1 do 4</string>
+    <string name="scaleOneFive">Scale from 1 to 5</string>
+    <string name="scaleAF">Scale from A to F</string>
+    <string name="scaleOneFour">Scale from 1 to 4</string>
+    <string name="Scale_type_heading">Setup scale type</string>
+
+
+    <!-- Bottom bar -->
+    <string name="BottomBar_home">Home</string>
+    <string name="BottomBar_edit">Edit</string>
+    <string name="BottomBar_settings">Settings</string>
 
 </resources>

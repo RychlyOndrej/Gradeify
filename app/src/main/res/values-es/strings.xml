@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Gradeify</string>
+    <string name="text_prumer">Media</string>
+    <string name="text_odchylka">Des. estándar</string>
+    <string name="text_median">Mediana</string>
+    <string name="scaleOneFive">Escala de 1 a 5</string>
+    <string name="scaleAF">Escala de A a F</string>
+    <string name="scaleOneFour">Escala de 1 a 4</string>
+    <string name="reset_btn">RESTABLECER ESTADÍSTICA</string>
+    <string name="del_last_mark_btn">BORRAR LA ÚLTIMA MARCA</string>
+    <string name="scale_used">Balanza en uso</string>
+    <string name="current_scale_hint">Escala actual</string>
+    <string name="max_points_hint">Máx. puntos</string>
+    <string name="scale_selection">Selección de escalas</string>
+    <string name="Scale_type_heading">Configurar tipo de balanza</string>
+    <string name="BottomBar_home">Inicio</string>
+    <string name="BottomBar_edit">Edite</string>
+    <string name="BottomBar_settings">Configuración</string>
+</resources>

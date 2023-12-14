@@ -28,7 +28,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="10dp"
-                            android:text="Používaná škála"
+                            android:text="@string/scale_used"
                             android:textColor="@color/black"
                             android:textSize="20sp" />
 
@@ -36,9 +36,9 @@
                             android:id="@+id/textView4"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:hint="Aktuální škála"
                             android:layout_marginStart="120dp"
                             android:layout_marginTop="8dp"
+                            android:hint="@string/current_scale_hint"
                             android:textColor="@color/black"
                             android:textSize="16sp" />
                 </LinearLayout>
@@ -155,25 +155,25 @@
                             android:id="@+id/resetStatsBtn"
                             android:layout_width="225dp"
                             android:layout_height="wrap_content"
-                            android:layout_marginEnd="15dp"
                             android:layout_marginStart="15dp"
+                            android:layout_marginEnd="15dp"
                             android:layout_weight="1"
                             android:background="@color/white"
-                            android:text="Reset statistic"
                             android:foreground="?android:attr/selectableItemBackground"
-                            android:onClick="onButtonClick"/>
+                            android:onClick="onButtonClick"
+                            android:text="@string/reset_btn" />
 
                         <Button
                             android:id="@+id/deleteLastMarkBtn"
                             android:layout_width="225dp"
                             android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:layout_marginEnd="15dp"
                             android:layout_marginStart="15dp"
+                            android:layout_marginEnd="15dp"
+                            android:layout_weight="1"
                             android:background="@color/white"
-                            android:text="Delete last mark"
                             android:foreground="?android:attr/selectableItemBackground"
-                            android:onClick="onButtonClick"/>
+                            android:onClick="onButtonClick"
+                            android:text="@string/del_last_mark_btn" />
                 </LinearLayout>
         </LinearLayout>
 </LinearLayout>

@@ -312,6 +312,7 @@ class HomeViewImp : Fragment(), HomeView {
                 3 -> {
                     currentLayoutResId = R.layout.activity_home_marks_one_four
                     setCardViewContent(currentLayoutResId)
+                    presenterHomeController.removeAllFives()
                     numOfColumns = 4
                 }
                 else -> {
@@ -337,7 +338,6 @@ class HomeViewImp : Fragment(), HomeView {
     override fun onOptionSelected(option: Int) {
         Log.d("HomeViewImp", "RadioButton clicked with option: $option")
         if (isAdded) {
-            presenterHomeController.removeAllFives()
             updateCardViewContent(option)
         }
     }
