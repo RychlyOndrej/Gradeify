@@ -1,4 +1,3 @@
-# XMLTEST
 **Gradeify - Simplify your work with ratings!**
 
 Welcome to the Gradeify repository, your reliable teacher's helper,
