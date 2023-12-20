@@ -29,25 +29,22 @@ class EditViewImp : Fragment(), EditView {
     private lateinit var markDatabase: MarkDatabase
 
     // Define textWatcher as a property of the class
-    private val textWatcher = object : TextWatcher {
-        override fun beforeTextChanged(
-            s: CharSequence?,
-            start: Int,
-            count: Int,
-            after: Int
-        ) {
-            // Not needed in this case
-        }
+    private val textWatcher: TextWatcher by lazy {
+        object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+                // Not needed in this case
+            }
 
-        override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-            // Not needed in this case
-        }
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                // Not needed in this case
+            }
 
-        override fun afterTextChanged(s: Editable?) {
-            val percentage = s?.toString()?.toDoubleOrNull() ?: 0.0
-            // Use cardViewToFillEdit to find the bottomProcentTextView
-            val bottomProcentTextView = cardViewToFillEdit.findViewById<TextView>(R.id.markOneBottomProcentage)
-            bottomProcentTextView?.text = String.format("%.0f%%", Math.max(0.0, percentage + 1.0))
+            override fun afterTextChanged(s: Editable?) {
+                val percentage = s?.toString()?.toDoubleOrNull() ?: 0.0
+                val bottomProcentTextView =
+                    cardViewToFillEdit.findViewById<TextView>(R.id.markOneBottomProcentage)
+                bottomProcentTextView?.text = String.format("%.0f%%", Math.max(0.0, percentage + 1.0))
+            }
         }
     }
 
