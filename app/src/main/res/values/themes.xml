@@ -3,7 +3,7 @@
 
     <style name="AppTheme" parent="Theme.AppCompat.Light">
         <!-- Your custom theme attributes for both light and dark modes -->
-        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimary">@color/Gradeify_Color</item>
         <item name="colorAccent">@color/colorAccent</item>
         <!-- Add other attributes as needed -->
     </style>
