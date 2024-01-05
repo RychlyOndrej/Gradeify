@@ -118,7 +118,6 @@ class EditViewImp : Fragment(), EditView {
             cardViewToFillEdit.removeAllViews()
             cardViewToFillEdit.addView(contentView)
 
-            // Seznam id EditText a TextView pro nastavení watcheru
             val marks = listOf(
                 R.id.markTwoProcentage to R.id.markOneBottomProcentage,
                 R.id.markThreeProcentage to R.id.markTwoBottomProcentage,
@@ -126,22 +125,35 @@ class EditViewImp : Fragment(), EditView {
                 R.id.markFiveProcentage to R.id.markFourBottomProcentage
             )
 
-            // Přidání watcheru k jednotlivým EditText
-            for ((editTextId, textViewId) in marks) {
+            for (i in marks.indices) {
+                val (editTextId, textViewId) = marks[i]
                 val editText = contentView.findViewById<EditText>(editTextId)
                 val textView = contentView.findViewById<TextView>(textViewId)
 
-                if (editText != null && textView != null) {
-                    // Před přidáním nového Watchera odstraníme všechny existující
-                    editText.removeTextChangedListener(textWatcher)
-                    setPercentageWatcher(editText, textView)
-                }
+                setPercentageWatcher(editText, textView)
             }
         }
     }
 
-    // Metoda pro nastavení watcheru pro výpočet procentuální hodnoty
     private fun setPercentageWatcher(editText: EditText, bottomProcentTextView: TextView) {
-        editText.addTextChangedListener(textWatcher)
+        editText.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(
+                s: CharSequence?,
+                start: Int,
+                count: Int,
+                after: Int
+            ) {
+                // Not needed in this case
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                // Not needed in this case
+            }
+
+            override fun afterTextChanged(s: Editable?) {
+                val percentage = s?.toString()?.toDoubleOrNull() ?: 0.0
+                bottomProcentTextView.text = String.format("%.0f%%", Math.max(0.0, percentage + 1.0))
+            }
+        })
     }
 }
