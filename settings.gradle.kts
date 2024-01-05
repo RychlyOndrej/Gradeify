@@ -14,5 +14,5 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "XMLTEST"
+rootProject.name = "Gradeify"
 include(":app")
