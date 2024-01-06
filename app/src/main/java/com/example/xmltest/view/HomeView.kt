@@ -138,7 +138,7 @@ class HomeViewImp : Fragment(), HomeView {
 
     // Metoda pro aktualizaci statistik a grafu
     private fun updateStatistics(){
-        val currentLanguage = Resources.getSystem().configuration.locale.language
+        val currentLanguage = Resources.getSystem().configuration.locales[0].language
         Log.d("Language", "Current Language: $currentLanguage")
         updateTableOfNumbers()
         updateBarChart()
@@ -169,6 +169,7 @@ class HomeViewImp : Fragment(), HomeView {
         }
 
         val dataSet = BarDataSet(entries, null)
+
 
         // Definice barev pro jednotlivé sloupce
         val colors = intArrayOf(
