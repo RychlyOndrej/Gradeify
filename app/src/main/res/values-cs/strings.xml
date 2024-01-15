@@ -1,32 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Gradeify-cz</string>
-
-    <!-- Známky 1 až 5-->
-
-    <!-- Známky "A" až "F" -->
-
-
-    <!-- Home -->
+    <string name="app_name">Gradeify</string>
     <string name="text_prumer">Průměr</string>
     <string name="text_odchylka">Stand. odchylka</string>
     <string name="text_median">Medián</string>
-
-
-
-
-    <!-- Settings -->
-    <string name="scaleOneFive">Škála od 1 do 5</string>
-    <string name="scaleAF">Škála od A do F</string>
-    <string name="scaleOneFour">Škála od 1 do 4</string>
     <string name="reset_btn">RESET STATISTIK</string>
     <string name="del_last_mark_btn">SMAŽ POSLEDNÍ ZNÁMKU</string>
     <string name="scale_used">Používaná škála</string>
     <string name="current_scale_hint">Aktuální škála</string>
     <string name="max_points_hint">Max bodů</string>
     <string name="scale_selection">Výběr škály</string>
+    <string name="scaleOneFive">Škála od 1 do 5</string>
+    <string name="scaleAF">Škála od A do F</string>
+    <string name="scaleOneFour">Škála od 1 do 4</string>
     <string name="Scale_type_heading">Nastavení typu škály</string>
     <string name="BottomBar_home">Domů</string>
     <string name="BottomBar_edit">Upravit</string>
     <string name="BottomBar_settings">Nastavení</string>
-
 </resources>
