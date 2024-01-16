@@ -18,10 +18,6 @@ class MainActivity : AppCompatActivity(), Communication {
     private val fragments: List<Fragment> = listOf(homeView, editView)
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        val currentLanguage = Resources.getSystem().configuration.locales[0].language
-        Log.d("Language", "Current Language On create (Res): $currentLanguage")
-        val currLanguage = Locale.getDefault().language
-        Log.d("Language", "Current Language On create (Loc): $currLanguage")
         supportActionBar?.hide()
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -59,8 +55,6 @@ class MainActivity : AppCompatActivity(), Communication {
 
     override fun onConfigurationChanged(newConfig: Configuration) {
         super.onConfigurationChanged(newConfig)
-        val newLanguage = newConfig.locales[0].language
-        Log.d("Language", "New Language in onConfigurationChanged: $newLanguage")
     }
 
     override fun onOptionSelected(option: Int) {

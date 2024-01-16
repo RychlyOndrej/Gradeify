@@ -99,7 +99,6 @@ class EditViewImp : Fragment(), EditView {
 
     // Metoda volaná při výběru možnosti
     override fun onOptionSelected(option: Int) {
-        Log.d("Edit", "RadioButton clicked with option: $option")
         updateCardViewContent(option)
     }
 

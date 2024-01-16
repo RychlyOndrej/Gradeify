@@ -53,9 +53,8 @@ class SettingsViewImp : Fragment(), SettingsView {
 
         // Asynchronní získání hodnoty z datového úložiště a aktualizace UI
         //Todo: Depricated, ale těžko opravit
-        // ...
 
-// Asynchronní získání hodnoty z datového úložiště a aktualizace UI
+        // Asynchronní získání hodnoty z datového úložiště a aktualizace UI
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 val valueFromDataStore = model.getValueFromDataStore().first()
@@ -63,9 +62,6 @@ class SettingsViewImp : Fragment(), SettingsView {
                 updateRadioButton(valueFromDataStore)
             }
         }
-
-// ...
-
         return rootView
     }
 

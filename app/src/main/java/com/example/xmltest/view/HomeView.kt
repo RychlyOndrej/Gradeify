@@ -71,8 +71,6 @@ class HomeViewImp : Fragment(), HomeView {
         setCardViewContent(currentLayoutResId)
 
 
-
-
         // Inicializace a nastavení posluchače pro tlačítko reset
         val resetBtn: Button = rootView.findViewById(R.id.resetStatsBtn)
         resetBtn.setOnClickListener {
@@ -139,7 +137,6 @@ class HomeViewImp : Fragment(), HomeView {
     // Metoda pro aktualizaci statistik a grafu
     private fun updateStatistics(){
         val currentLanguage = Resources.getSystem().configuration.locales[0].language
-        Log.d("Language", "Current Language: $currentLanguage")
         updateTableOfNumbers()
         updateBarChart()
     }
@@ -222,11 +219,7 @@ class HomeViewImp : Fragment(), HomeView {
         // Zvýraznění sloupce s poslední známkou
         if (highlightIndex != -1) {
             barChart.highlightValue(highlightIndex.toFloat()+1, 0, 0)
-            Log.d("LastMark", "HighLight: $highlightIndex")
         }
-
-
-
 
         // Vypnutí automatického generování etiket pro osu X
         barChart.xAxis.setDrawLabels(false)
@@ -287,8 +280,6 @@ class HomeViewImp : Fragment(), HomeView {
         barChart.invalidate()
     }
 
-
-
     // Metoda volaná po vytvoření view pro fragment
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -343,7 +334,6 @@ class HomeViewImp : Fragment(), HomeView {
 
     // Metoda volaná při výběru možnosti
     override fun onOptionSelected(option: Int) {
-        Log.d("HomeViewImp", "RadioButton clicked with option: $option")
         if (isAdded) {
             updateCardViewContent(option)
         }
