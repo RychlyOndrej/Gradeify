@@ -34,7 +34,8 @@ class MainActivity : AppCompatActivity(), Communication {
         val bottomNavigation: BottomNavigationView = findViewById(R.id.bottom_navigation)
 
         //ToDo: Zneškodnit depricated, jinak chytře (Šimon něco podobného řešil)
-        bottomNavigation.setOnNavigationItemSelectedListener { menuItem ->
+        //TOdo: asi funguje bylo tam: "setOnNavigationItemSelectedListener"
+        bottomNavigation.setOnItemSelectedListener  { menuItem ->
             when (menuItem.itemId) {
                 R.id.home_window -> {
                     supportFragmentManager.beginTransaction().hide(activeFragment).show(homeView).commit()

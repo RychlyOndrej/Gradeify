@@ -49,6 +49,7 @@ class SettingsViewImp : Fragment(), SettingsView {
         radioButtonOneFour.setOnClickListener { onRadioButtonClicked(3) }
 
         // Asynchronní získání hodnoty z datového úložiště a aktualizace UI
+        //Todo: Depricated, ale těžko opravit
         lifecycleScope.launchWhenStarted {
             val valueFromDataStore = model.getValueFromDataStore().first()
             (activity as? Communication)?.onOptionSelected(valueFromDataStore)
