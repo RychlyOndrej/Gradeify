@@ -6,9 +6,12 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.RadioButton
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import com.example.xmltest.controller.Communication
 import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.launch
 
 // Rozhraní pro definici metod, které umožní aktualizaci UI na základě modelu
 interface SettingsView {
@@ -50,11 +53,19 @@ class SettingsViewImp : Fragment(), SettingsView {
 
         // Asynchronní získání hodnoty z datového úložiště a aktualizace UI
         //Todo: Depricated, ale těžko opravit
-        lifecycleScope.launchWhenStarted {
-            val valueFromDataStore = model.getValueFromDataStore().first()
-            (activity as? Communication)?.onOptionSelected(valueFromDataStore)
-            updateRadioButton(valueFromDataStore)
+        // ...
+
+// Asynchronní získání hodnoty z datového úložiště a aktualizace UI
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                val valueFromDataStore = model.getValueFromDataStore().first()
+                (activity as? Communication)?.onOptionSelected(valueFromDataStore)
+                updateRadioButton(valueFromDataStore)
+            }
         }
+
+// ...
+
         return rootView
     }
 
