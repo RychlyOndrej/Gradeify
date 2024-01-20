@@ -14,16 +14,16 @@
 
     <color name="mark_1">#B2FF59</color>
     <color name="mark_2">#EEFF41</color>
-    <color name="mark_3">#FFD740</color>
-    <color name="mark_4">#FFAB40</color>
-    <color name="mark_5">#FF6E40</color>
+    <color name="mark_3">#FFD947</color>
+    <color name="mark_4">#FFFAA334</color>
+    <color name="mark_5">#FF602E</color>
     <color name="Split_color">#BBBBBB</color>
 
     <color name="color_mark_1">#B2FF59</color>
     <color name="color_mark_2">#EEFF41</color>
-    <color name="color_mark_3">#FFD740</color>
-    <color name="color_mark_4">#FFAB40</color>
-    <color name="color_mark_5">#FF6E40</color>
+    <color name="color_mark_3">#FFD947</color>
+    <color name="color_mark_4">#FFFAA334</color>
+    <color name="color_mark_5">#FF602E</color>
     <color name="color_Split">#BBBBBB</color>
 
     <color name="background">#E4E4E4</color>

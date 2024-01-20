@@ -7,6 +7,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.WindowManager
 import android.widget.EditText
 import android.widget.TextView
 import androidx.cardview.widget.CardView
@@ -63,6 +64,7 @@ class EditViewImp : Fragment(), EditView {
         markDatabase = MarkDatabase.getInstance(requireContext())
         controller = HomeControllerImp(scaleRepository, MarkModel(markDatabase.markDao()))
 
+
         // Zobrazení všech skal ve fragmentu
         showAllScales(rootView)
         return rootView
@@ -85,6 +87,9 @@ class EditViewImp : Fragment(), EditView {
         super.onViewCreated(view, savedInstanceState)
         // Nastavení vybrané možnosti po vytvoření view
         (activity as? Communication)?.onOptionSelected(1)
+
+        // Nastavení windowSoftInputMode pro zabránění automatického přizpůsobení displeje klávesnice
+        activity?.window?.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN)
     }
 
     // Metoda pro aktualizaci obsahu CardView podle vybrané možnosti
