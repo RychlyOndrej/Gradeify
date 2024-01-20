@@ -26,6 +26,8 @@
             android:padding="5dp"
             android:layout_marginStart="5dp"
             android:text="TextView"
+            android:textStyle="bold"
+            android:textColor="@color/black"
             android:textSize="22sp" />
 
         <TextView
