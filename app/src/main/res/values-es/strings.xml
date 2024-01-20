@@ -9,7 +9,7 @@
     <string name="scaleOneFour">Escala de 1 a 4</string>
     <string name="reset_btn">RESTABLECER ESTADÍSTICA</string>
     <string name="del_last_mark_btn">BORRAR LA ÚLTIMA MARCA</string>
-    <string name="scale_used">Balanza en uso</string>
+    <string name="scale_used">Balanza en uso:</string>
     <string name="current_scale_hint">Escala actual</string>
     <string name="max_points_hint">Máx. puntos</string>
     <string name="scale_selection">Selección de escalas</string>

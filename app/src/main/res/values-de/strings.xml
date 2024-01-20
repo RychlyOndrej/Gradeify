@@ -9,7 +9,7 @@
     <string name="scaleOneFour">Skala von 1 bis 4</string>
     <string name="reset_btn">RESET-STATISTIK</string>
     <string name="del_last_mark_btn">DIE LETZTE MARKIERUNG LÖSCHEN</string>
-    <string name="scale_used">Skala im Einsatz</string>
+    <string name="scale_used">Skala im Einsatz:</string>
     <string name="current_scale_hint">Aktuelle Skala</string>
     <string name="max_points_hint">Max. Punkte</string>
     <string name="scale_selection">Auswahl der Skala</string>

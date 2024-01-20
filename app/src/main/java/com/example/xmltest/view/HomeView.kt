@@ -2,6 +2,7 @@ package com.example.xmltest
 
 import android.content.res.Resources
 import android.graphics.Color
+import android.graphics.Typeface
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -202,9 +203,17 @@ class HomeViewImp : Fragment(), HomeView {
         // Vypnutí popisků pro hlavní graf
         barChart.description = null
 
-        // Vypnutí popisků podgrafů s barvami
+
+        val shouldShowValues = marksFrequency.values.any { it > 12 }
+        dataSet.valueTextSize = if (shouldShowValues) 12f else 0f // Upravte podle potřeby
+        dataSet.valueTypeface = Typeface.DEFAULT_BOLD // Ztučnění písma
+
+        // Zakázání automatického zobrazování číselných hodnot nad sloupci
+        dataSet.setDrawValues(shouldShowValues)
+        
+        // Vypnutí popisků podgrafů s barvami pouze tehdy, když alespoň jedna hodnota přesáhne 12
         for (set in barChart.data.dataSets) {
-            set.setDrawValues(false)
+            set.setDrawValues(shouldShowValues)
         }
 
         // Získání poslední známky
@@ -228,19 +237,20 @@ class HomeViewImp : Fragment(), HomeView {
         barChart.setPinchZoom(false)
 
         // Nastavení osy Y na pravé straně
-        val rightAxis = barChart.axisRight
-        rightAxis.valueFormatter = object : ValueFormatter() {
+        val leftAxis = barChart.axisRight
+        leftAxis.valueFormatter = object : ValueFormatter() {
             override fun getAxisLabel(value: Float, axis: AxisBase?): String {
                 return (value - 2).toInt().toString() // Posunutí osy Y o 2 body napřed
             }
         }
 
-        // Nastavení rozsahu osy Y od 0 do maximální hodnoty nebo 8, pokud nepřesáhne 8
-        val maxValue = marksFrequency.values.maxOrNull() ?: 8
+        // Nastavení rozsahu osy Y od 0 do maximální hodnoty nebo 12, pokud nepřesáhne 12
+        val maxValue = marksFrequency.values.maxOrNull() ?: 6
+        val expandedMaxValue = (maxValue + 2).toFloat()  // Zvětšení o 2
         barChart.axisLeft.axisMinimum = 0f
-        barChart.axisLeft.axisMaximum = if (maxValue > 8) maxValue.toFloat() else 8f
-        rightAxis.axisMinimum = 0f
-        rightAxis.axisMaximum = if (maxValue > 8) maxValue.toFloat() else 8f
+        barChart.axisLeft.axisMaximum = if (expandedMaxValue > 6) expandedMaxValue.toFloat() else 8f
+        leftAxis.axisMinimum = 0f
+        leftAxis.axisMaximum = if (expandedMaxValue > 6) expandedMaxValue.toFloat() else 8f
 
         // Nastavení mřížky grafu
         barChart.xAxis.setDrawGridLines(false)

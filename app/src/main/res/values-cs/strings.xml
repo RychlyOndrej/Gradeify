@@ -6,7 +6,7 @@
     <string name="text_median">Medián</string>
     <string name="reset_btn">RESET STATISTIK</string>
     <string name="del_last_mark_btn">SMAŽ POSLEDNÍ ZNÁMKU</string>
-    <string name="scale_used">Používaná škála</string>
+    <string name="scale_used">Používaná škála:</string>
     <string name="current_scale_hint">Aktuální škála</string>
     <string name="max_points_hint">Max bodů</string>
     <string name="scale_selection">Výběr škály</string>

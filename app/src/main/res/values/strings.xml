@@ -22,7 +22,7 @@
     <string name="text_median">Median</string>
     <string name="reset_btn">RESET STATISTIC</string>
     <string name="del_last_mark_btn">DELETE LAST MARK</string>
-    <string name="scale_used">Scale in use</string>
+    <string name="scale_used">Scale in use:</string>
     <string name="current_scale_hint">Current Scale</string>
 
 
