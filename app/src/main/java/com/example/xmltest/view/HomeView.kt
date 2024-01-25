@@ -205,7 +205,7 @@ class HomeViewImp : Fragment(), HomeView {
 
 
         val shouldShowValues = marksFrequency.values.any { it > 12 }
-        dataSet.valueTextSize = if (shouldShowValues) 12f else 0f // Upravte podle potřeby
+        dataSet.valueTextSize = if (shouldShowValues) 12f else 0f
         dataSet.valueTypeface = Typeface.DEFAULT_BOLD // Ztučnění písma
 
         // Zakázání automatického zobrazování číselných hodnot nad sloupci
@@ -244,9 +244,9 @@ class HomeViewImp : Fragment(), HomeView {
             }
         }
 
-        // Nastavení rozsahu osy Y od 0 do maximální hodnoty nebo 12, pokud nepřesáhne 12
+        // Nastavení rozsahu osy Y od 0 do maximální hodnoty
         val maxValue = marksFrequency.values.maxOrNull() ?: 6
-        val expandedMaxValue = (maxValue + 2).toFloat()  // Zvětšení o 2
+        val expandedMaxValue = (maxValue + 2).toFloat().toInt()  // Zvětšení o 2
         barChart.axisLeft.axisMinimum = 0f
         barChart.axisLeft.axisMaximum = if (expandedMaxValue > 6) expandedMaxValue.toFloat() else 8f
         leftAxis.axisMinimum = 0f
@@ -259,9 +259,6 @@ class HomeViewImp : Fragment(), HomeView {
         barChart.axisLeft.gridColor = Color.BLACK
         barChart.axisLeft.gridLineWidth = 1.5f
 
-        barChart.axisRight.setDrawGridLines(true)
-        barChart.axisRight.gridColor = Color.BLACK
-        barChart.axisRight.gridLineWidth = 1.5f
 
         val xAxis: XAxis = barChart.xAxis
         xAxis.position = XAxis.XAxisPosition.BOTTOM
