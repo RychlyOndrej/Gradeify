@@ -153,7 +153,8 @@
                     android:layout_marginEnd="15dp"
                     android:elevation="0dp"
                     android:layout_weight="1"
-                    app:cardCornerRadius="15dp">
+                    app:cardCornerRadius="15dp"
+                    android:outlineSpotShadowColor="@color/background">
                         <Button
                             android:id="@+id/resetStatsBtn"
                             android:layout_width="match_parent"
@@ -172,7 +173,8 @@
                     android:layout_marginEnd="15dp"
                     android:elevation="0dp"
                     android:layout_weight="1"
-                    app:cardCornerRadius="15dp">
+                    app:cardCornerRadius="15dp"
+                    android:outlineSpotShadowColor="@color/background">
                         <Button
                             android:id="@+id/deleteLastMarkBtn"
                             android:layout_width="match_parent"

@@ -32,7 +32,8 @@
                             app:cardBackgroundColor="@color/mark_1"
                             app:cardCornerRadius="20dp"
                             android:foreground="?android:attr/selectableItemBackground"
-                            android:onClick="onMarkButtonClick">
+                            android:onClick="onMarkButtonClick"
+                            android:outlineSpotShadowColor="@color/background">
 
                                 <LinearLayout
                                     android:layout_width="match_parent"
@@ -89,7 +90,8 @@
                             app:cardBackgroundColor="@color/mark_2"
                             app:cardCornerRadius="20dp"
                             android:foreground="?android:attr/selectableItemBackground"
-                            android:onClick="onMarkButtonClick">
+                            android:onClick="onMarkButtonClick"
+                            android:outlineSpotShadowColor="@color/background">
 
                                 <LinearLayout
                                     android:layout_width="match_parent"
@@ -146,7 +148,8 @@
                             app:cardBackgroundColor="@color/mark_3"
                             app:cardCornerRadius="20dp"
                             android:foreground="?android:attr/selectableItemBackground"
-                            android:onClick="onMarkButtonClick">
+                            android:onClick="onMarkButtonClick"
+                            android:outlineSpotShadowColor="@color/background">
 
                                 <LinearLayout
                                     android:layout_width="match_parent"
@@ -204,7 +207,8 @@
                             app:cardBackgroundColor="@color/mark_4"
                             app:cardCornerRadius="20dp"
                             android:foreground="?android:attr/selectableItemBackground"
-                            android:onClick="onMarkButtonClick">
+                            android:onClick="onMarkButtonClick"
+                            android:outlineSpotShadowColor="@color/background">
 
                                 <LinearLayout
                                     android:layout_width="match_parent"

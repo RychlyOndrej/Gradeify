@@ -190,6 +190,15 @@ class HomeViewImp : Fragment(), HomeView {
         val barChart = rootView.findViewById<BarChart>(R.id.chart)
         barChart.data = data
 
+        dataSet.valueFormatter = object : ValueFormatter() {
+            override fun getBarLabel(barEntry: BarEntry?): String {
+                // Zde nastavte libovolný formát pro hodnoty nad bary
+                return barEntry?.y?.toInt().toString()
+            }
+        }
+
+        barChart.data = BarData(dataSet)
+
         // Odebrání posluchače kliknutí na sloupce
         barChart.setOnChartValueSelectedListener(null)
 
@@ -248,9 +257,9 @@ class HomeViewImp : Fragment(), HomeView {
         val maxValue = marksFrequency.values.maxOrNull() ?: 6
         val expandedMaxValue = (maxValue + 2).toFloat().toInt()  // Zvětšení o 2
         barChart.axisLeft.axisMinimum = 0f
-        barChart.axisLeft.axisMaximum = if (expandedMaxValue > 6) expandedMaxValue.toFloat() else 8f
+        barChart.axisLeft.axisMaximum = if (expandedMaxValue > 7) expandedMaxValue.toFloat() else 8f
         leftAxis.axisMinimum = 0f
-        leftAxis.axisMaximum = if (expandedMaxValue > 6) expandedMaxValue.toFloat() else 8f
+        leftAxis.axisMaximum = if (expandedMaxValue > 7) expandedMaxValue.toFloat() else 8f
 
         // Nastavení mřížky grafu
         barChart.xAxis.setDrawGridLines(false)
