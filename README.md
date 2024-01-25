@@ -1,10 +1,10 @@
-#**Gradeify - Simplify your work with ratings!**
+#Gradeify - Simplify your work with ratings!
 
 Welcome to the Gradeify repository, your reliable teacher's helper,
 that makes it easy to work with grading scales and percentages. Gradeify is designed to, 
 to save you time and make the grading process easier.
 
-##**Features**
+##Features
 **1. First screen - Home**
 
  The first screen provides you with clear information about assessments and statistics so you can quickly and easily evaluate your students' performance.
