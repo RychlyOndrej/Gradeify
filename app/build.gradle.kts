@@ -5,11 +5,11 @@ plugins {
 }
 
 android {
-    namespace = "com.example.xmltest"
+    namespace = "com.usbapps.gradeify"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.example.xmltest"
+        applicationId = "com.usbapps.gradeify"
         minSdk = 24
         targetSdk = 34
         versionCode = 1
