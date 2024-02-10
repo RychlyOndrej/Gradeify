@@ -263,7 +263,7 @@ class HomeViewImp : Fragment(), HomeView {
         barChart.xAxis.setDrawGridLines(false)
 
         barChart.axisLeft.setDrawGridLines(true)
-        barChart.axisLeft.gridColor = Color.BLACK
+        barChart.axisLeft.gridColor = Color.LTGRAY
         barChart.axisLeft.gridLineWidth = 1.5f
 
 
