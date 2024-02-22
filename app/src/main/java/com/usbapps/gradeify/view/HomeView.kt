@@ -210,9 +210,9 @@ class HomeViewImp : Fragment(), HomeView {
         // Vypnutí popisků pro hlavní graf
         barChart.description = null
 
-
+        //čísla nad sloupcema
         val shouldShowValues = marksFrequency.values.any { it > 12 }
-        dataSet.valueTextSize = if (shouldShowValues) 12f else 0f
+        dataSet.valueTextSize = if (shouldShowValues) 16f else 0f
         dataSet.valueTypeface = Typeface.DEFAULT_BOLD // Ztučnění písma
 
         // Zakázání automatického zobrazování číselných hodnot nad sloupci
