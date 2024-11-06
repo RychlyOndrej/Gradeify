@@ -1,4 +1,5 @@
-# Gradeify - Simplify your work with ratings!
+# Gradeify - Simplify your work with ratings! 
+- work in slow progress (semester work)
 
 Welcome to the Gradeify repository, your reliable teacher's helper,
 that makes it easy to work with grading scales and percentages. Gradeify is designed to, 
